@@ -17,9 +17,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
     @SuppressWarnings("rawtypes")
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.debug("==================== LoggerInterceptor START ====================");
-        logger.debug(" URI [{}]," + request.getRequestURI());
- 
+        
         Enumeration paramNames = request.getParameterNames();
         while (paramNames.hasMoreElements()) {
             String key = (String) paramNames.nextElement();
@@ -33,8 +31,6 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception {
- 
-        logger.debug("==================== LoggerInterceptor END ====================");
-    }
+     }
 }
  
