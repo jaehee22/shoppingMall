@@ -20,9 +20,15 @@ public class bbsController {
  
     @Autowired
     private bbsService bbsService;
- 
+
+    @RequestMapping( value = "/home")
+    public String home(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "bbs/home";
+    }
+    
     @RequestMapping( value = "/bbs")
-    public String BList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String BbsList(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "bbs/bbs";
     }
