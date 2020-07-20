@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>index page</h3>
+	<script>
+		location.href = "/bbs/home";
+	</script>
 </body>
 </html>
