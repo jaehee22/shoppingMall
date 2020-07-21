@@ -7,7 +7,54 @@
     
         SELECT *
         FROM SHOPPING.BBS
+        
     
     </select>
     
+    <select id="BbsView" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.BBS
+        WHERE bbsID = #{bbsID}    	
+    
+    </select>
+    
+    <insert id="BbsWrite" parameterType="com.shopping.bbs.form.bbsForm">
+		
+		INSERT
+		INTO SHOPPING.BBS
+		VALUES
+		(
+			#{bbsID},
+			#{category},
+			#{subCategory},
+			#{title},
+			#{price},
+			#{content},
+			0
+		) 
+  
+    </insert>
+    
+    <delete id="BbsDelete" parameterType="com.shopping.bbs.form.bbsForm">
+    
+    	DELETE
+    	FROM SHOPPING.BBS
+    	WHERE bbsID = #{bbsID}
+    
+    </delete>
+    
+    <delete id="BbsUpdate" parameterType="com.shopping.bbs.form.bbsForm">
+    
+    	UPDATE SHOPPING.BBS
+    	SET #{bbsID},
+			#{category},
+			#{subCategory},
+			#{title},
+			#{price},
+			#{content},
+			#{sell}
+		WHERE bbsID = #{bbsID}
+    
+    </delete>
 </mapper>
