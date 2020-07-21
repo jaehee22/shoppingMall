@@ -6,3 +6,67 @@
 body {
   padding-top: 56px;
 }
+ 
+ a {
+    text-decoration: none;
+    font-family: 돋움;
+ }
+ /* 가로사이즈 */
+ 
+ .menu {
+    width: 180px;
+ }
+ 
+ .accordion {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+ }
+ 
+ .accordion ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+ }
+ 
+ .accordion li {
+    cursor: pointer;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: url(http://cfile30.uf.tistory.com/image/2530213C57CFB638279AD6)
+ }
+ 
+ .accordion li.active > a {
+    background: url('http://cfile4.uf.tistory.com/image/2728D13C57CFB6382C0FB7') no-repeat 10px 10px;
+ }
+ 
+ .accordion li div {
+    padding: 0;
+    clear: both;
+    float: left;
+    width: 100%;
+ }
+ 
+ .accordion a {
+    font-size: 12px;
+    letter-spacing: -1px;
+    color: #000;
+    padding: 0 20px;
+    display: block;
+    cursor: pointer;
+    background: url('http://cfile27.uf.tistory.com/image/2325513C57CFB63933BAD5') no-repeat 10px 10px;
+    height: 26px;
+    line-height: 26px;
+ }
+ 
+ .accordion li ul li {
+    background: #ccc;
+    font-size: 12px;
+ }
+ 
+ .accordion li ul li ul li a {
+    background: #efefef url('http://cfile30.uf.tistory.com/image/263B5B3C57CFB6371E5668') no-repeat 20px 10px;
+    padding-left: 30px
+ }
