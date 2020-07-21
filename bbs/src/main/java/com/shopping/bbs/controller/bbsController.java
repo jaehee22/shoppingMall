@@ -20,25 +20,89 @@ public class bbsController {
  
     @Autowired
     private bbsService bbsService;
-
+   
+    //메인 page
     @RequestMapping( value = "/home")
     public String home(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "bbs/home";
     }
     
+    //게시판 목록 page
     @RequestMapping( value = "/bbs")
-    public String BbsList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String bbs(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "bbs/bbs";
     }
  
+    //게시판 목록
     @RequestMapping(value = "/BbsList")
     @ResponseBody
     public List<bbsDTO> BbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	List<bbsDTO> bbs = bbsService.BbsList(bbsForm);
+        
+    	return bbs;
+    }
+    
+    //게시판 뷰 page
+    @RequestMapping( value = "/bbsView")
+    public String bbsView(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "bbs/bbsView";
+    }
  
-        List<bbsDTO> bbsList = bbsService.BbsList(bbsForm);
+    //게시판 뷰
+    @RequestMapping(value = "/BbsView")
+    @ResponseBody
+    public bbsDTO BbsView(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	bbsDTO bbsDTO = bbsService.BbsView(bbsForm);
+
+    	return bbsDTO;
+    }
+    
+    //게시글 작성 page
+    @RequestMapping( value = "/bbsWrite")
+    public String bbsWrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "bbs/bbsWrite";
+    }
  
-        return bbsList;
+    //게시판 목록
+    @RequestMapping(value = "/BbsWrite")
+    @ResponseBody
+    public bbsDTO BbsWrite(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	bbsDTO bbsDTO = bbsService.BbsWrite(bbsForm);
+        
+    	return bbsDTO;
+    }
+    
+    //게시판 삭제
+    @RequestMapping(value = "/BbsDelete")
+    @ResponseBody
+    public bbsDTO BbsDelete(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	bbsDTO bbsDTO = bbsService.BbsDelete(bbsForm);
+        
+    	return bbsDTO;
+    }
+    
+    //게시글 수정 page
+    @RequestMapping( value = "/bbsUpdate")
+    public String bbsUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "bbs/bbsUpdate";
+    }
+ 
+    //게시판 목록
+    @RequestMapping(value = "/BbsUpdate")
+    @ResponseBody
+    public bbsDTO BbsUpdate(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	bbsDTO bbsDTO = bbsService.BbsUpdate(bbsForm);
+        
+    	return bbsDTO;
     }
 }
