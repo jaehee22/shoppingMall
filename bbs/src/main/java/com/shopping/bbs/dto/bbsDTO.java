@@ -4,10 +4,13 @@ public class bbsDTO {
 	int bbsID;
 	int category;
 	int subCategory;
-	String titls;
+	String title;
 	int price;
 	String content;
 	int sell;
+	
+	String result;
+	
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -26,11 +29,12 @@ public class bbsDTO {
 	public void setSubCategory(int subCategory) {
 		this.subCategory = subCategory;
 	}
-	public String getTitls() {
-		return titls;
+	
+	public String getTitle() {
+		return title;
 	}
-	public void setTitls(String titls) {
-		this.titls = titls;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public int getPrice() {
 		return price;
@@ -49,6 +53,12 @@ public class bbsDTO {
 	}
 	public void setSell(int sell) {
 		this.sell = sell;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 }
