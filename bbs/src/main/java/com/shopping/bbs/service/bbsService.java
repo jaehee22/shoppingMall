@@ -36,6 +36,8 @@ public class bbsService {
     	
     	bbsDTO bbsDTO = new bbsDTO();
     	
+    	bbsForm.setBbsID(bbsDAO.GetNext());
+    	
     	int cnt = bbsDAO.BbsWrite(bbsForm);
     	
     	if(cnt>0) {
