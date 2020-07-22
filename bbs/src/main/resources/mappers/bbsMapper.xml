@@ -11,6 +11,14 @@
     
     </select>
     
+    <select id="GetNext" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
+    	
+    	SELECT bbsID
+    	FROM SHOPPING.BBS
+    	ORDER BY bbsID DESC;
+    
+    </select>
+    
     <select id="BbsView" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
     
     	SELECT *
