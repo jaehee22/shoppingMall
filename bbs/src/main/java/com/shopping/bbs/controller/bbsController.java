@@ -62,6 +62,16 @@ public class bbsController {
     	return bbsDTO;
     }
     
+    //게시판 목록
+    @RequestMapping(value = "/GetNext")
+    @ResponseBody
+    public bbsDTO GetNext(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	bbsDTO bbsDTO = bbsService.BbsUpdate(bbsForm);
+        
+    	return bbsDTO;
+    }
+    
     //게시글 작성 page
     @RequestMapping( value = "/bbsWrite")
     public String bbsWrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
