@@ -26,11 +26,7 @@ public class bbsService {
     	
     	bbsDTO bbsDTO = new bbsDTO();
     	
-    	int cnt = bbsDAO.BbsView(bbsForm);
-    	
-    	if(cnt>0) {
-    		bbsDTO.setResult("SUCCESS");
-    	}
+    	bbsDTO = bbsDAO.BbsView(bbsForm);
     	
     	return bbsDTO;
     }
