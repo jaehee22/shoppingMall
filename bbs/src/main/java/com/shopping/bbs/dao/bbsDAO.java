@@ -25,14 +25,13 @@ public class bbsDAO {
     }
 
     //게시판 뷰
-    public int BbsView(bbsForm bbsForm) throws Exception {
- 
+    public bbsDTO BbsView(bbsForm bbsForm) throws Exception {
         return sqlSession.selectOne(NAMESPACE + ".BbsView", bbsForm);
     }
     
     //게시글 등록
     public int BbsWrite(bbsForm bbsForm) throws Exception {
- 
+    	
         return sqlSession.insert(NAMESPACE + ".BbsWrite", bbsForm);
     }
     
