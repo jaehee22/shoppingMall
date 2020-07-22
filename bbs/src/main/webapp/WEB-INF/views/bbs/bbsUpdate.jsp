@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +12,11 @@
   <meta name="author" content="">
 
   <title>악세사리 쇼핑몰</title>
+<%    
+    int bbsID = Integer.parseInt(request.getParameter("bbsID"));     
+%>
+ 
+<c:set var="bbsID" value="<%=bbsID%>"/> <!-- 게시글 번호 -->
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
@@ -17,93 +24,6 @@
   <!-- Custom styles for this template -->
   <link type="text/css" href="${pageContext.request.contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
 
-<script>
-$(document).ready(function(){        
-    
-});
-    
-//게시판 목록 이동
-function goBbsList(){                
-    location.href = "/bbs/bbs";
-}
-
-//subCategory설정
-function SubCategory(category){
-	
-	var category = category.value;
-	var sub = new Array();	
-	sub[1] = new Array('귀걸이','피어싱','귀찌','이어커프');
-	sub[2] = new Array('목걸이','초커','패션 목걸이');
-	sub[3] = new Array('반지','레이어드 링','은반지','금반지');
-	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
-	sub[5] = new Array('발찌');
-	var target = document.getElementById("subCategory");
-	
-	target.options.length = 0;
-	
-	for(var i=0; i<sub[category].length; i++){
-		var option = document.createElement("option");
-		option.value = i+1;
-		option.innerHTML = sub[category][i];
-		target.appendChild(option);
-	}
-}
-//게시글 작성
-function BbsWrite(){
-
-    var title = $("#title").val();
-    var content = $("#content").val();
-        
-    if (title == ""){            
-        alert("제목을 입력해주세요.");
-        $("#title").focus();
-        return;
-    }
-    
-    if (content == ""){            
-        alert("내용을 입력해주세요.");
-        $("#content").focus();
-        return;
-    }
-    
-    var yn = confirm("게시글을 등록하시겠습니까?");        
-    if(yn){
-            
-        $.ajax({    
-            
-            url        : "/bbs/BbsWrite",
-            data    : $("#bbsForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-                BbsWriteCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-        });
-    }
-}
-
-//게시글 작성 함수
-function BbsWriteCallback(obj){
-
-    if(obj != null){        
-        
-        var result = obj.result;
-        
-        if(result == "SUCCESS"){                
-            alert("게시글 등록을 성공하였습니다.");                
-            goBbsList();                 
-        } else {                
-            alert("게시글 등록을 실패하였습니다.");    
-            return;
-        }
-    }
-}
-
-</script>
 </head>
 
 <body>
@@ -188,14 +108,20 @@ function BbsWriteCallback(obj){
       	<br>
         <div id="carouselExampleIndicators">				
 			<form id="bbsForm" name="bbsForm">
-				<table class="table" style="text-align:center; border:1px solid #dddddd">
+				<table class="table" style="border:1px solid #dddddd">
 					<tr>
-						<th colspan=4 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
+						<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
 					</tr>
+					<colgroup>
+                       <col width="15%">
+                       <col width="35%">
+                       <col width="15%">
+                       <col width="*">
+                    </colgroup>
 					<tr>
 						<th>대분류</th>
 						<td style="text-align:left;">
-						&emsp;&nbsp;&ensp;&emsp;
+						&emsp;
 						<select name="category" class="tbox" onchange="SubCategory(this)">
 							<option>=== 선택 ===</option>
 							<option value=1>귀걸이</option>
@@ -209,31 +135,31 @@ function BbsWriteCallback(obj){
 					<tr>
 						<th>소분류</th>
 						<td style="text-align:left;">
-						&emsp;&nbsp;&ensp;&emsp;
+						&emsp;
 						<select id="subCategory" name="subCategory" class="tbox">
 							<option>=== 선택 ===</option>
 						</select>
 						</td>
 					</tr>
-					<tbody id="twrite">
+					<tbody id="tupdate">
 						<tr>
 							<th>제품명</th>
-							<td colspan=3><input id="title" name="title" value=""  class="tbox" size="80" maxlength="50" /></td>
+							<td colspan=2><input id="title" name="title" value=""  class="tbox" size="80" maxlength="30" /></td>
 						</tr>
 						<tr>
 							<th>가격</th>
-							<td colspan=3><input id="price" name="price" value="" class="tbox" size="80" maxlength="50" /></td>
+							<td colspan=2><input id="price" name="price" value="" class="tbox" size="80" maxlength="30" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan=3><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
+							<td colspan=2><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
 						</tr>						
 					</tbody>
 				</table>
+				<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/> 
 			</form>
-				<button type="button" class="btn black mr5" onclick="javascript:bbsList();">목록</button>
-				<button type="button" class="btn black mr5" onclick="javascript:BbsWrite();">등록</button>			
-			</div>
+				<button type="button" class="btn black mr5" onclick="javascript:goBbsList();">목록</button>
+                <button type="button" class="btn black" onclick="javascript:BbsUpdate();">수정</button>
 		</div>
       </div>
       <!-- /.col-lg-9 -->
@@ -255,6 +181,8 @@ function BbsWriteCallback(obj){
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/bbsUpdate.js"></script>
+
 
 </body>
 
