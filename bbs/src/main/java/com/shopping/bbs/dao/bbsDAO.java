@@ -29,6 +29,16 @@ public class bbsDAO {
         return sqlSession.selectOne(NAMESPACE + ".BbsView", bbsForm);
     }
     
+    public int GetNext() throws Exception{
+    	
+    	List<bbsDTO> bbsDTO = sqlSession.selectList(NAMESPACE + ".GetNext");	
+    	int i = bbsDTO.get(0).getBbsID()+1;
+    	
+    	System.out.println("DAO"+i);
+    		
+    	return i;
+    }
+    
     //게시글 등록
     public int BbsWrite(bbsForm bbsForm) throws Exception {
     	
