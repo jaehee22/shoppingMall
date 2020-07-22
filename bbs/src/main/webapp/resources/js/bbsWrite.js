@@ -1,5 +1,4 @@
 $(document).ready(function(){        
-    
 });
     
 //게시판 목록 이동
@@ -31,20 +30,6 @@ function SubCategory(category){
 //게시글 작성
 function BbsWrite(){
 
-    var title = $("#title").val();
-    var content = $("#content").val();
-        
-    if (title == ""){            
-        alert("제목을 입력해주세요.");
-        $("#title").focus();
-        return;
-    }
-    
-    if (content == ""){            
-        alert("내용을 입력해주세요.");
-        $("#content").focus();
-        return;
-    }
     
     var yn = confirm("게시글을 등록하시겠습니까?");        
     if(yn){
