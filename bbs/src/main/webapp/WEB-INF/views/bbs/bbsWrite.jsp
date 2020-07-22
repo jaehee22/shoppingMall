@@ -101,14 +101,20 @@
       	<br>
         <div id="carouselExampleIndicators">				
 			<form id="bbsForm" name="bbsForm">
-				<table class="table" style="text-align:center; border:1px solid #dddddd">
+				<table class="table" style="border:1px solid #dddddd">
 					<tr>
-						<th colspan=4 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
+						<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
 					</tr>
+					<colgroup>
+                       <col width="15%">
+                       <col width="35%">
+                       <col width="15%">
+                       <col width="*">
+                    </colgroup>
 					<tr>
 						<th>대분류</th>
 						<td style="text-align:left;">
-						&emsp;&nbsp;&ensp;&emsp;
+						&emsp;
 						<select name="category" class="tbox" onchange="SubCategory(this)">
 							<option>=== 선택 ===</option>
 							<option value=1>귀걸이</option>
@@ -122,7 +128,7 @@
 					<tr>
 						<th>소분류</th>
 						<td style="text-align:left;">
-						&emsp;&nbsp;&ensp;&emsp;
+						&emsp;
 						<select id="subCategory" name="subCategory" class="tbox">
 							<option>=== 선택 ===</option>
 						</select>
@@ -131,15 +137,15 @@
 					<tbody id="twrite">
 						<tr>
 							<th>제품명</th>
-							<td colspan=3><input id="title" name="title" value=""  class="tbox" size="80" maxlength="50" /></td>
+							<td colspan=2><input id="title" name="title" value=""  class="tbox" size="80" maxlength="30" /></td>
 						</tr>
 						<tr>
 							<th>가격</th>
-							<td colspan=3><input id="price" name="price" value="" class="tbox" size="80" maxlength="50" /></td>
+							<td colspan=2><input id="price" name="price" value="" class="tbox" size="80" maxlength="30" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan=3><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
+							<td colspan=2><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
 						</tr>						
 					</tbody>
 				</table>
