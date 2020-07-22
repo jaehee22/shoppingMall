@@ -36,7 +36,7 @@ $(document).ready(function(){
 		}
 	}
 	   function BbsViewCallback(obj){
-	        
+	        alert("?");
 	        var str = "";
 	        if(obj != null){                                
 	            var title = obj.title;
@@ -45,18 +45,15 @@ $(document).ready(function(){
 	            var sell = obj.sell
 	            
 	            str += "<tr>";
-	            str += "<th colspan='3'>상품명</th>";
-	            str += "<td>"+ title+"</td>";
+	            str += "<th>제품명</th>";
+	            str += "<td colspan=2>"+ title+"</td>";
 	            str += "<th>가격</th>";
 	            str += "<td>"+ price +"</td>";
-	            str += "</tr>";        
-	            str += "<tr>";
 	            str += "<th>판매량</th>";
 	            str += "<td>"+ sell +"</td>";
 	            str += "</tr>";        
-	            str += "<tr>";
-	            str += "<th>내용</th>";
-	            str += "<td colspan='3'>"+ content +"</td>";
+	            str += "<tr height=\"200\">";
+	            str += "<td colspan=7><br><br>"+ content +"</td>";
 	            str += "</tr>";
 	            
 	        } else {
