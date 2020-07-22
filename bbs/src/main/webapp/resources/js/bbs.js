@@ -28,7 +28,8 @@
         if(listLen >  0){
             
             for(var a=0; a<listLen; a++){
-                
+               
+            	var bbsID = list[a].category;
                 var category = list[a].category; 
                 var subCategory = list[a].subCategory; 
                 var title = list[a].title;
@@ -37,10 +38,10 @@
                 
                 str += "<div class=\"col-lg-4 col-md-6 mb-4\">";
                 str += "<div class=\"card h-100\">";
-                str += "<a href=\"#\"><img class=\"card-img-top\" src=\"http://placehold.it/700x400\" alt=\"\"></a>";
+                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"\"><img class=\"card-img-top\" src=\"http://placehold.it/700x400\" alt=\"\"></a>";
                 str += "<div class=\"card-body\">";
                 str += "<h4 class=\"card-title\">";
-                str += "<a href=\"#\">"+title+"</a>";
+                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"\">"+title+"</a>";
                 str += "</h4>";
                 str += "<h5>"+price+"원</h5>";
                 str += "</div>";
