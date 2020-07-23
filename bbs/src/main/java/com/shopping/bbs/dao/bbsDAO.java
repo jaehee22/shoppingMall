@@ -18,12 +18,18 @@ public class bbsDAO {
  
     private static final String NAMESPACE = "com.shopping.bbs.bbsMapper";
  
-    //게시판 목록
+    //게시판 목록 (main)
     public List<bbsDTO> BbsList(bbsForm bbsForm) throws Exception {
  
         return sqlSession.selectList(NAMESPACE + ".BbsList", bbsForm);
     }
 
+    //게시판 목록 (bbs)
+    public List<bbsDTO> BbsbbsList(bbsForm bbsForm) throws Exception {
+ 
+        return sqlSession.selectList(NAMESPACE + ".BbsbbsList", bbsForm);
+    }
+    
     //게시판 뷰
     public bbsDTO BbsView(bbsForm bbsForm) throws Exception {
         return sqlSession.selectOne(NAMESPACE + ".BbsView", bbsForm);
