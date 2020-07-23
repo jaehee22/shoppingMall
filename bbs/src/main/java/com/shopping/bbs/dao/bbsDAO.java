@@ -31,11 +31,14 @@ public class bbsDAO {
     
     public int GetNext() throws Exception{
     	
-    	List<bbsDTO> bbsDTO = sqlSession.selectList(NAMESPACE + ".GetNext");	
-    	int i = bbsDTO.get(0).getBbsID()+1;
+    	List<bbsDTO> bbsDTO = sqlSession.selectList(NAMESPACE + ".GetNext");
+    	int i;
     	
-    	System.out.println("DAO"+i);
-    		
+    	if(bbsDTO.isEmpty()) {
+    		i=1;
+    	}else {
+    		i = bbsDTO.get(0).getBbsID()+1;
+    	}    		
     	return i;
     }
     
