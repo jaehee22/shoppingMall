@@ -15,11 +15,17 @@ public class bbsService {
     @Autowired
     private bbsDAO bbsDAO;
  
-    //게시판 목록
+    //게시판 목록 (main)
     public List<bbsDTO> BbsList(bbsForm bbsForm) throws Exception {
  
         return bbsDAO.BbsList(bbsForm);
     }
+
+    //게시판 목록 (bbs)
+    public List<bbsDTO> BbsbbsList(bbsForm bbsForm) throws Exception {       
+       return bbsDAO.BbsbbsList(bbsForm);
+    }
+    
     
     //게시판 뷰
     public bbsDTO BbsView(bbsForm bbsForm) throws Exception {
