@@ -11,6 +11,16 @@
     
     </select>
     
+    <select id="BbsbbsList" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.BBS
+    	WHERE 	category = #{category}
+		AND    	subCategory = #{subCategory}
+    
+    </select>
+    
+    
     <select id="GetNext" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
     	
     	SELECT bbsID
