@@ -29,7 +29,7 @@
             
             for(var a=0; a<listLen; a++){
                
-            	var bbsID = list[a].category;
+            	var bbsID = list[a].bbsID;
                 var category = list[a].category; 
                 var subCategory = list[a].subCategory; 
                 var title = list[a].title;
