@@ -35,15 +35,25 @@ public class bbsController {
         return "bbs/bbs";
     }
  
-    //게시판 목록
+    //게시판 목록 (main)
     @RequestMapping(value = "/BbsList")
     @ResponseBody
     public List<bbsDTO> BbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
         
-    	List<bbsDTO> bbs = bbsService.BbsList(bbsForm);
+    	List<bbsDTO> bbsDTO = bbsService.BbsList(bbsForm);
         
-    	return bbs;
+    	return bbsDTO;
     }
+    
+    //게시판 목록 (bbs)
+    @RequestMapping(value = "/BbsbbsList")
+    @ResponseBody
+    public List<bbsDTO> BbsbbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+        
+    	List<bbsDTO> bbsDTO = bbsService.BbsbbsList(bbsForm);
+        
+    	return bbsDTO;
+    }    
     
     //게시판 뷰 page
     @RequestMapping( value = "/bbsView")
@@ -62,7 +72,7 @@ public class bbsController {
     	return bbsDTO;
     }
     
-    //게시판 목록
+    //게시판 글번호
     @RequestMapping(value = "/GetNext")
     @ResponseBody
     public bbsDTO GetNext(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
