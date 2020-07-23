@@ -10,7 +10,7 @@ $(document).ready(function(){
 	//게시글 수정 이동
 	function goBbsUpdate(){
 		var bbsID = $("#bbsID").val();
-		location.href = "/bbs/bbsUpdate";
+		location.href = "/bbs/bbsUpdate?bbsID="+bbsID;
 	}
 	
 	//게시판 뷰
@@ -36,7 +36,6 @@ $(document).ready(function(){
 		}
 	}
 	   function BbsViewCallback(obj){
-	        alert("?");
 	        var str = "";
 	        if(obj != null){                                
 	            var title = obj.title;
@@ -46,14 +45,14 @@ $(document).ready(function(){
 	            
 	            str += "<tr>";
 	            str += "<th>제품명</th>";
-	            str += "<td colspan=2>"+ title+"</td>";
+	            str += "<td>"+ title+"</td>";
 	            str += "<th>가격</th>";
-	            str += "<td>"+ price +"</td>";
+	            str += "<td>"+ price +"원</td>";
 	            str += "<th>판매량</th>";
 	            str += "<td>"+ sell +"</td>";
 	            str += "</tr>";        
 	            str += "<tr height=\"200\">";
-	            str += "<td colspan=7><br><br>"+ content +"</td>";
+	            str += "<td colspan=6><br><br>"+ content +"</td>";
 	            str += "</tr>";
 	            
 	        } else {
