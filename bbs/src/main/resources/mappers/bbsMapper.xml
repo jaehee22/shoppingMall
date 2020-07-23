@@ -55,13 +55,13 @@
     <delete id="BbsUpdate" parameterType="com.shopping.bbs.form.bbsForm">
     
     	UPDATE SHOPPING.BBS
-    	SET #{bbsID},
-			#{category},
-			#{subCategory},
-			#{title},
-			#{price},
-			#{content},
-			#{sell}
+    	SET bbsID = #{bbsID},
+			category = #{category},
+			subCategory = #{subCategory},
+			title = #{title},
+			price = #{price},
+			content = #{content},
+			sell = #{sell}
 		WHERE bbsID = #{bbsID}
     
     </delete>
