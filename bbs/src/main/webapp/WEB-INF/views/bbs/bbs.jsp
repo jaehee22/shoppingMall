@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +12,13 @@
   <meta name="author" content="">
 
   <title>악세사리 쇼핑몰</title>
+<%    
+    int category = Integer.parseInt(request.getParameter("category"));
+	int subCategory = Integer.parseInt(request.getParameter("subCategory"));
+%>
+ 
+<c:set var="category" value="<%=category%>"/> <!-- 카테고리 -->
+<c:set var="subCategory" value="<%=subCategory%>"/> <!-- 서브 카테고리 -->
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
@@ -96,17 +105,18 @@
         </div>
       </div>
       <!-- /.col-lg-3 -->
-
+ 
       <div class="col-lg-9">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
         </div>
-		<h1>NEW</h1>
+		<h2 id=tcategory></h2>
 		<br>
         <div id = tbody class="row">
         </div>
-        <!-- /.row -->
-
-      </div>
+	    
+	    <input type="hidden" id="category" name="category"    value="${category}"/> <!-- 카테고리 -->
+	   	<input type="hidden" id="subCategory" name="subCategory"    value="${subCategory}"/> <!-- 서브카테고리 -->
+	    </div>
       <!-- /.col-lg-9 -->
 
     </div>
@@ -114,7 +124,7 @@
 
   </div>
   <!-- /.container -->
-
+ 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
