@@ -109,36 +109,35 @@
 			<form id="bbsForm" name="bbsForm">
 				<table class="table" style="border:1px solid #dddddd">
                 	<tr>
-						<th colspan=7 style="background-color:#d3d3d3; text-align:center;">제품 상세</th>
+						<th colspan=6 style="background-color:#d3d3d3; text-align:center;">제품 상세</th>
 					</tr>
                     <colgroup>
                        <col width="15%">
-                       <col width="35%">
+                       <col width="40%">
+                       <col width="10%">
                        <col width="15%">
-                       <col width="*">
+                       <col width="15%">
+                       <col width="10%">                     
                     </colgroup>
                     <tbody id="tbody">
                        
                     </tbody>
-	                </table>        
+	                </table>
+	               	<div align=center>
+			            <button type="button" onclick="javascript:goBbsList();">목록으로</button>
+			            <button type="button" onclick="javascript:goBbsUpdate();">수정하기</button>
+			            <button type="button" onclick="javascript:BbsDelete();">삭제하기</button>
+			        </div>	        
 	                <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
 	            </form>
-	            <div class="btn_right">
-	                <button type="button" class="btn black mr5" onclick="javascript:goBoardList();">목록으로</button>
-	                <button type="button" class="btn black mr5" onclick="javascript:goBoardUpdate();">수정하기</button>
-	                <button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제하기</button>
-	            </div>
 	        </div>
-		</div>
-      </div>
+      	</div>
       <!-- /.col-lg-9 -->
-
-    </div>
+   	 </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
-
+  <br>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
