@@ -122,7 +122,7 @@
 						<th>대분류</th>
 						<td style="text-align:left;">
 						&emsp;
-						<select name="category" class="tbox" onchange="SubCategory(this)">
+						<select id="category" name="category" class="tbox" onchange="SubCategory(category)">
 							<option>=== 선택 ===</option>
 							<option value=1>귀걸이</option>
 							<option value=2>목걸이</option>
@@ -182,8 +182,9 @@
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/bbsUpdate.js"></script>
-
-
+  <script type="text/javascript">
+  
+  </script>
 </body>
 
 </html>
