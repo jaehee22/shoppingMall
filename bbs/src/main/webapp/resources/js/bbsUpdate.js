@@ -2,21 +2,21 @@ $(document).ready(function(){
     BbsView();
 });
     
-//게시판 목록 이동
-function goBbsList(){                
-    location.href = "/bbs/bbs";
-}
-
-//subCategory설정
-function SubCategory(category){
+	//게시판 목록 이동
+	function goBbsList(){                
+	    location.href = "/bbs/bbs";
+	}
 	
-	var category = category.value;
 	var sub = new Array();	
 	sub[1] = new Array('귀걸이','피어싱','귀찌','이어커프');
 	sub[2] = new Array('목걸이','초커','패션 목걸이');
 	sub[3] = new Array('반지','레이어드 링','은반지','금반지');
 	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
 	sub[5] = new Array('발찌');
+	
+//subCategory설정
+function SubCategory(category){
+	var category = category.value;
 	var target = document.getElementById("subCategory");
 	
 	target.options.length = 0;
@@ -29,45 +29,53 @@ function SubCategory(category){
 	}
 }
 
-//게시판 뷰
-function BbsView(bbsID){
-    
-    var bbsID = $("#bbsID").val();
-
-    if(bbsID != 0){
-        
-        $.ajax({    
-            
-            url        : "/bbs/BbsView",
-            data    : $("#bbsForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-                BbsViewCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-         });
-        
-    } else {
-        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-    }    
+function subCat(category,subCategory){
+		
+	for(var i=0; i<sub[category].length; i++){
+		$("#subCategory").append("<option value="+(i+1)+">"+sub[category][i]+"</option>");
+	}
+	$("#subCategory").val(subCategory);
 }
+		
+	//게시판 뷰
+	function BbsView(bbsID){
+		var bbsID = $("#bbsID").val();
+		if(bbsID!=0){
+			$.ajax({    
+	  
+	            url     : "/bbs/BbsView",
+	            data    : $("#bbsID").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+	                BbsViewCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {} 
+	         });
+	    } else {
+	        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
+		}
+	}
 function BbsViewCallback(obj){
-	
+
     var str = "";
-    if(obj != null){                                
+    if(obj != null){
+    	var category = obj.category;
+    	var subCategory = obj.subCategory;
         var title = obj.title;
         var price = obj.price;
         var content = obj.content;
-        var sell = obj.sell
+        var sell = obj.sell;
 	    
-	    $("#title").text(title);
-	    $("#price").text(price);
+        $("#category").val(category);
+        $("#subCategory").val(subCategory);
+	    $("#title").val(title);
+	    $("#price").val(price);
 	    $("#content").text(content);
-	    System.out.println(title);
+	    
+	    subCat(category,subCategory);
 	    
 	} else {
 	    alert("등록된 글이 존재하지 않습니다.");
