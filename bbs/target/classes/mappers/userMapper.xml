@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.shopping.bbs.userMapper">
+ 
+    <select id="UserList" parameterType="com.shopping.bbs.form.userForm" resultType="com.shopping.bbs.dto.userDTO">
+    
+        SELECT *
+        FROM SHOPPING.USER
+        
+    
+    </select>
+       
+    <select id="ExistUser" parameterType="com.shopping.bbs.form.userForm" resultType="int">
+    
+    	SELECT COUNT(*)
+    	FROM SHOPPING.USER
+        WHERE userID = #{userID}    	
+    
+    </select>
+    
+    <insert id="Join" parameterType="com.shopping.bbs.form.userForm">
+		
+		INSERT
+		INTO SHOPPING.USER
+		VALUES
+		(
+			#{userID},
+			#{userPassword},
+			#{userName},
+			#{userGender},
+			0
+		) 
+  
+    </insert>
+        
+    <delete id="UserDelete" parameterType="com.shopping.bbs.form.userForm">
+    
+    	DELETE
+    	FROM SHOPPING.USER
+    	WHERE bbsID = #{bbsID}
+    
+    </delete>
+    
+    <update id="UserUpdate" parameterType="com.shopping.bbs.form.userForm">
+    
+    	UPDATE SHOPPING.USER
+    	SET userID = #{userID},
+			userPassword = #{userPassword},
+			userName = #{userName},
+			userGender = #{userGender},
+			isManager = #{isManager},
+		WHERE userID = #{userID}
+    </update>
+</mapper>
