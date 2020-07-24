@@ -19,6 +19,15 @@
     
     </select>
     
+    <select id="Login" parameterType="com.shopping.bbs.form.userForm" resultType="com.shopping.bbs.dto.userDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.USER
+    	WHERE 	userID = #{userID}
+    	AND		userPassword = #{userPassword}
+    
+    </select>
+          
     <insert id="Join" parameterType="com.shopping.bbs.form.userForm">
 		
 		INSERT
