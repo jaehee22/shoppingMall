@@ -3,7 +3,7 @@ $(document).ready(function(){
     
 //게시판 목록 이동
 function goBbsList(){                
-    location.href = "/bbs/bbs";
+    location.href = "/bbs/home";
 }
 
 //subCategory설정
