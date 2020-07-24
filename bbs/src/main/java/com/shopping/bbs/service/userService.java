@@ -19,12 +19,8 @@ public class userService {
  
     //로그인
     public userDTO Login(userForm userForm) throws Exception {
-		
-		userDTO userDTO = new userDTO();
-		
-		userDTO = userDAO.Login(userForm);
-		
-		return userDTO;
+    	
+		return userDAO.Login(userForm);
 	}
     
     //회원가입
