@@ -16,7 +16,6 @@ $(document).ready(function(){
 	//게시판 뷰
 	function BbsView(bbsID){
 		var bbsID = $("#bbsID").val();
-
 		if(bbsID!=0){
 			$.ajax({    
 	  
