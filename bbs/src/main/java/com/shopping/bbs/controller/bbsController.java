@@ -89,7 +89,7 @@ public class bbsController {
         return "bbs/bbsWrite";
     }
  
-    //게시판 목록
+    //게시판 작성
     @RequestMapping(value = "/BbsWrite")
     @ResponseBody
     public bbsDTO BbsWrite(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
@@ -116,7 +116,7 @@ public class bbsController {
         return "bbs/bbsUpdate";
     }
  
-    //게시판 목록
+    //게시글 수정
     @RequestMapping(value = "/BbsUpdate")
     @ResponseBody
     public bbsDTO BbsUpdate(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
