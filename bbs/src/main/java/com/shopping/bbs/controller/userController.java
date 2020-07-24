@@ -4,15 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shopping.bbs.dto.userDTO;
-import com.shopping.bbs.dto.userDTO;
-import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.service.userService;
  
@@ -34,20 +33,27 @@ public class userController {
     @RequestMapping(value = "/Login")
     @ResponseBody
     public userDTO Login(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
-        
+        HttpSession session = request.getSession();
     	userDTO userDTO = userService.Login(userForm);
-        
+    	if(userDTO == null) {
+    		session.setAttribute("userForm", null);
+    	}
+    	else {
+    		session.setAttribute("userForm", userDTO);
+    	}
     	return userDTO;
     }
     
     //로그아웃
     @RequestMapping(value = "/Logout")
-    @ResponseBody
-    public userDTO Logout(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
+    public String Logout(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
         
-    	userDTO userDTO = userService.Login(userForm);
+    	HttpSession session = request.getSession();
+        session.invalidate();
+    	
+        String referer = request.getHeader("Referer");
         
-    	return userDTO;
+    	return "redirect:"+referer;
     }
     
     //회원가입 page
