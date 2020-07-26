@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shopping.bbs.dto.bbsDTO;
 import com.shopping.bbs.dto.userDTO;
 import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.service.userService;
@@ -63,7 +64,7 @@ public class userController {
         return "user/join";
     }
     
-    //회원 정보// 회원중복확인
+    // 회원중복확인
     @RequestMapping(value = "/ExistUser")
     @ResponseBody
     public int ExistUser(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
@@ -72,6 +73,7 @@ public class userController {
     	return result;
     }
     
+        
     //회원가입
     @RequestMapping(value = "/Join")
     @ResponseBody
@@ -81,6 +83,21 @@ public class userController {
         
     	return userDTO;
     }
+
+    //회원 목록 page
+    @RequestMapping( value = "/userView")
+    public String userView(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "user/userView";
+    }
+    
+    //회원 뷰
+    @RequestMapping(value = "/UserView")
+    @ResponseBody
+    public userDTO UserView(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
+    	userDTO userDTO = userService.UserView(userForm);
+    	return userDTO;
+    }
     
     //회원 목록 page
     @RequestMapping( value = "/userList")
@@ -88,7 +105,7 @@ public class userController {
         
         return "user/userList";
     }
- 
+    
     //회원 목록
     @RequestMapping(value = "/UserList")
     @ResponseBody
