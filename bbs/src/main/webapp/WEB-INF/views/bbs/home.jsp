@@ -46,7 +46,7 @@
          
          <c:if test="${userForm != null }">
           	<li class="nav-item">
-            	<a class="nav-link" href="#">내정보</a>
+            	<a class="nav-link" href="/user/userView">내정보</a>
           	</li>
           	<li class="nav-item">
             	<a class="nav-link" href="#">장바구니</a>
