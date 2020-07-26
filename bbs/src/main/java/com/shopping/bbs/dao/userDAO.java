@@ -6,8 +6,10 @@ import javax.annotation.Resource;
  
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
- 
+
 import com.shopping.bbs.dto.userDTO;
+import com.shopping.bbs.dto.userDTO;
+import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.form.userForm;
  
 @Repository
@@ -28,11 +30,16 @@ public class userDAO {
         return sqlSession.insert(NAMESPACE + ".Join", userForm);
     }
     
-    //회원중복확인//회원정보
+    //회원중복확인
     public int ExistUser(userForm userForm) throws Exception {
         int result = sqlSession.selectOne(NAMESPACE + ".ExistUser", userForm);
         
         return result;
+    }
+    
+    //회원 뷰
+    public userDTO UserView(userForm userForm) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + ".UserView", userForm);
     }
     
     //회원리스트
