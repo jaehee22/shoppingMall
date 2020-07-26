@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.shopping.bbs.dao.userDAO;
 import com.shopping.bbs.dto.userDTO;
 import com.shopping.bbs.dto.userDTO;
+import com.shopping.bbs.dto.userDTO;
+import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.form.userForm;
  
@@ -37,12 +39,23 @@ public class userService {
     	return userDTO;
     }
     
-    //회원중복확인//회원정보
+    //회원중복확인
     public int ExistUser(userForm userForm) throws Exception {
     	
     	int result = userDAO.ExistUser(userForm);
     	return result;
     }
+    
+    //회원뷰
+	public userDTO UserView(userForm userForm) throws Exception {
+	    	
+		userDTO userDTO = new userDTO();
+	    	
+	    userDTO = userDAO.UserView(userForm);
+	    	
+	    return userDTO;
+	}
+    
     
     //회원 리스트
     public List<userDTO> UserList(userForm userForm) throws Exception {
