@@ -127,7 +127,7 @@
 							
 							</tbody>	
 						</table>
-		                <input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 게시글 번호 -->
+		                <input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 회원 아이디 -->
 					</form>
 				</div>
 					<div align=center>
