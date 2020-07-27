@@ -24,7 +24,7 @@ $(document).ready(function(){
 	            },           
 	            error     : function(xhr, status, error) {
 	            	alert("등록된 유저가 존재하지 않습니다.");
-	            	//location.href = "/bbs/home"
+	            	location.href = "/bbs/home"
 	            } 
 	            
 	         });
@@ -66,7 +66,6 @@ function UserUpdate(){
     var userName = document.forms["userForm2"].elements["userName"].value;
     var userGender = document.forms["userForm2"].elements["userGender"].value;
     
-    alert(userPassword+"<"+userName+"<"+userGender);
     if (userPassword == 0){            
         alert("비밀번호를 입력해 주세요");
         $("#userPassword").focus();
@@ -105,7 +104,7 @@ function UserUpdate(){
     }
 }
 
-//게시글 수정 함수
+//회원 수정 함수
 function UserUpdateCallback(obj){	
 	
     if(obj != null){        
@@ -120,4 +119,34 @@ function UserUpdateCallback(obj){
             return;
         }
     }
+}
+
+//회원탈퇴
+function UserDelete(){
+	var userID = $("#userID").val();
+	
+    var yn = confirm("회원탈퇴를 하시겠습니까?");        
+    
+	if(yn){
+		$.ajax({    
+  
+            url        : "/user/UserDelete",
+            data    : $("#userForm").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+            	alert("회원탈퇴가 완료되었습니다.");
+        	    location.href = "/bbs/home";
+            },           
+            error     : function(xhr, status, error) {
+            	alert("등록된 유저가 존재하지 않습니다.");
+            	location.href = "/bbs/home"
+            } 
+            
+			});
+		}
+	
+	
 }
