@@ -32,8 +32,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-        
-         <c:if test="${userForm == null }">          
           <li class="nav-item">
             <a class="nav-link" href="/user/login">로그인
               <span class="sr-only">(current)</span>
@@ -42,23 +40,6 @@
           <li class="nav-item">
             	<a class="nav-link" href="/user/join">회원가입</a>
           </li>          
-         </c:if>
-         
-         <c:if test="${userForm != null }">
-          	<li class="nav-item">
-            	<a class="nav-link" href="/user/userView">내정보</a>
-          	</li>
-          	<li class="nav-item">
-            	<a class="nav-link" href="#">장바구니</a>
-	        </li>
-	        <li class="nav-item">
-	            <a class="nav-link" href="#">주문조회</a>
-	        </li>
-	        <li class="nav-item">
-	            <a class="nav-link" href="/user/Logout">로그아웃</a>
-	        </li>
-         </c:if>          
-          
         </ul>
       </div>
     </div>
