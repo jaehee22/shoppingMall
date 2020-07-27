@@ -64,11 +64,9 @@
     <update id="UserUpdate" parameterType="com.shopping.bbs.form.userForm">
     
     	UPDATE SHOPPING.USER
-    	SET userID = #{userID},
-			userPassword = #{userPassword},
+    	SET userPassword = #{userPassword},
 			userName = #{userName},
-			userGender = #{userGender},
-			isManager = #{isManager},
+			userGender = #{userGender}
 		WHERE userID = #{userID}
     </update>
 </mapper>
