@@ -21,9 +21,11 @@ function Login(){
         success : function(obj) {
         	goBbsList();
         },           
-        error     : function(xhr, status, error) {}
+        error     : function(xhr, status, error) {
+        	alert("등록된 아이디가 없거나 비밀번호가 일치하지 않습니다.");
+        	}
         
     });
-
+   
 }
 
