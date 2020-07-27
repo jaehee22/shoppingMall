@@ -57,7 +57,7 @@
     
     	DELETE
     	FROM SHOPPING.USER
-    	WHERE bbsID = #{bbsID}
+    	WHERE userID = #{userID}
     
     </delete>
     
