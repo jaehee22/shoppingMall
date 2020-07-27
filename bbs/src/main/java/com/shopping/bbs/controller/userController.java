@@ -123,6 +123,8 @@ public class userController {
     public userDTO UserDelete(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
         
     	userDTO userDTO = userService.UserDelete(userForm);
+    	HttpSession session = request.getSession();
+        session.invalidate();
         
     	return userDTO;
     }
