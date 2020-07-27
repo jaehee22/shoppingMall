@@ -11,6 +11,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+<c:set var="userID" value="${userForm.userID}"/> <!-- 유저 아이디 -->
+
   <title>악세사리 쇼핑몰</title>
 
   <!-- Bootstrap core CSS -->
@@ -22,7 +24,9 @@
 </head>
 
 <body>
-
+<form id="userForm" name="userForm">
+	<input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 회원 아이디 -->
+</form>	               
    <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -117,32 +121,36 @@
       	<div class="col-lg-6" style="left:20%">
       		<div class="jumbotron" style="padding-top: 10px;">
       	<br>
-      		<h4 style="text-align:center">회원가입</h4>
-      	<br>
+      		<h4 style="text-align:center">회원 수정</h4>
+      	<br><br>
         		<div id="carouselExampleIndicators">				
-					<form id="userForm" name="userForm">
-						<div class="form-group">
-								<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
+					<form id="userForm2" name="userForm2">
+		                <input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 회원 아이디 -->
+							<p>아이디 (변경 불가)</p>
+							<p id="userID" class = "form-control">${userID}</p>
+							<div class="form-group">
+								<p>비밀번호</p>
+								<input id="userPassword" class = "form-control" name="userPassword" value=""  class="tbox" maxlength="20" >
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="비밀번호 "name="userPassword" maxlength="20">
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="이름" name="userName" maxlength="20">
+								<p>이름</p>
+								<input id="userName" class="form-control" name="userName" value=""  class="tbox" maxlength="20" >
 							</div>
 							<br>
 							<div class="form-group" style="text-align: center;">
 								<div class="btn-group" data-toggle="buttons">
-									<label class="btn btn-primary active"> <input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
+									<label class="btn btn-primary active"> <input type="radio" name="userGender" autocomplete="off" value="남자">남자
 									</label> <label class="btn btn-primary"> <input type="radio" name="userGender" autocomplete="off" value="여자" >여자
 									</label>
 								</div>
 							</div>
+		                <input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 회원 아이디 -->
 					</form>
 				</div>
 					<div align=center>
 						<br><br>
-						<button type="button" class="btn btn-primary" onclick="javascript:IDCheck();">회원가입</button>			
+						<button type="submit" class="btn btn-primary" onclick="javascript:UserDelete();">회원탈퇴</button>
+						<button id="userForm2" type="submit" class="btn btn-primary" onclick="javascript:UserUpdate();">회원수정</button>			
 					</div>				
 			</div>
 		</div>
@@ -165,7 +173,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/join.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/userUpdate.js"></script>
 
 
 </body>
