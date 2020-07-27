@@ -28,6 +28,13 @@
 
 <body>
 
+ <c:if test="${userForm.isManager == 0}">
+ 	<script>
+ 		alert("권한이 없습니다.");
+		location.href = "/bbs/home";
+	</script>
+ </c:if>     
+
    <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
