@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shopping.bbs.dto.bbsDTO;
 import com.shopping.bbs.dto.userDTO;
 import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.service.userService;
