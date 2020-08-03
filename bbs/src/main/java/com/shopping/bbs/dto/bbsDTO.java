@@ -8,7 +8,7 @@ public class bbsDTO {
 	int price;
 	String content;
 	int sell;
-	
+		
 	String result;
 	
 	public int getBbsID() {
@@ -54,6 +54,7 @@ public class bbsDTO {
 	public void setSell(int sell) {
 		this.sell = sell;
 	}
+
 	public String getResult() {
 		return result;
 	}
