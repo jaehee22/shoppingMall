@@ -1,23 +1,24 @@
  $(document).ready(function(){        
         BbsbbsList();
         Category();
+        BbsPaging();
     });
- 	
-    function BbsbbsList(category,subCategory){
+
+    function BbsbbsList(category,subCategory, num){
 		var category = $("#category").val();
 		var subCategory = $("#subCategory").val();
-		
+
 		if(category!=0 && subCategory!=0){
 			$.ajax({    
 	  
 	            url        : "/bbs/BbsbbsList",
-	            data    : $("#category").serialize()+"&"+$("#subCategory").serialize(),
+	            data    : $("#category").serialize()+"&"+$("#subCategory").serialize()+"&"+$("#num").serialize(),
 	            dataType: "JSON",
 	            cache   : false,
 	            async   : true,
 	            type    : "POST",    
 	            success : function(obj) {
-	                BbsbbsListCallback(obj);                
+		                BbsbbsListCallback(obj);                
 	            },           
 	            error     : function(xhr, status, error) {}
 	            
@@ -44,13 +45,12 @@
     }
     
     function BbsbbsListCallback(obj){
-        
+		var num = $("#num").val();
         var list = obj;
         var listLen = obj.length;
-        
         console.log(list);
         console.log(listLen);
-        
+
         var str = "";
         
         if(listLen >  0){
@@ -63,7 +63,7 @@
                 var title = list[a].title;
                 var price = list[a].price;
                 var sell = list[a].sell;
-                
+
                 str += "<div class=\"col-lg-4 col-md-6 mb-4\">";
                 str += "<div class=\"card h-100\">";
                 str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"\"><img class=\"card-img-top\" src=\"http://placehold.it/700x400\" alt=\"\"></a>";
@@ -75,16 +75,73 @@
                 str += "</div>";
                 str += "</div>";
                 str += "</div>";
-                
             } 
-            
         } else {
             
             str += "<tr colspan='3'>";
             str += "<td>등록된 글이 존재하지 않습니다.</td>";
             str += "<tr>";
         }
-        
-        $("#tbody").html(str);
+        	
+    		$("#tbody").html(str);
     }
+    
+    function BbsPaging(category,subCategory,num){
+ 		var category = $("#category").val();
+		var subCategory = $("#subCategory").val();
+ 		
+ 		$.ajax({    
+ 			  
+            url        : "/bbs/BbsPaging",
+            data    : $("#category").serialize()+"&"+$("#subCategory").serialize()+"&"+$("#num").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+	                BbsPagingCallback(obj);                
+            },           
+            error     : function(xhr, status, error) {}
+            
+         });
+ 	}
+ 	
+ 	function BbsPagingCallback(obj){
+ 		var category = $("#category").val();
+		var subCategory = $("#subCategory").val();
+ 		var num = $("#num").val();
+ 		var list = obj;
+        console.log(list);
+        
+        if(list != null){
+        	str = "";
+        	var pageNum = list.pageNum;
+            var startPageNum = list.startPageNum; 
+            var endPageNum = list.endPageNum; 
+            var prev = list.prev;
+            var next = list.next;
+            
+            str += "<ul class=\"page_nation\">";
+            
+            if(prev){
+        		str += "<a class=\"arrow prev\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+(startPageNum-1)+"\"><span><<</span></a>";
+        	}
+        	for(i=startPageNum; i<=endPageNum; i++){
+        		if(i == num){
+        			str += "<a class=\"active\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+i+"\">"+i+"</a>";
+        		}
+        		else{
+        			str += "<a href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+i+"\">"+i+"</a>";
+        		}
+        	}
+        	
+        	if(next){
+        		str += "<a class=\"arrow next\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+(endPageNum+1)+"\"><span>>></span></a>";
+        	}
+        	
+        		str += "</ul>";
+        	$("#tPaging").html(str);
+        }
+ 		
+ 	}
     
