@@ -26,6 +26,10 @@ public class bbsService {
        return bbsDAO.BbsbbsList(bbsForm);
     }
     
+    //°Ô½Ã¹° ÃÑ °¹¼ö
+    public int BbsTotal(bbsForm bbsForm) throws Exception{
+    	return bbsDAO.BbsTotal(bbsForm);
+    }
     
     //°Ô½ÃÆÇ ºä
     public bbsDTO BbsView(bbsForm bbsForm) throws Exception {
@@ -80,4 +84,5 @@ public class bbsService {
     	
     	return bbsDTO;
     }
+    
 }
