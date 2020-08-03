@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletResponse;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
  
 import com.shopping.bbs.dto.bbsDTO;
+import com.shopping.bbs.dto.pagingDTO;
 import com.shopping.bbs.form.bbsForm;
 import com.shopping.bbs.service.bbsService;
  
@@ -44,16 +46,61 @@ public class bbsController {
         
     	return bbsDTO;
     }
+        
+    int pageNum = 0;
     
     //게시판 목록 (bbs)
     @RequestMapping(value = "/BbsbbsList")
     @ResponseBody
     public List<bbsDTO> BbsbbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-        
+    	
+    	//카테고리별 게시물 갯수
+    	int BbsTotal = bbsService.BbsTotal(bbsForm);
+    	//한페이지당 나올 개시물 수
+    	int postNum = 9;
+    	//총 페이징 번호 수
+    	pageNum = (int)Math.ceil((double)BbsTotal/postNum);
+    	//블록당 첫페이지(bbsID)
+    	int displayPost = (bbsForm.getNum()-1)*postNum;
+    	bbsForm.setDisplayPost(displayPost);
+    	bbsForm.setPostNum(postNum);
+    	
     	List<bbsDTO> bbsDTO = bbsService.BbsbbsList(bbsForm);
-        
+    	
     	return bbsDTO;
     }    
+    
+    @RequestMapping(value = "/BbsPaging")
+    @ResponseBody
+    public pagingDTO BbsPaging(HttpServletRequest request, HttpServletResponse response,bbsForm bbsForm) throws Exception {    	
+    	    	
+    	//카테고리별 게시물 갯수
+    	int BbsTotal = bbsService.BbsTotal(bbsForm);
+    	//한번에 표시할 페이징 번호 개수
+    	int pageNum_cnt = 10;
+    	//표시되는 페이지 번호 중 마지막 번호
+    	int endPageNum = (int)(Math.ceil((double)bbsForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	//표시되는 페이지 번호 중 첫번째 번호
+    	int startPageNum = endPageNum - (pageNum_cnt -1);
+    	//마지막 번호 재계산
+    	int endPageNum_tmp = (int)(Math.ceil((double)BbsTotal/(double)pageNum_cnt));
+    	
+    	if(endPageNum > endPageNum_tmp) {
+    		endPageNum=endPageNum_tmp;
+    	}
+    	
+    	boolean prev = startPageNum == 1 ? false : true;
+    	boolean next = endPageNum * pageNum_cnt >= BbsTotal ? false : true;
+    	
+    	pagingDTO pagingDTO = new pagingDTO();
+    	pagingDTO.setPageNum(pageNum);
+    	pagingDTO.setStartPageNum(startPageNum);
+    	pagingDTO.setEndPageNum(endPageNum);
+    	pagingDTO.setPrev(prev);
+    	pagingDTO.setNext(next);
+    	
+    	return pagingDTO;
+    }  
     
     //게시판 뷰 page
     @RequestMapping( value = "/bbsView")
@@ -93,7 +140,6 @@ public class bbsController {
     @RequestMapping(value = "/BbsWrite")
     @ResponseBody
     public bbsDTO BbsWrite(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-        
     	bbsDTO bbsDTO = bbsService.BbsWrite(bbsForm);
         
     	return bbsDTO;
@@ -125,4 +171,5 @@ public class bbsController {
         
     	return bbsDTO;
     }
+    
 }
