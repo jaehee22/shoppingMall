@@ -31,7 +31,6 @@ function SubCategory(category){
 function BbsWrite(){
 
     var yn = confirm("게시글을 등록하시겠습니까?");        
-    
     if(yn){
             
         $.ajax({    
@@ -49,6 +48,7 @@ function BbsWrite(){
             
         });
     }
+    
 }
 
 //게시글 작성 함수
