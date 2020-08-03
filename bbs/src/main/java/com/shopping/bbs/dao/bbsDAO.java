@@ -1,5 +1,6 @@
 package com.shopping.bbs.dao;
 
+import java.util.HashMap;
 import java.util.List;
  
 import javax.annotation.Resource;
@@ -26,7 +27,7 @@ public class bbsDAO {
 
     //게시판 목록 (bbs)
     public List<bbsDTO> BbsbbsList(bbsForm bbsForm) throws Exception {
- 
+    	
         return sqlSession.selectList(NAMESPACE + ".BbsbbsList", bbsForm);
     }
     
@@ -34,7 +35,12 @@ public class bbsDAO {
     public bbsDTO BbsView(bbsForm bbsForm) throws Exception {
         return sqlSession.selectOne(NAMESPACE + ".BbsView", bbsForm);
     }
+    //게시물 총 갯수
+    public int BbsTotal(bbsForm bbsForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".BbsTotal", bbsForm);
+    }
     
+    //bbsID생성
     public int GetNext() throws Exception{
     	
     	List<bbsDTO> bbsDTO = sqlSession.selectList(NAMESPACE + ".GetNext");
