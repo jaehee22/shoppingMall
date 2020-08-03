@@ -7,13 +7,25 @@
     
         SELECT *
         FROM SHOPPING.BBS
-        
+        ORDER BY bbsID DESC
+        LIMIT 9
     
     </select>
     
     <select id="BbsbbsList" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
     
     	SELECT *
+    	FROM SHOPPING.BBS
+    	WHERE 	category = #{category}
+		AND    	subCategory = #{subCategory}
+		ORDER BY bbsID DESC
+		LIMIT #{displayPost}, #{postNum}
+    
+    </select>
+    
+    <select id="BbsTotal" parameterType="com.shopping.bbs.form.bbsForm" resultType="int">
+    
+    	SELECT COUNT(*)
     	FROM SHOPPING.BBS
     	WHERE 	category = #{category}
 		AND    	subCategory = #{subCategory}
