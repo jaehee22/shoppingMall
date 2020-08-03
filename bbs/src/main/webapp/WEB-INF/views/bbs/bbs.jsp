@@ -13,14 +13,16 @@
 <%    
     int category = Integer.parseInt(request.getParameter("category"));
 	int subCategory = Integer.parseInt(request.getParameter("subCategory"));
+	int num = Integer.parseInt(request.getParameter("num"));
 %>
  
 	<c:set var="category" value="<%=category%>"/> <!-- 카테고리 -->
 	<c:set var="subCategory" value="<%=subCategory%>"/> <!-- 서브 카테고리 -->
+	<c:set var="num" value="<%=num%>"/> <!-- 페이지 -->
 
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
-
+	
 	<!-- Custom styles for this template -->
 	<link type="text/css" href="${pageContext.request.contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
 </head>
@@ -85,36 +87,36 @@
       				<ul class="accordion">
       					<li><a href="#menu1">귀걸이</a>
       						<ul>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=1">귀걸이</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=2">피어싱</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=3">귀찌</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=4">이어커프</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=1&num=1">귀걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=2&num=1">피어싱</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=3&num=1">귀찌</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=4&num=1">이어커프</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu2">목걸이</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=1">목걸이</a></li>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=2">초커</a></li>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=3">패션 목걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=1&num=1">목걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=2&num=1">초커</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=3&num=1">패션 목걸이</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu3">반지</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=1">반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=2">레이어드 링</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=3">은반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=4">금반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=1&num=1">반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=2&num=1">레이어드 링</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=3&num=1">은반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=4&num=1">금반지</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu4">팔찌</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=1">팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=2">가죽 팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=3">원석 팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=4">은 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=1&num=1">팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=2&num=1">가죽 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=3&num=1">원석 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=4&num=1">은 팔찌</a></li>
 				      		</ul>
 				      	</li>
-				      	<li><a href="/bbs/bbs?category=5&subCategory=1">발찌</a></li>        		        		
+				      	<li><a href="/bbs/bbs?category=5&subCategory=1&num=1">발찌</a></li>        		        		
 					</ul>
 				</div>				
 			</div>
@@ -129,8 +131,13 @@
 			</div>
 		   	<input type="hidden" id="category" name="category"    value="${category}"/> <!-- 카테고리 -->
 			<input type="hidden" id="subCategory" name="subCategory"    value="${subCategory}"/> <!-- 서브카테고리 -->
+			<input type="hidden" id="num" name="num"    value="${num}"/> <!-- 페이지 -->
+			<div>
+			</div>	
+			<div class="page_wrap" id=tPaging>
+			</div>		
 			</div>
-			<!-- /.col-lg-9 -->
+			<!-- /.col-lg-8 -->
 		</div>
 		<!-- /.row -->
 	</div>
