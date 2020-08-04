@@ -123,7 +123,7 @@
 			<div class="col-lg-9">
 	   		<br>
 	   			<div id="carouselExampleIndicators">				
-					<form id="bbsForm" name="bbsForm">
+					<form id="bbsForm" name="bbsForm" enctype="multipart/form-data">
 						<table class="table" style="border:1px solid #dddddd">
 							<tr>
 								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
@@ -136,8 +136,7 @@
 							</colgroup>
 							<tr>
 								<th>대분류</th>
-								<td style="text-align:left;">
-								&emsp;
+								<td style="text-align:left;" colspan=2>
 									<select name="category" class="tbox" onchange="SubCategory(this)">
 										<option>=== 선택 ===</option>
 										<option value=1>귀걸이</option>
@@ -150,8 +149,7 @@
 							</tr>
 							<tr>
 								<th>소분류</th>
-								<td style="text-align:left;">
-								&emsp;
+								<td style="text-align:left;" colspan=2>
 								<select id="subCategory" name="subCategory" class="tbox">
 									<option>=== 선택 ===</option>
 								</select>
@@ -169,12 +167,16 @@
 								<tr>
 									<th>내용</th>
 									<td colspan=2><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
-								</tr>						
+								</tr>	
+								<tr>
+									<th>이미지<input type="file" id="bbsImage" name="file"></th>
+									<td colspan=2><div class="select_img"><img src=""/></div></td>
+								</tr>					
 							</tbody>
 						</table>
 					</form>
 					<button type="button" class="btn black mr5" onclick="javascript:bbsList();">목록</button>
-					<button type="button" class="btn black mr5" onclick="javascript:BbsWrite();">등록</button>			
+					<button type="submit" class="btn black mr5" onclick="javascript:BbsWrite();">등록</button>			
 				</div>
 			</div>
 			<!-- /.col-lg-9 -->
