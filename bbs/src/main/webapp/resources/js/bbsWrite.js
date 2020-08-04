@@ -1,6 +1,14 @@
 $(document).ready(function(){        
 });
-    
+
+$("#bbsImage").change(function(){
+	    var reader = new FileReader;
+	    reader.onload = function(data) {
+	     $(".select_img img").attr("src", data.target.result).width(300);        
+	    }
+	    reader.readAsDataURL(this.files[0]);
+});
+
 //게시판 목록 이동
 function goBbsList(){                
     location.href = "/bbs/home";
