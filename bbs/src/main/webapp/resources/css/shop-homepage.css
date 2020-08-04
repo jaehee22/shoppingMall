@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
  */
 body {
-  padding-top: 56px;
+  padding-top: 60px;
 }
  
  a {
@@ -14,7 +14,7 @@ body {
  /* 가로사이즈 */
  
  .menu {
-    width: 180px;
+    width: 250px;
  }
  
  .accordion {
