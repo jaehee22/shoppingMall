@@ -71,7 +71,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<h1 class="my-4">악세사리</h1>
+				<img class="d-block img-fluid" width="230" height="230" src="${pageContext.request.contextPath}/resources/img/반지.JPG">
 				<br>
      			<div class="menu">
       				<ul class="accordion">
@@ -114,7 +114,7 @@
 			
     		<div class="col-lg-9">
 				<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-					<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+					<img class="d-block img-fluid" width="900" height="300" src="${pageContext.request.contextPath}/resources/img/악세사리.jpg">
 				</div>
 				<h1>NEW</h1>
 				<br>
