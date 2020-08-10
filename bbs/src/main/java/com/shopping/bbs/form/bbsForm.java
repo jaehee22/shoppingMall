@@ -1,5 +1,7 @@
 package com.shopping.bbs.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class bbsForm {
 	int bbsID;
 	int category;
@@ -9,6 +11,7 @@ public class bbsForm {
 	String content;
 	int sell;
 	
+	MultipartFile bbsImage;
 	int num;
 	int displayPost;
 	int postNum;
@@ -58,6 +61,13 @@ public class bbsForm {
 		this.sell = sell;
 	}
 	
+	
+	public MultipartFile getBbsImage() {
+		return bbsImage;
+	}
+	public void setBbsImage(MultipartFile bbsImage) {
+		this.bbsImage = bbsImage;
+	}
 	public int getNum() {
 		return num;
 	}
