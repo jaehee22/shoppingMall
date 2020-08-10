@@ -1,5 +1,7 @@
 package com.shopping.bbs.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class bbsDTO {
 	int bbsID;
 	int category;
@@ -8,7 +10,8 @@ public class bbsDTO {
 	int price;
 	String content;
 	int sell;
-		
+	
+	MultipartFile bbsImage;
 	String result;
 	
 	public int getBbsID() {
