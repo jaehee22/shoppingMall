@@ -123,7 +123,7 @@
 			<div class="col-lg-9">
 	   		<br>
 	   			<div id="carouselExampleIndicators">				
-					<form id="bbsForm" name="bbsForm" enctype="multipart/form-data">
+					<form id="bbsForm" name="bbsForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
 						<table class="table" style="border:1px solid #dddddd">
 							<tr>
 								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
@@ -169,13 +169,13 @@
 									<td colspan=2><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
 								</tr>	
 								<tr>
-									<th>이미지<input type="file" id="bbsImage" name="file"></th>
+									<th>이미지<input type="file" id="bbsImage" name="bbsImage"></th>
 									<td colspan=2><div class="select_img"><img src=""/></div></td>
 								</tr>		
 								<tr>
 									<td colspan=3 style="text-align:center;">
 										<button type="button" class="btn btn-primary" onclick="javascript:bbsList();">목록</button>
-										<button type="submit" class="btn btn-primary" onclick="javascript:BbsWrite();">등록</button>
+										<button type="button" class="btn btn-primary" onclick="javascript:BbsWrite();">등록</button>
 									</td>
 								</tr>
 							</tbody>
