@@ -40,15 +40,18 @@ function BbsWrite(){
 
     var yn = confirm("게시글을 등록하시겠습니까?");        
     if(yn){
-            
-        $.ajax({    
-            
-            url        : "/bbs/BbsWrite",
-            data    : $("#bbsForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
+        
+    	var form = $('#bbsForm')[0];
+    	var data = new FormData(form);
+
+    	$.ajax({    
             type    : "POST",    
+            enctype: "multpart/form-data",
+            url     : "/bbs/BbsWrite",
+            data    : data,
+            cache   : false,
+            processData: false,
+            contentType: false,
             success : function(obj) {
                 BbsWriteCallback(obj);                
             },           
