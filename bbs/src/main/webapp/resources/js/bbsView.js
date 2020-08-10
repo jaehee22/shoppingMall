@@ -97,7 +97,7 @@ $(document).ready(function(){
 	           
 	           if(result == "SUCCESS"){                
 	               alert("게시글 삭제를 성공하였습니다.");                
-	               goBbsList();                
+	               history.back(2);                
 	           } else {                
 	               alert("게시글 삭제를 실패하였습니다.");    
 	               return;
