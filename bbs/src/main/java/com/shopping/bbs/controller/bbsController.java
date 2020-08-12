@@ -150,6 +150,7 @@ public class bbsController {
     	   	
     	bbsDTO bbsDTO = bbsService.BbsWrite(bbsForm);   
     	
+    	//파일 업로드
     	String root = request.getSession().getServletContext().getRealPath("/");
     	String path = root + "resources/bbsImg/"+bbsForm.getBbsID();
 
@@ -163,13 +164,10 @@ public class bbsController {
     	while(files.hasNext()) {
     		String uploadFile = files.next();
     		MultipartFile mFile = request.getFile(uploadFile);
-    		String fileName_original = mFile.getOriginalFilename();
+    		String fileName = bbsForm.getBbsID()+".jpg";
     		String file_save_path = path;
     		try {
-    			mFile.transferTo(new File(file_save_path+"\\"+fileName_original));
-    			System.out.println("전송된 파일 이름: "+fileName_original);
-    			System.out.println("파일 사이즈: "+mFile.getSize());
-    			System.out.println("파일경로:"+path+"\n==============================");
+    			mFile.transferTo(new File(file_save_path+"\\"+fileName));
     		}catch(Exception e) {
     			e.printStackTrace();
     		}
