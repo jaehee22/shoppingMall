@@ -82,36 +82,36 @@
       				<ul class="accordion">
       					<li><a href="#menu1">귀걸이</a>
       						<ul>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=1">귀걸이</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=2">피어싱</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=3">귀찌</a></li>
-				      			<li><a href="/bbs/bbs?category=1&subCategory=4">이어커프</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=1&num=1">귀걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=2&num=1">피어싱</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=3&num=1">귀찌</a></li>
+				      			<li><a href="/bbs/bbs?category=1&subCategory=4&num=1">이어커프</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu2">목걸이</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=1">목걸이</a></li>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=2">초커</a></li>
-				      			<li><a href="/bbs/bbs?category=2&subCategory=3">패션 목걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=1&num=1">목걸이</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=2&num=1">초커</a></li>
+				      			<li><a href="/bbs/bbs?category=2&subCategory=3&num=1">패션 목걸이</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu3">반지</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=1">반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=2">레이어드 링</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=3">은반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=4">금반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=1&num=1">반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=2&num=1">레이어드 링</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=3&num=1">은반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=4&num=1">금반지</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu4">팔찌</a>
 				      		<ul>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=1">팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=2">가죽 팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=3">원석 팔찌</a></li>
-				      			<li><a href="/bbs/bbs?category=4&subCategory=4">은 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=1&num=1">팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=2&num=1">가죽 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=3&num=1">원석 팔찌</a></li>
+				      			<li><a href="/bbs/bbs?category=4&subCategory=4&num=1">은 팔찌</a></li>
 				      		</ul>
 				      	</li>
-				      	<li><a href="/bbs/bbs?category=5&subCategory=1">발찌</a></li>        		        		
+				      	<li><a href="/bbs/bbs?category=5&subCategory=1&num=1">발찌</a></li>        		        		
 					</ul>
 				</div>				
 			</div>
@@ -119,31 +119,33 @@
 
 			<div class="col-lg-9">
    			<br>
-     			<div id="carouselExampleIndicators">				
+     			<div id="carouselExampleIndicators">
+     			<br>				
 					<form id="bbsForm" name="bbsForm">
-						<table class="table" style="border:1px solid #dddddd">
-          					<tr>
-								<th colspan=6 style="background-color:#d3d3d3; text-align:center;">제품 상세</th>
-							</tr>
+						<table class="table borderless">	
 							<colgroup>
-								<col width="15%">
-								<col width="40%">
-								<col width="10%">
-								<col width="15%">
-								<col width="15%">
-								<col width="10%">                     
+								<col width="30%">
+								<col width="20%">
+								<col width="60%">              
 							</colgroup>
 							<tbody id="tbody">
         
 							</tbody>
 						</table>
- 						<div align=center>
-							<button type="button" onclick="javascript:goBbsList();">목록으로</button>
-							<button type="button" onclick="javascript:goBbsUpdate();">수정하기</button>
-							<button type="button" onclick="javascript:BbsDelete();">삭제하기</button>
-						</div>	        
+						<c:if test="${userForm != null && userForm.isManager==1 }">
+ 							<div align=center>
+								<button type="button" onclick="javascript:goBbsUpdate();">수정하기</button>
+								<button type="button" onclick="javascript:BbsDelete();">삭제하기</button>
+							</div>
+						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
       				</form>
+					<nav>
+						<ul class="nav-container">
+							<li class="nav-item"><a class="nav-link active" href="main.jsp">후기</a></li>
+							<li class="nav-item"><a class="nav-link" href="bbs.jsp">Q&A</a></li>
+						</ul>
+					</nav>
  				</div>
 			</div>
 			<!-- /.col-lg-9 -->
@@ -156,7 +158,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      <p class="m-0 text-center text-white">Copyright &copy; 악세사리 쇼핑몰 2020</p>
     </div>
     <!-- /.container -->
   </footer>
