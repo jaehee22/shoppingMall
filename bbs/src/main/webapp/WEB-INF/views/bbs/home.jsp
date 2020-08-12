@@ -71,7 +71,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<img class="d-block img-fluid" width="230" height="230" src="${pageContext.request.contextPath}/resources/img/반지.JPG">
+				<h1 class="my-4">악세사리</h1>
 				<br>
      			<div class="menu">
       				<ul class="accordion">
