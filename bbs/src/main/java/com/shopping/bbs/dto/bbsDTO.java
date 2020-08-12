@@ -11,7 +11,6 @@ public class bbsDTO {
 	String content;
 	int sell;
 	
-	MultipartFile bbsImage;
 	String result;
 	
 	public int getBbsID() {
