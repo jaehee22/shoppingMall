@@ -4,7 +4,7 @@ $(document).ready(function(){
     
 	//게시판 목록 이동
 	function goBbsList(){                
-	    location.href = "/bbs/bbs";
+		location.href = document.referrer;
 	}
 	
 	var sub = new Array();	
@@ -137,8 +137,8 @@ function BbsUpdateCallback(obj){
     	var result = obj.result;
                 
         if(result == "SUCCESS"){                
-            alert("게시글 수정을 성공하였습니다.");                
-            goBbsList();                 
+            alert("게시글 수정을 성공하였습니다.");
+            location.href = history.back(-3);
         } else {                
             alert("게시글 수정을 실패하였습니다.");    
             return;
