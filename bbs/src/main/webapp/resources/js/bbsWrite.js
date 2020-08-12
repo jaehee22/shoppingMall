@@ -9,7 +9,7 @@ $("#bbsImage").change(function(){
 	    reader.readAsDataURL(this.files[0]);
 });
 
-//게시판 목록 이동
+//게시판홈 이동
 function goBbsList(){                
     location.href = "/bbs/home";
 }
