@@ -6,7 +6,7 @@
 body {
   padding-top: 60px;
 }
- 
+
  a {
     text-decoration: none;
     font-family: µ¸¿ò;
@@ -118,4 +118,34 @@ body {
 	background-color:#42454c;
 	color:#fff;
 	border:1px solid #42454c;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+.nav-container{
+	display: flex;
+	flex-direction: row;
+	width: 97%;
+	margin: 0;
+	padding: 0;
+	background-color: #D3D3D3;
+	list-style-type: none;
+}
+
+.nav-item{
+	cursor: pointer;
+}
+
+.nav-item .active{
+	text-align: center;
+	background-color: #808080;
+	color: white;
+}
+
+.nav-item a{
+	text-align: center;
+	text-decoration:none;
+	color: white;
 }
