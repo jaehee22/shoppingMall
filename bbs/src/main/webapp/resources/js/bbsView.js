@@ -3,8 +3,8 @@ $(document).ready(function(){
 });
     
 	//게시판 목록 이동
-	function goBbsList(){                
-	    location.href = "/bbs/bbs";
+	function goBbsList(){       
+		location.href = document.referrer;
 	}
 	
 	//게시글 수정 이동
@@ -37,23 +37,30 @@ $(document).ready(function(){
 	}
 	   function BbsViewCallback(obj){
 	        var str = "";
-	        if(obj != null){                                
+	        
+	        if(obj != null){
+	        	var bbsID = obj.bbsID;
 	            var title = obj.title;
 	            var price = obj.price;
 	            var content = obj.content;
 	            var sell = obj.sell
-	            
-	            str += "<tr>";
-	            str += "<th>제품명</th>";
-	            str += "<td>"+ title+"</td>";
-	            str += "<th>가격</th>";
-	            str += "<td>"+ price +"원</td>";
-	            str += "<th>판매량</th>";
-	            str += "<td>"+ sell +"</td>";
-	            str += "</tr>";        
-	            str += "<tr height=\"200\">";
-	            str += "<td colspan=6><br><br>"+ content +"</td>";
+	         
+		        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/"+bbsID+".jpg";
+	          
+	          
+	            str += "<tr style=\"border:1px solid #444444\">";
+	            str += "<td rowspan=5 style=\"text-align:center;\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"400\" height=\"400\" alt=\"\"/></td>";
+	            str += "</tr><tr height=\"70\" style=\"border-top:1px solid #444444;\">";
+	            str += "<th colspan=2 style=\"border-right:1px solid #444444;\"><font size=\"5em\">"+title+"</font></th>";
 	            str += "</tr>";
+	            str += "<tr><th>가격</th>";
+	            str += "<td style=\"border-right:1px solid #444444;\">"+ price +"원</td></tr>";
+	            str += "<tr><th>판매량</th>";
+	            str += "<td style=\"border-right:1px solid #444444;\">"+ sell +"</td></tr>";
+	            str += "<tr><td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><br><br><button type=\"button\" style=\"padding:30px;\">구매하기</button>&emsp;&emsp;";
+	            str += "<button type=\"button\" style=\"padding:30px;\">장바구니</button><td></tr>";
+	            str += "</tr><tr height=\"100\" style=\"border:1px solid #444444\">";
+	            str += "<td colspan=3 style=\"border:1px solid #444444\">"+ content +"</td></tr></tr>";
 	            
 	        } else {
 	            
