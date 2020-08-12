@@ -40,5 +40,8 @@
 	    <beans:property name="maxInMemorySize" value="100000000" />
 	</beans:bean>
     
+    <!-- mapping 이미지가 실제로 저장된 경로 -->
+    <resources mapping="/resources/**" location="/resources/" />
+    <resources mapping = "/bbsImg/**" location="resources/bbsImg" />
 </beans:beans>
  
