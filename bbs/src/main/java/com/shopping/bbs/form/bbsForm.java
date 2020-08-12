@@ -11,7 +11,6 @@ public class bbsForm {
 	String content;
 	int sell;
 	
-	MultipartFile bbsImage;
 	int num;
 	int displayPost;
 	int postNum;
@@ -59,14 +58,6 @@ public class bbsForm {
 	}
 	public void setSell(int sell) {
 		this.sell = sell;
-	}
-	
-	
-	public MultipartFile getBbsImage() {
-		return bbsImage;
-	}
-	public void setBbsImage(MultipartFile bbsImage) {
-		this.bbsImage = bbsImage;
 	}
 	public int getNum() {
 		return num;
