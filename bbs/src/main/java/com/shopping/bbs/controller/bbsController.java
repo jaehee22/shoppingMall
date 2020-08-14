@@ -161,7 +161,7 @@ public class bbsController {
     	
     	Iterator<String> files = request.getFileNames();
     	
-    	while(files.hasNext()) {
+    	if(files.hasNext()) {
     		String uploadFile = files.next();
     		MultipartFile mFile = request.getFile(uploadFile);
     		String fileName = bbsForm.getBbsID()+".jpg";
@@ -181,7 +181,20 @@ public class bbsController {
     @RequestMapping(value = "/BbsDelete")
     @ResponseBody
     public bbsDTO BbsDelete(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-        
+
+    	//파일 삭제
+    	String root = request.getSession().getServletContext().getRealPath("/");
+    	String path = root + "resources/bbsImg/"+bbsForm.getBbsID();
+
+    	File file = new File(path);
+    	if(file.exists()) {
+    		File[] files = file.listFiles();
+    		for(int i=0; i<files.length; i++) {
+    			files[i].delete();
+    		}
+    		file.delete();
+    	}
+    	
     	bbsDTO bbsDTO = bbsService.BbsDelete(bbsForm);
         
     	return bbsDTO;
@@ -197,8 +210,35 @@ public class bbsController {
     //게시글 수정
     @RequestMapping(value = "/BbsUpdate")
     @ResponseBody
-    public bbsDTO BbsUpdate(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+    public bbsDTO BbsUpdate(MultipartHttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
         
+    	//파일 삭제
+    	String root = request.getSession().getServletContext().getRealPath("/");
+    	String path = root + "resources/bbsImg/"+bbsForm.getBbsID()+"/"+bbsForm.getBbsID()+".jpg";
+
+    	File file = new File(path);
+    	if(file.exists()) {
+    		file.delete();
+    	}
+    	
+    	//파일 업로드
+    	String newPath = root + "resources/bbsImg/"+bbsForm.getBbsID();
+    	
+    	Iterator<String> files = request.getFileNames();
+    	
+    	if(files.hasNext()) {
+    		String uploadFile = files.next();
+    		MultipartFile mFile = request.getFile(uploadFile);
+    		String fileName = bbsForm.getBbsID()+".jpg";
+    		String file_save_path = newPath;
+    		try {
+    			mFile.transferTo(new File(file_save_path+"\\"+fileName));
+    		}catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    		
+    	}
+   	
     	bbsDTO bbsDTO = bbsService.BbsUpdate(bbsForm);
         
     	return bbsDTO;
