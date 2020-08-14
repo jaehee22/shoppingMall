@@ -12,9 +12,12 @@
 	<title>악세사리 쇼핑몰</title>
 <%    
 	int bbsID = Integer.parseInt(request.getParameter("bbsID"));     
+	int bbsCategory = Integer.parseInt(request.getParameter("bbsCategory"));     
+
 %>
 
 	<c:set var="bbsID" value="<%=bbsID%>"/> <!-- 게시글 번호 -->
+	<c:set var="bbsCategory" value="<%=bbsCategory%>"/> <!-- bbs카테고리 -->
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -125,8 +128,8 @@
 						<table class="table borderless">	
 							<colgroup>
 								<col width="30%">
-								<col width="20%">
-								<col width="60%">              
+								<col width="25%">
+								<col width="55%">              
 							</colgroup>
 							<tbody id="tbody">
         
@@ -136,16 +139,57 @@
  							<div align=center>
 								<button type="button" onclick="javascript:goBbsUpdate();">수정하기</button>
 								<button type="button" onclick="javascript:BbsDelete();">삭제하기</button>
+								<br><br>
 							</div>
 						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
+					    <input type="hidden" id="bbsCategory" name="bbsCategory"    value="${bbsCategory}"/> <!-- bbs카테고리번호 -->
       				</form>
 					<nav>
 						<ul class="nav-container">
-							<li class="nav-item"><a class="nav-link active" href="main.jsp">후기</a></li>
-							<li class="nav-item"><a class="nav-link" href="bbs.jsp">Q&A</a></li>
+							<c:if test="${bbsCategory==1}">
+								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=1">후기</a></li>
+								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=2">Q&A</a></li>
+							</c:if>
+							<c:if test="${bbsCategory==2}">
+								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=1">후기</a></li>
+								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=2">Q&A</a></li>
+							</c:if>
 						</ul>
 					</nav>
+					<table class="table">	
+						<tbody id="bbsCategory">
+						
+						</tbody>
+						
+					</table>
+					<div class="form-group">
+						<form id="commentForm" name="commentForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
+							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+								<colgroup>
+									<col width="10%">
+									<col width="70%">
+									<col width="20%">              
+								</colgroup>
+								<tr>
+								<c:if test="${bbsCategory==1}">
+									<td colspan=3>소중한 후기를 남겨주세요^^</td>
+								</c:if>
+								<c:if test="${bbsCategory==2}">
+									<td colspan=3>궁금하신게 있다면 언제든지 물어보세요^^</td>
+								</c:if>
+								<tr>
+								<tr>
+									<td style="border-bottom:none;" valign="middle"><br><br>${userForm.userID}</td>
+									<td><textarea id="content" name="content" cols="70" rows="5" maxlength="2048" class="tbox"/></textarea></td>
+									<td style="text-align:center;"><br><br><button type="button" class="btn btn-primary" onclick="javascript:CommentWrite(${bbsID},${bbsCategory},${userForm.userID});">작성</button></td>
+								</tr>
+								<tr>
+									<td colspan="3"><input type="file" name="fileName"></td>									
+								</tr>
+							</table>
+						</form>
+					</div>
  				</div>
 			</div>
 			<!-- /.col-lg-9 -->
