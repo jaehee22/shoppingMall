@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.shopping.bbs.commentMapper">
+    
+    <select id="CommentList" parameterType="com.shopping.bbs.form.commentForm" resultType="com.shopping.bbs.dto.commentDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.COMMENT
+    	WHERE 	comCategory = ${comCategory}
+    	AND		bbsID = ${bbsID}
+		ORDER BY commentID DESC
+		LIMIT #{displayPost}, #{postNum}
+    
+    </select>
+    
+    <select id="CommentTotal" parameterType="com.shopping.bbs.form.commentForm" resultType="int">
+    
+    	SELECT COUNT(*)
+    	FROM SHOPPING.COMMENT
+    	WHERE 	comCategory = ${comCategory}
+    	AND		bbsID = ${bbsID}
+    	
+    </select>
+    
+    
+    <select id="GetNext" parameterType="com.shopping.bbs.form.commentForm" resultType="com.shopping.bbs.dto.commentDTO">
+    	
+    	SELECT commentID
+    	FROM SHOPPING.COMMENT
+    	ORDER BY commentID DESC;
+    
+    </select>
+       
+    <insert id="CommentWrite" parameterType="com.shopping.bbs.form.commentForm">
+		
+		INSERT
+		INTO SHOPPING.COMMENT
+		VALUES
+		(
+			#{commentID},
+			#{bbsID},
+			#{comCategory},
+			#{userID},
+			#{content}
+		) 
+  
+    </insert>
+    
+    <delete id="CommentDelete" parameterType="com.shopping.bbs.form.commentForm">
+    
+    	DELETE
+    	FROM SHOPPING.COMMENT
+    	WHERE commentID = #{commentID}
+    
+    </delete>
+    
+    <delete id="BbsUpdate" parameterType="com.shopping.bbs.form.commentForm">
+    
+    	UPDATE SHOPPING.COMMENT
+    	SET commentID = #{commentID},
+    		bbsID = #{bbsID},
+			comCategory = #{comCategory},
+			userID = #{userID},
+			content = #{content}
+		WHERE bbsID = #{bbsID}
+    
+    </delete>
+</mapper>
