@@ -7,8 +7,8 @@
     
     	SELECT *
     	FROM SHOPPING.COMMENT
-    	WHERE 	comCategory = ${comCategory}
-    	AND		bbsID = ${bbsID}
+    	WHERE 	comCategory = #{comCategory}
+    	AND		bbsID = #{bbsID}
 		ORDER BY commentID DESC
 		LIMIT #{displayPost}, #{postNum}
     
@@ -18,8 +18,8 @@
     
     	SELECT COUNT(*)
     	FROM SHOPPING.COMMENT
-    	WHERE 	comCategory = ${comCategory}
-    	AND		bbsID = ${bbsID}
+    	WHERE 	comCategory = #{comCategory}
+    	AND		bbsID = #{bbsID}
     	
     </select>
     
@@ -42,6 +42,7 @@
 			#{bbsID},
 			#{comCategory},
 			#{userID},
+			#{isImage},
 			#{content}
 		) 
   
@@ -62,6 +63,7 @@
     		bbsID = #{bbsID},
 			comCategory = #{comCategory},
 			userID = #{userID},
+			isImage = #{isImage},
 			content = #{content}
 		WHERE bbsID = #{bbsID}
     
