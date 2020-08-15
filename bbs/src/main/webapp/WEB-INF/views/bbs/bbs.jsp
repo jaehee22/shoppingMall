@@ -127,7 +127,7 @@
 			</div>
 			<h2 id=tcategory></h2>
 			<br>
-			<div id = tbody class="row">
+				<div id = tbody class="row">
 			</div>
 		   	<input type="hidden" id="category" name="category"    value="${category}"/> <!-- 카테고리 -->
 			<input type="hidden" id="subCategory" name="subCategory"    value="${subCategory}"/> <!-- 서브카테고리 -->
