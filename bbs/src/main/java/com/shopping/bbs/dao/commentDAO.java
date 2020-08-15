@@ -20,7 +20,6 @@ public class commentDAO {
  
     //´ñ±Û ¸ñ·Ï 
     public List<commentDTO> CommentList(commentForm commentForm) throws Exception {
-    	
         return sqlSession.selectList(NAMESPACE + ".CommentList", commentForm);
     }
 
