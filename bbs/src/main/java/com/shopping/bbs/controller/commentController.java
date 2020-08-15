@@ -31,20 +31,19 @@ public class commentController {
     @RequestMapping(value = "/CommentList")
     @ResponseBody
     public List<commentDTO> CommentList(HttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
-        
     	//카테고리별 게시물 갯수
     	int commentTotal = commentService.CommentTotal(commentForm);
     	//한페이지당 나올 개시물 수
-    	int postNum = 9;
+    	int postNum = 10;
     	//총 페이징 번호 수
     	pageNum = (int)Math.ceil((double)commentTotal/postNum);
-    	//블록당 첫페이지(bbsID)
+    	//블록당 첫페이지
     	int displayPost = (commentForm.getNum()-1)*postNum;
     	commentForm.setDisplayPost(displayPost);
     	commentForm.setPostNum(postNum);
         	
     	List<commentDTO> commentDTO = commentService.CommentList(commentForm);
-        
+    	
     	return commentDTO;
     }               
     
