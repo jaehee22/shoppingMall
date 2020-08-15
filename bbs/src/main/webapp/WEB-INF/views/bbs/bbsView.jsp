@@ -12,12 +12,15 @@
 	<title>악세사리 쇼핑몰</title>
 <%    
 	int bbsID = Integer.parseInt(request.getParameter("bbsID"));     
-	int bbsCategory = Integer.parseInt(request.getParameter("bbsCategory"));     
+	int comCategory = Integer.parseInt(request.getParameter("comCategory"));     
+	int commentNum = Integer.parseInt(request.getParameter("commentNum"));     
 
 %>
 
 	<c:set var="bbsID" value="<%=bbsID%>"/> <!-- 게시글 번호 -->
-	<c:set var="bbsCategory" value="<%=bbsCategory%>"/> <!-- bbs카테고리 -->
+	<c:set var="comCategory" value="<%=comCategory%>"/> <!-- bbs카테고리 -->
+	<c:set var="commentNum" value="<%=commentNum%>"/> <!-- comment페이징 -->
+	
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -143,26 +146,38 @@
 							</div>
 						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
-					    <input type="hidden" id="bbsCategory" name="bbsCategory"    value="${bbsCategory}"/> <!-- bbs카테고리번호 -->
+					    <input type="hidden" id="comCategory" name="comCategory"    value="${comCategory}"/> <!-- bbs카테고리번호 -->
       				</form>
 					<nav>
 						<ul class="nav-container">
-							<c:if test="${bbsCategory==1}">
-								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=1">후기</a></li>
-								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=2">Q&A</a></li>
+							<c:if test="${comCategory==1}">
+								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&comCategory=1&commentNum=1">후기</a></li>
+								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&comCategory=2&commentNum=1">Q&A</a></li>
 							</c:if>
-							<c:if test="${bbsCategory==2}">
-								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=1">후기</a></li>
-								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&bbsCategory=2">Q&A</a></li>
+							<c:if test="${comCategory==2}">
+								<li class="nav-item"><a class="nav-link" href="/bbs/bbsView?bbsID=${bbsID}&comCategory=1&commentNum=1">후기</a></li>
+								<li class="nav-item"><a class="nav-link active" href="/bbs/bbsView?bbsID=${bbsID}&comCategory=2&commentNum=1">Q&A</a></li>
 							</c:if>
 						</ul>
 					</nav>
 					<table class="table">	
-						<tbody id="bbsCategory">
+						<tbody id="comCategory">
 						
 						</tbody>
 						
 					</table>
+					<!-- 댓글리스트 -->
+					<div class="container">
+						<div class="row">
+							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+								<tbody id=tcomment>
+								
+								</tbody>
+							</table>
+						    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->								
+						</div>
+					</div>									
+					<!-- 댓글 작성칸 -->
 					<div class="form-group">
 						<form id="commentForm" name="commentForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
 							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -172,17 +187,17 @@
 									<col width="20%">              
 								</colgroup>
 								<tr>
-								<c:if test="${bbsCategory==1}">
+								<c:if test="${comCategory==1}">
 									<td colspan=3>소중한 후기를 남겨주세요^^</td>
 								</c:if>
-								<c:if test="${bbsCategory==2}">
+								<c:if test="${comCategory==2}">
 									<td colspan=3>궁금하신게 있다면 언제든지 물어보세요^^</td>
 								</c:if>
 								<tr>
 								<tr>
 									<td style="border-bottom:none;" valign="middle"><br><br>${userForm.userID}</td>
 									<td><textarea id="content" name="content" cols="70" rows="5" maxlength="2048" class="tbox"/></textarea></td>
-									<td style="text-align:center;"><br><br><button type="button" class="btn btn-primary" onclick="javascript:CommentWrite(${bbsID},${bbsCategory},${userForm.userID});">작성</button></td>
+									<td style="text-align:center;"><br><br><button type="button" class="btn btn-primary" onclick="javascript:CommentWrite(${bbsID},${comCategory},${userForm.userID});">작성</button></td>
 								</tr>
 								<tr>
 									<td colspan="3"><input type="file" name="fileName"></td>									
