@@ -41,6 +41,28 @@ function BbsWrite(){
     var yn = confirm("게시글을 등록하시겠습니까?");        
     if(yn){
         
+		 var title = $("#title").val();
+		 var price = $("#price").val();
+		 var content = $("#content").val();
+		
+		 if (title == ""){            
+		        alert("제목을 입력해주세요.");
+		        $("#title").focus();
+		        return;
+		    }
+		    
+		    if (price == 0){            
+		        alert("가격을 입력해 주세요");
+		        $("#price").focus();
+		        return;
+		    }
+		    
+		    if (content == ""){            
+		        alert("내용을 입력해주세요.");
+		        $("#content").focus();
+		        return;
+		    }
+    	
     	var form = $('#bbsForm')[0];
     	var data = new FormData(form);
 
