@@ -5,6 +5,7 @@ public class commentForm {
 	private int bbsID;
 	private int comCategory;
 	private String userID;
+	private int isImage;
 	private String content;
 	
 	String result;
@@ -36,6 +37,13 @@ public class commentForm {
 	}
 	public void setUserID(String userID) {
 		this.userID = userID;
+	}
+	
+	public int getIsImage() {
+		return isImage;
+	}
+	public void setIsImage(int isImage) {
+		this.isImage = isImage;
 	}
 	public String getContent() {
 		return content;
