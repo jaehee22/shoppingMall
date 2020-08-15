@@ -5,6 +5,7 @@ public class commentDTO {
 	private int bbsID;
 	private int comCategory;
 	private String userID;
+	private int isImage;
 	private String content;
 	
 	private String result;
@@ -24,9 +25,14 @@ public class commentDTO {
 	public int getCommentID() {
 		return commentID;
 	}
-	
 	public String getUserID() {
 		return userID;
+	}
+	public int getIsImage() {
+		return isImage;
+	}
+	public void setIsImage(int isImage) {
+		this.isImage = isImage;
 	}
 	public void setUserID(String userID) {
 		this.userID = userID;
