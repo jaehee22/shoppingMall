@@ -41,10 +41,10 @@
                 
                 str += "<div class=\"col-lg-4 col-md-6 mb-4\">";
                 str += "<div class=\"card h-100\">";
-                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&bbsCategory=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"300\" height=\"171\" alt=\"\"/></a>";
+                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"300\" height=\"171\" alt=\"\"/></a>";
                 str += "<div class=\"card-body\">";
                 str += "<h4 class=\"card-title\">";
-                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&bbsCategory=1\">"+title+"</a>";
+                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\">"+title+"</a>";
                 str += "</h4>";
                 str += "<h5>"+price+"원</h5>";
                 str += "</div>";
