@@ -16,8 +16,7 @@ public class commentService {
     private commentDAO commentDAO;
  
     //´ñ±Û ¸ñ·Ï
-    public List<commentDTO> CommentList(commentForm commentForm) throws Exception {
- 
+    public List<commentDTO> CommentList(commentForm commentForm) throws Exception {    	
         return commentDAO.CommentList(commentForm);
     }
 
