@@ -145,7 +145,7 @@ $(document).ready(function(){
 		            
 		            if(NowUserID == userID){
 		            str += "<button type=\"button\" onclick=\"javascript:CommentUpdate();\">수정</button>";
-		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete();\">삭제</button>";
+		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
 		            }
 		            
 		            str += "</td>";
@@ -278,3 +278,113 @@ $(document).ready(function(){
            }
        }
    }
+
+   //댓글 수정
+   function BbsUpdate(){
+
+	    var title = $("#title").val();
+	    var price = $("#price").val();
+	    var content = $("#content").val();
+	        
+	    if (title == ""){            
+	        alert("제목을 입력해주세요.");
+	        $("#title").focus();
+	        return;
+	    }
+	    
+	    if (price == 0){            
+	        alert("가격을 입력해 주세요");
+	        $("#price").focus();
+	        return;
+	    }
+	    
+	    if (content == ""){            
+	        alert("내용을 입력해주세요.");
+	        $("#content").focus();
+	        return;
+	    }
+	    
+	    var yn = confirm("게시글을 수정하시겠습니까?");        
+	    if(yn){
+	            
+	        $.ajax({    
+	            
+	            url        : "/bbs/BbsUpdate",
+	            data    : $("#bbsForm").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+	                BbsUpdateCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	            
+	        });
+	    }
+	}
+
+	//댓글 수정 함수
+	function BbsUpdateCallback(obj){	
+		
+	    if(obj != null){        
+	        
+	    	var result = obj.result;
+	                
+	        if(result == "SUCCESS"){                
+	            alert("게시글 수정을 성공하였습니다.");
+	            location.href = history.back(-3);
+	        } else {                
+	            alert("게시글 수정을 실패하였습니다.");    
+	            return;
+	        }
+	    }
+	}
+	
+	 
+	   //댓글 삭제
+	   function CommentDelete(commentID){
+	
+		   var bbsID = $("#bbsID").val();
+		   
+	       var yn = confirm("댓글을 삭제하시겠습니까?");        
+	       
+	       if(yn){
+	           
+	           $.ajax({    
+	               
+	               url        : "/comment/CommentDelete",
+	               data    : "commentID="+commentID+"&bbsID="+bbsID,
+	               dataType: "JSON",
+	               cache   : false,
+	               async   : true,
+	               type    : "POST",    
+	               success : function(obj) {
+	                   CommentDeleteCallback(obj);                
+	               },           
+	               error     : function(xhr, status, error) {}
+	               
+	            });
+	       }        
+	   }
+	   
+	   function CommentDeleteCallback(obj){
+	   
+
+		   var bbsID = $("#bbsID").val();
+	       var comCategory = $("#comCategory").val();
+		   var commentNum = $("#commentNum").val();
+	       
+	       if(obj != null){        
+	           
+	           var result = obj.result;
+	           
+	           if(result == "SUCCESS"){                
+	               alert("댓글 삭제를 성공하였습니다.");                
+	               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+	           } else {                
+	               alert("댓글 삭제를 실패하였습니다.");    
+	               return;
+	           }
+	       }
+	   }
