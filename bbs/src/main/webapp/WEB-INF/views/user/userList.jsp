@@ -19,7 +19,7 @@
 </head>
 
 <body>
-	<c:if test="${userForm.isManager == 0}">
+	<c:if test="${userForm == null or userForm.isManager == 0}">
 		<script>
 			alert("권한이 없습니다.");
 			location.href = "/bbs/home";
@@ -102,13 +102,14 @@
 				<br>
 				<table class="table" style="text-align:center;">
 					<tr>
-						<th colspan=4>회원정보 리스트</th>
+						<th colspan=5>회원정보 리스트</th>
 					</tr>
 					<tr>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>성별</th>
 						<th>등급</th>
+						<th>회원관리</th>
 					</tr>
 					<tbody id="tbody">
 					
