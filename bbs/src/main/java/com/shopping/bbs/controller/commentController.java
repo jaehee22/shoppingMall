@@ -43,7 +43,7 @@ public class commentController {
     	commentForm.setPostNum(postNum);
         	
     	List<commentDTO> commentDTO = commentService.CommentList(commentForm);
-    	
+
     	return commentDTO;
     }               
     
