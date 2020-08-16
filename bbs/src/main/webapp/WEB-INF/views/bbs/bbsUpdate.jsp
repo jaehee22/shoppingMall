@@ -51,7 +51,7 @@
 					</c:if>
 					<c:if test="${userForm != null && userForm.isManager==0 }">
 		 				<li class="nav-item">
-		   					<a class="nav-link" href="/user/userView">내정보</a>
+		   					<a class="nav-link" href="/user/userView?userID=${userForm.userID}">내정보</a>
 		 				</li>
 		 				<li class="nav-item">
 		   					<a class="nav-link" href="#">장바구니</a>
