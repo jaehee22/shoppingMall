@@ -4,11 +4,15 @@ $(document).ready(function(){
 
 	//회원 수정 이동
 	function goUserUpdate(){
-		location.href = "/user/userUpdate";
+		
+		var userID = $("#userID").val();
+		
+		location.href = "/user/userUpdate?userID="+userID;
 	}
 	
 	//회원정보
 	function UserView(userID){
+		
 		var userID = $("#userID").val();
 		if(userID!=null){
 			$.ajax({    
