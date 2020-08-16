@@ -200,7 +200,7 @@
 									<td style="text-align:center;"><br><br><button type="button" class="btn btn-primary" onclick="javascript:CommentWrite(${bbsID},${comCategory},${userForm.userID});">작성</button></td>
 								</tr>
 								<tr>
-									<td colspan="3"><input type="file" name="fileName"></td>									
+									<td colspan="3"><input type="file" id="fileName" name="fileName"></td>									
 								</tr>
 							</table>
 						</form>
