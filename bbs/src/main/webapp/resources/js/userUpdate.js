@@ -106,14 +106,16 @@ function UserUpdate(){
 
 //회원 수정 함수
 function UserUpdateCallback(obj){	
-	
+
+	var userID = $("#userID").val();
+
     if(obj != null){        
         
     	var result = obj.result;
                 
         if(result == "SUCCESS"){                
             alert("회원 수정을 성공하였습니다.");                
-            //goBbsList();                 
+            location.href = "/user/userView/?userID="+userID;                
         } else {                
             alert("회원 수정을 실패하였습니다.");    
             return;
@@ -123,6 +125,7 @@ function UserUpdateCallback(obj){
 
 //회원탈퇴
 function UserDelete(){
+	
 	var userID = $("#userID").val();
 	
     var yn = confirm("회원탈퇴를 하시겠습니까?");        
