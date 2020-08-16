@@ -174,6 +174,7 @@
 								
 								</tbody>
 							</table>
+							<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
 						    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->								
 						</div>
 					</div>									
