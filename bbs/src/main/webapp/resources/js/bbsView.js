@@ -115,7 +115,8 @@ $(document).ready(function(){
 	   function CommentListCallback(obj){
 		   	
 		   var num = $("#commentNum").val();
-		   	
+		   var NowUserID = $("#userID").val();
+		   
 	        var list = obj;
 	        var listLen = obj.length;
 	        console.log(list);
@@ -141,10 +142,12 @@ $(document).ready(function(){
 		            str += "<td align=\"left\">"+userID+"></td>"
 		            str += "<td colspan=2></td>";
 		            str += "<td align=\"right\">";
-		            str += "<c:if test=\"${userForm.userID}=="+userID+"\">";
-		            str += "<button type=\"button\" onclick=\"javascript:CommentUpdate();\">수정하기</button>";
-		            str += "<button type=\"button\" onclick=\"javascript:CommentDelete();\">삭제하기</button>";
-		            str += "</c:if>";
+		            
+		            if(NowUserID == userID){
+		            str += "<button type=\"button\" onclick=\"javascript:CommentUpdate();\">수정</button>";
+		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete();\">삭제</button>";
+		            }
+		            
 		            str += "</td>";
 		            str += "</tr>";
 		            str += "<tr>";
@@ -208,14 +211,24 @@ $(document).ready(function(){
    //댓글 작성
    function CommentWrite(bbsID,	comCategory, userID){
 	   
-	   var bbsID = $("#bbsID").val();
-       var comCategory = $("#comCategory").val();
-       var userID = $("userID").val()
-	   
 	   var yn = confirm("댓글을 등록하시겠습니까?");        
        
        if(yn){
-           
+        
+  		var content = $("#content").val();   
+    	        
+        if (userID == undefined){            
+ 	        alert("로그인을 해주세요.");
+ 	        $("#userID").focus();
+ 	        return;
+ 	    }
+        
+  		 if (content == ""){            
+ 	        alert("내용을 입력해주세요.");
+ 	        $("#content").focus();
+ 	        return;
+ 	    }
+  		
        	var form = $('#commentForm')[0];
        	var data = new FormData(form);
        	
