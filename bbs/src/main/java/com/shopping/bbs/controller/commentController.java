@@ -137,8 +137,7 @@ public class commentController {
         
     	//파일 삭제
     	String root = request.getSession().getServletContext().getRealPath("/");
-    	String path = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment/"+commentForm.getCommentID();
-
+    	String path = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment/"+commentForm.getCommentID()+".jpg";
     	File file = new File(path);
     	if(file.exists()) {
     		file.delete();
