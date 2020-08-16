@@ -10,9 +10,12 @@
 	<meta name="author" content="">
 
 	<title>악세사리 쇼핑몰</title>
+<%
+    String userID = request.getParameter("userID");	//userID
+%>
 
-	<c:set var="userID" value="${userForm.userID}"/> <!-- 유저 아이디 -->
-
+	<c:set var="userID" value="<%=userID%>"/> <!-- 유저 아이디 -->
+	
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -21,6 +24,12 @@
 </head>
 
 <body>
+	<c:if test="${userForm == null or userForm.userID != userID and userForm.isManager == 0}">
+		<script>
+			alert("권한이 없습니다.");
+			location.href = "/bbs/home";
+		</script>
+	</c:if>
 <form id="userForm" name="userForm">
 	<input type="hidden" id="userID" name="userID"    value="${userID}"/> <!-- 회원 아이디 -->
 </form>	               
@@ -45,7 +54,7 @@
 					</c:if>
 					<c:if test="${userForm != null && userForm.isManager==0 }">
 		 				<li class="nav-item">
-		   					<a class="nav-link" href="/user/userView">내정보</a>
+		   					<a class="nav-link" href="/user/userView?userID=${userForm.userID}">내정보</a>
 		 				</li>
 		 				<li class="nav-item">
 		   					<a class="nav-link" href="#">장바구니</a>
