@@ -62,10 +62,14 @@ function BbsWrite(){
 		        $("#content").focus();
 		        return;
 		    }
-    	
+		        	
     	var form = $('#bbsForm')[0];
     	var data = new FormData(form);
 
+       	if($('#bbsImage').val()==""){
+       		data.delete('bbsImage');
+       	}
+       	
     	$.ajax({    
             type    : "POST",    
             enctype: "multpart/form-data",
