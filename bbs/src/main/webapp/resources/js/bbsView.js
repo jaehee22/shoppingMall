@@ -219,6 +219,10 @@ $(document).ready(function(){
        	var form = $('#commentForm')[0];
        	var data = new FormData(form);
        	
+       	if($('#fileName').val()==""){
+       		data.delete('fileName');
+       	}
+
        	data.append("bbsID",bbsID);
        	data.append("comCategory",comCategory);
        	data.append("userID",userID);
