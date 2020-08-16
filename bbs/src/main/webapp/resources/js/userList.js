@@ -37,7 +37,7 @@
                 var isManager = list[a].isManager;
 
                 str += "<tr>";
-	            str += "<td>"+ userID+"</td>";           
+	            str += "<td>"+userID+"</td>";           
 	            str += "<td>"+ userName +"</td>";
 	            str += "<td>"+ userGender +"</td>";
                 if(isManager==1){
@@ -46,6 +46,7 @@
                 else{
                 	str += "<td>일반회원</td>"
                 }
+	            str += "<td><button type=\"button\" onclick=\"location.href='/user/userView?userID="+userID+"'\"</button>회원관리</td>"
 	            str += "</tr>";        
 	            	            
             } 
