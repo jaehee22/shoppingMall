@@ -4,19 +4,15 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.shopping.bbs.dto.bbsDTO;
 import com.shopping.bbs.dto.pagingDTO;
@@ -211,22 +207,22 @@ public class bbsController {
     @RequestMapping(value = "/BbsUpdate")
     @ResponseBody
     public bbsDTO BbsUpdate(MultipartHttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-        
-    	//파일 삭제
-    	String root = request.getSession().getServletContext().getRealPath("/");
-    	String path = root + "resources/bbsImg/"+bbsForm.getBbsID()+"/"+bbsForm.getBbsID()+".jpg";
-
-    	File file = new File(path);
-    	if(file.exists()) {
-    		file.delete();
-    	}
-    	
-    	//파일 업로드
-    	String newPath = root + "resources/bbsImg/"+bbsForm.getBbsID();
-    	
+            	
     	Iterator<String> files = request.getFileNames();
     	
     	if(files.hasNext()) {
+    		//파일 삭제
+        	String root = request.getSession().getServletContext().getRealPath("/");
+        	String path = root + "resources/bbsImg/"+bbsForm.getBbsID()+"/"+bbsForm.getBbsID()+".jpg";
+
+        	File file = new File(path);
+        	if(file.exists()) {
+        		file.delete();
+        	}
+        	
+        	//파일 업로드
+        	String newPath = root + "resources/bbsImg/"+bbsForm.getBbsID();
+    		
     		String uploadFile = files.next();
     		MultipartFile mFile = request.getFile(uploadFile);
     		String fileName = bbsForm.getBbsID()+".jpg";
