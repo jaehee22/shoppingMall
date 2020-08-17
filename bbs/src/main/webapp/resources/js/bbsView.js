@@ -14,9 +14,17 @@ $(document).ready(function(){
 		location.href = "/bbs/bbsUpdate?bbsID="+bbsID;
 	}
 	
+	//댓글 수정 자식창으로 이동
+	function nwindow(bbsID,commentID){
+	  window.name = "commentParant";										//이름이 없으니까 그냥 이름을 설정해줍니다.
+	  var url= "/comment/commentUpdate?bbsID="+bbsID+"&commentID="+commentID;
+	  window.open(url,"","width=500,height=200,left=300");					//자식창이 되는 주소를 오픈해줌 (크기도 설정해 줍니다.)
+	}
+	
 	//게시판 뷰
 	function BbsView(bbsID){
 		var bbsID = $("#bbsID").val();
+
 		if(bbsID!=0){
 			$.ajax({    
 	  
@@ -144,7 +152,7 @@ $(document).ready(function(){
 		            str += "<td align=\"right\">";
 		            
 		            if(NowUserID == userID){
-		            str += "<button type=\"button\" onclick=\"javascript:CommentUpdate();\">수정</button>";
+		            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+")\">수정</button>";
 		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
 		            }
 		            
