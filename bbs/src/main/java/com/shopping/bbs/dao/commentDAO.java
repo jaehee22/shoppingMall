@@ -6,7 +6,7 @@ import javax.annotation.Resource;
  
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
- 
+
 import com.shopping.bbs.dto.commentDTO;
 import com.shopping.bbs.form.commentForm;
  
@@ -46,6 +46,11 @@ public class commentDAO {
     public int CommentWrite(commentForm commentForm) throws Exception {
     	
         return sqlSession.insert(NAMESPACE + ".CommentWrite", commentForm);
+    }
+    
+    //¥Ò±€ ∫‰
+    public commentDTO CommentView(commentForm commentForm) throws Exception {
+        return sqlSession.selectOne(NAMESPACE + ".CommentView", commentForm);
     }
     
     //¥Ò±€ ªË¡¶
