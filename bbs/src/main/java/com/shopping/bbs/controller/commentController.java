@@ -130,6 +130,16 @@ public class commentController {
     	return commentDTO;
     }
     
+    //댓글 뷰
+    @RequestMapping(value = "/CommentView")
+    @ResponseBody
+    public commentDTO CommentView(HttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
+        
+    	commentDTO commentDTO = commentService.CommentView(commentForm);
+
+    	return commentDTO;
+    }
+    
     //댓글 삭제
     @RequestMapping(value = "/CommentDelete")
     @ResponseBody
@@ -148,31 +158,39 @@ public class commentController {
     	return commentDTO;
     }
  
-    //게시글 수정
+    
+    //댓글 수정 page
+    @RequestMapping( value = "/commentUpdate")
+    public String commentUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "comment/commentUpdate";
+    }
+    
+    //댓글 수정
     @RequestMapping(value = "/CommentUpdate")
     @ResponseBody
     public commentDTO CommentUpdate(MultipartHttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
-        
-    	//파일 삭제
-    	String root = request.getSession().getServletContext().getRealPath("/");
-    	String path = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment/"+commentForm.getCommentID();
-
-    	File file = new File(path);
-    	if(file.exists()) {
-    		file.delete();
-    	}
-    	
-    	//파일 업로드
-    	String newPath = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment";
-
-    	File dir = new File(newPath);    	
-    	if (!dir.isDirectory()) {
-    		dir.mkdir();
-    	}
-    	
+            	
     	Iterator<String> files = request.getFileNames();
     	
     	if(files.hasNext()) {
+    		//파일 경로
+        	String root = request.getSession().getServletContext().getRealPath("/");
+        	String path = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment/"+commentForm.getCommentID();
+
+        	File file = new File(path);
+        	if(file.exists()) {
+        		file.delete();
+        	}
+        	
+        	//파일 업로드
+        	String newPath = root + "resources/bbsImg/"+commentForm.getBbsID()+"/comment";
+
+        	File dir = new File(newPath);    	
+        	if (!dir.isDirectory()) {
+        		dir.mkdir();
+        	}
+        	
     		String uploadFile = files.next();
     		MultipartFile mFile = request.getFile(uploadFile);
     		String fileName = commentForm.getCommentID()+".jpg";
