@@ -27,11 +27,12 @@
 			<div class="jumbotron" style="padding-top: 1px;">				
 				<h3><br>댓글수정창<br></h3>
 					<form id="commentForm" name="commentForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
-					<textarea id="content" style="width:400px;height:50px;" maxlength=1024></textarea>
-					<input type="button" onclick="javascript:CommentUpdate()" value="수정">
-					<br><br>
-					<input type="file" id="newFile" name="newFile"/>	
-					<input type="hidden" id="commentID" name="commentID" value="${commentID}"/>
+						<textarea id="content" name="content" style="width:400px;height:50px;" maxlength=1024 class="tbox"></textarea>
+						<input type="button" onclick="javascript:CommentUpdate()" value="수정">
+						<br><br>
+						<input type="file" id="newFile" name="newFile"/>	
+						<input type="hidden" id="commentID" name="commentID" value="${commentID}"/>
+						<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/>
 				</form>
 			</div>
 		</div>
