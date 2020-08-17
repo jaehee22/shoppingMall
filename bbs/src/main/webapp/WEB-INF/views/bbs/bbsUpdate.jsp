@@ -127,7 +127,7 @@
    			<div class="col-lg-9">
    			<br>
      			<div id="carouselExampleIndicators">				
-					<form id="bbsForm" name="bbsForm">
+					<form id="bbsForm" name="bbsForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
 						<table class="table" style="border:1px solid #dddddd">
 							<tr>
 								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
@@ -173,7 +173,11 @@
 								<tr>
 									<th>내용</th>
 									<td colspan=2><textarea id="content" name="content" cols="83" rows="10" maxlength="2048" class="tbox"/></textarea></td>
-								</tr>						
+								</tr>	
+								<tr>
+									<th>이미지<input type="file" id="bbsImage" name="bbsImage"></th>
+									<td colspan=2><div class="select_img"><img width=300 src=""/></div></td>
+								</tr>					
 							</tbody>
 						</table>
 						<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/> 
