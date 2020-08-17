@@ -1,7 +1,15 @@
 $(document).ready(function(){        
     BbsView();
 });
-    
+
+$("#bbsImage").change(function(){
+	    var reader = new FileReader;
+	    reader.onload = function(data) {
+	     $(".select_img img").attr("src", data.target.result).width(300);        
+	    }
+	    reader.readAsDataURL(this.files[0]);
+});
+
 	//게시판 목록 이동
 	function goBbsList(){                
 		location.href = document.referrer;
@@ -110,27 +118,34 @@ function BbsUpdate(){
     }
     
     var yn = confirm("게시글을 수정하시겠습니까?");        
-    if(yn){
-            
-        $.ajax({    
-            
-            url        : "/bbs/BbsUpdate",
-            data    : $("#bbsForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-                BbsUpdateCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-        });
-    }
+    var form = $('#bbsForm')[0];
+	var data = new FormData(form);
+
+   	if($('#bbsImage').val()==""){
+   		data.delete('bbsImage');
+   	}
+   	
+	$.ajax({    
+        type    : "POST",    
+        enctype: "multpart/form-data",
+        url     : "/bbs/BbsUpdate",
+        data    : data,
+        cache   : false,
+        processData: false,
+        contentType: false,
+        success : function(obj) {
+            BbsUpdateCallback(obj);                
+        },           
+        error     : function(xhr, status, error) {}
+        
+    });
+    
 }
 
 //게시글 수정 함수
 function BbsUpdateCallback(obj){	
+	
+	var bbsID = $("#bbsID").val();
 	
     if(obj != null){        
         
@@ -138,7 +153,7 @@ function BbsUpdateCallback(obj){
                 
         if(result == "SUCCESS"){                
             alert("게시글 수정을 성공하였습니다.");
-            location.href = history.back(-3);
+            location.href = "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
         } else {                
             alert("게시글 수정을 실패하였습니다.");    
             return;
