@@ -63,30 +63,37 @@ function CommentUpdate(){
     
     var yn = confirm("댓글을 수정하시겠습니까?");   
     
-    if(yn){
-            
-        $.ajax({    
-            
-            url        : "/comment/CommentUpdate",
-            data    : $("#commentForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-                CommentUpdateCallback(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-            
-        });
-    }
+    var form = $('#commentForm')[0];
+	var data = new FormData(form);
+
+   	
+	if($('#newFile').val()==""){
+   		data.delete('newFile');
+   	}
+   	
+   	for (var pair of data.entries()) { alert(pair[0]+ ', ' + pair[1]); }
+   	$.ajax({    
+        type    : "POST",    
+        enctype: "multpart/form-data",
+        url     : "/comment/CommentUpdate",
+        data    : data,
+        cache   : false,
+        processData: false,
+        contentType: false,
+        success : function(obj) {
+            CommentUpdateCallback(obj);                
+        },           
+        error     : function(xhr, status, error) {}
+        
+    });
+    
 }
 
 //댓글 수정 함수
 function CommentUpdateCallback(obj){	
 
 	var bbsID = $("#bbsID").val();
-
+	
     if(obj != null){        
         
     	var result = obj.result;
