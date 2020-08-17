@@ -48,6 +48,14 @@
   
     </insert>
     
+    <select id="CommentView" parameterType="com.shopping.bbs.form.commentForm" resultType="com.shopping.bbs.dto.commentDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.COMMENT
+        WHERE commentID = #{commentID}    	
+    
+    </select>
+    
     <delete id="CommentDelete" parameterType="com.shopping.bbs.form.commentForm">
     
     	DELETE
@@ -56,16 +64,11 @@
     
     </delete>
     
-    <delete id="BbsUpdate" parameterType="com.shopping.bbs.form.commentForm">
+    <delete id="CommentUpdate" parameterType="com.shopping.bbs.form.commentForm">
     
     	UPDATE SHOPPING.COMMENT
-    	SET commentID = #{commentID},
-    		bbsID = #{bbsID},
-			comCategory = #{comCategory},
-			userID = #{userID},
-			isImage = #{isImage},
-			content = #{content}
-		WHERE bbsID = #{bbsID}
+    	SET content = #{content}
+		WHERE commentID = #{commentID}
     
     </delete>
 </mapper>
