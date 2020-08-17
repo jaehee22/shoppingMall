@@ -1,7 +1,5 @@
 package com.shopping.bbs.form;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class bbsForm {
 	int bbsID;
 	int category;
