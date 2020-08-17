@@ -164,8 +164,7 @@
 						<tbody id="comCategory">
 						
 						</tbody>
-						
-					</table>
+					</table>					
 					<!-- 댓글리스트 -->
 					<div class="container">
 						<div class="row">
@@ -222,7 +221,7 @@
     </div>
     <!-- /.container -->
   </footer>
-
+  
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
