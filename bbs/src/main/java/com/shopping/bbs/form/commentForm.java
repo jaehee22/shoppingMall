@@ -7,6 +7,7 @@ public class commentForm {
 	private String userID;
 	private int isImage;
 	private String content;
+	private int subCommentID;
 	
 	String result;
 	int num;
@@ -50,6 +51,13 @@ public class commentForm {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public int getSubCommentID() {
+		return subCommentID;
+	}
+	public void setSubCommentID(int subCommentID) {
+		this.subCommentID = subCommentID;
 	}
 	public String getResult() {
 		return result;
