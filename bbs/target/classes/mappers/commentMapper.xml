@@ -61,7 +61,8 @@
     
     	SELECT *
     	FROM SHOPPING.COMMENT
-        WHERE commentID = #{commentID}    	
+        WHERE 	commentID = #{commentID}    
+        AND		subCommentID = #{subCommentID}	
     
     </select>
     
