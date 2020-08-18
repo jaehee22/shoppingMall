@@ -14,10 +14,12 @@
 <%    
     int bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	int commentID = Integer.parseInt(request.getParameter("commentID"));
+	int subCommentID = Integer.parseInt(request.getParameter("subCommentID"));
 %>
  
 	<c:set var="bbsID" value="<%=bbsID%>"/> <!-- 게시글번호 -->
 	<c:set var="commentID" value="<%=commentID%>"/> <!-- 댓글번호 -->
+	<c:set var="subCommentID" value="<%=subCommentID %>"/><!-- 답글번호 -->
 	
 </head>
 
@@ -33,6 +35,7 @@
 						<input type="file" id="newFile" name="newFile"/>	
 						<input type="hidden" id="commentID" name="commentID" value="${commentID}"/>
 						<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/>
+						<input type="hidden" id="subCommentID" name="subCommentID" value="${subCommentID}"/>						
 				</form>
 			</div>
 		</div>
