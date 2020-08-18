@@ -11,12 +11,13 @@ $(document).ready(function(){
 	function CommentView(commentID){
 		
 		var commentID = $("#commentID").val();
-	    
+		var subCommentID = $("#subCommentID").val();
+
 		if(commentID!=0){
 			$.ajax({    
 	  
 	            url     : "/comment/CommentView",
-	            data    : "commentID="+commentID,
+	            data    : "commentID="+commentID+"&subCommentID="+subCommentID,
 	            dataType: "JSON",
 	            cache   : false,
 	            async   : true,
@@ -69,8 +70,8 @@ function CommentUpdate(){
 	if($('#newFile').val()==""){
    		data.delete('newFile');
    	}
-   	alert(subCommentID);
-   	$.ajax({    
+
+	$.ajax({    
         type    : "POST",    
         enctype: "multpart/form-data",
         url     : "/comment/CommentUpdate",
