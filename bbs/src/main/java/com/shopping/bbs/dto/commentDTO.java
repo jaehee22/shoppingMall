@@ -7,6 +7,7 @@ public class commentDTO {
 	private String userID;
 	private int isImage;
 	private String content;
+	private int subCommentID;
 	
 	private String result;
 	
@@ -45,6 +46,13 @@ public class commentDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public int getSubCommentID() {
+		return subCommentID;
+	}
+	public void setSubCommentID(int subCommentID) {
+		this.subCommentID = subCommentID;
 	}
 	public String getResult() {
 		return result;
