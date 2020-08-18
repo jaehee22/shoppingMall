@@ -166,17 +166,11 @@
 						</tbody>
 					</table>					
 					<!-- 댓글리스트 -->
-					<div class="container">
-						<div class="row">
-							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-								<tbody id=tcomment>
-								
-								</tbody>
-							</table>
-							<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
-						    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->								
-						</div>
-					</div>									
+					<div id=tcomment>
+						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
+					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->								
+					    <input type="hidden" id="isManager" name="isManager"    value="${userForm.isManager}"/> <!-- 관리자여부 -->			
+					</div>											
 					<!-- 댓글 작성칸 -->
 					<div class="form-group">
 						<form id="commentForm" name="commentForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
