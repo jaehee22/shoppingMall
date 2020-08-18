@@ -155,7 +155,7 @@ $(document).ready(function(){
 			        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/comment/"+commentID+".jpg";
 			       			        
 			        //답글은 본인 or 관리자 이외에는 비밀글로 보일 예정
-			        if(comCategory != 2 || NowUserID == userID || isManager == 1){
+			        if(comCategory != 2 || NowUserID == userID || isManager == 1 || (a>0 && NowUserID == list[a-1].userID)){
 			        	
 				        //답글이 아닐 경우
 				        if(subCommentID == 0){
