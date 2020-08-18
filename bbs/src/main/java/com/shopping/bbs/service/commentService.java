@@ -30,7 +30,12 @@ public class commentService {
     	
     	commentDTO commentDTO = new commentDTO();
     	
-    	commentForm.setCommentID(commentDAO.GetNext());
+    	commentForm.setSubCommentID(commentDAO.SubGetNext(commentForm));
+    	
+    	//답글이 아닐 경우
+    	if(commentForm.getSubCommentID()==0) {
+        	commentForm.setCommentID(commentDAO.GetNext());
+    	}
     	
     	int cnt = commentDAO.CommentWrite(commentForm);
     	
