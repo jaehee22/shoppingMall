@@ -42,6 +42,21 @@ public class commentDAO {
     	return i;
     }
     
+    //subCommentID 생성
+    public int SubGetNext(commentForm commentForm) throws Exception{
+    	
+    	List<commentDTO> commentDTO = sqlSession.selectList(NAMESPACE + ".SubGetNext",commentForm);
+    	int i;
+    	
+    	if(commentDTO.isEmpty()) {
+    		i=0;
+    	}else{
+    		System.out.println(commentDTO.get(0).getSubCommentID());
+    		i = commentDTO.get(0).getSubCommentID()+1;
+    	}    		
+    	return i;
+    }
+    
     //댓글 등록
     public int CommentWrite(commentForm commentForm) throws Exception {
     	
