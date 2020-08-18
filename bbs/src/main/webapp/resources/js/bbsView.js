@@ -15,9 +15,16 @@ $(document).ready(function(){
 	}
 	
 	//댓글 수정 자식창으로 이동
-	function nwindow(bbsID,commentID){
+	function nwindow(bbsID,commentID,subCommentID){
 	  window.name = "commentParant";										//이름이 없으니까 그냥 이름을 설정해줍니다.
-	  var url= "/comment/commentUpdate?bbsID="+bbsID+"&commentID="+commentID;
+	  var url= "/comment/commentUpdate?bbsID="+bbsID+"&commentID="+commentID+"&subCommentID="+subCommentID;
+	  window.open(url,"","width=500,height=200,left=300");					//자식창이 되는 주소를 오픈해줌 (크기도 설정해 줍니다.)
+	}
+	
+	//답글 작성 자식창으로 이동
+	function subWindow(bbsID,commentID,comCategory){
+	  window.name = "subCommentParant";										//이름이 없으니까 그냥 이름을 설정해줍니다.
+	  var url= "/comment/subCommentWrite?bbsID="+bbsID+"&comCategory="+comCategory+"&commentID="+commentID;
 	  window.open(url,"","width=500,height=200,left=300");					//자식창이 되는 주소를 오픈해줌 (크기도 설정해 줍니다.)
 	}
 	
@@ -124,8 +131,10 @@ $(document).ready(function(){
 		   	
 		   var num = $("#commentNum").val();
 		   var NowUserID = $("#userID").val();
-		   
-	        var list = obj;
+		   var isManager = $("#isManager").val();
+		   var comCategory = $("#comCategory").val();
+
+		   	var list = obj;
 	        var listLen = obj.length;
 	        console.log(list);
 	        console.log(listLen);
@@ -140,32 +149,89 @@ $(document).ready(function(){
 		        	var bbsID = list[a].bbsID;
 		            var userID = list[a].userID;
 		            var content = list[a].content;
+		            var subCommentID = list[a].subCommentID;
+		            var comCategory = list[a].comCategory;
 		            
 			        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/comment/"+commentID+".jpg";
-		           
-			        str += "<div class=\"container\">";
-		            str += "<div class=\"row\">";
-		            str += "<table class=\"table table-striped\" style=\"text-align:center; border: 1px solid #dddddd\">";
-		            str += "<tr>";
-		            str += "<td align=\"left\">"+userID+"></td>"
-		            str += "<td colspan=2></td>";
-		            str += "<td align=\"right\">";
-		            
-		            if(NowUserID == userID){
-		            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+")\">수정</button>";
-		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
-		            }
-		            
-		            str += "</td>";
-		            str += "</tr>";
-		            str += "<tr>";
-		            str += "<td colspan=5 align=\"left\">";
-		            str += "<img src=\""+filePath+"\" onerror=\"this.style.display='none'\" width=\"200\" height=\"200\" alt=\"\" /><br><br>"+content+"<br><br></td>";
-		            str += "</tr>";
-		            str += "</table>";
-		            str += "</div>";
-		            str += "</div>";
-		          
+			       			        
+			        //답글은 본인 or 관리자 이외에는 비밀글로 보일 예정
+			        if(comCategory != 2 || NowUserID == userID || isManager == 1){
+			        	
+				        //답글이 아닐 경우
+				        if(subCommentID == 0){
+					        str += "<div class=\"container\">";
+				            str += "<div class=\"row\">";
+				            str += "<table class=\"table table-striped\" style=\"text-align:center; border: 1px solid #dddddd\">";
+				            str += "<tr>";
+				            str += "<td align=\"left\">"+userID+"님의 ";
+				            
+				            if(comCategory == 1){
+				            	str += "후기입니다♥"
+				            }else{
+				            	str += "질문입니다♥"
+				            }
+				           
+				            str += "</td><td colspan=2></td>";
+				            str += "<td colspan=2 align=\"right\">";
+				            
+				            if(NowUserID == userID){
+				            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
+				            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
+				            }
+				            
+				            if(isManager == 1){
+					            str += "&emsp;<button type=\"button\" onclick=\"subWindow("+bbsID+","+commentID+","+comCategory+")\">답글</button>";
+				            }
+				            str += "</td>";
+				            str += "</tr>";
+				            str += "<tr>";
+				            str += "<td colspan=5 align=\"left\">";
+				            str += "<img src=\""+filePath+"\" onerror=\"this.style.display='none'\" width=\"200\" height=\"200\" alt=\"\" /><br><br>"+content+"<br><br></td>";
+				            str += "</tr>";
+				            str += "</table>";
+				            str += "</div>";
+				            str += "</div>";
+				        } 
+				        
+			            //답글일 경우
+				        else{
+				        	str = str.slice(0,str.length-20);
+				            str += "<tr>";
+				            str += "<td bgcolor=\"white\" align=\"left\">└─&emsp;"+content+"</td>"
+			            	str += "<td bgcolor=\"white\" colspan=4 align=\"right\">";
+				            
+				            //관리자
+				            if(isManager == 1){
+					            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
+					            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
+				            }        
+				            
+				            str += "</td>";
+				            str += "</tr>";			      
+				            str += "</table>";
+				            str += "</div>";
+				            str += "</div>";
+				        }
+				        
+			        }else{
+			        	//비밀Q&A
+			            if(subCommentID == 0){
+			            	str += "<div class=\"container\">";
+				            str += "<div class=\"row\">";
+				            str += "<table  class=\"table\" style=\"text-align:center; border: 1px solid #dddddd\">";
+				            str += "<tr>";
+				            str += "<td align=\"left\">비밀글 입니다♥</td>"
+			            }else{
+				        	str = str.replace("</table></div></div>","");
+				            str += "<td align=\"left\">└─&emsp;비밀글 입니다♥</td>"
+			            }
+			            
+			            str += "<td colspan=5></td>";
+			            str += "</tr>";			      
+			            str += "</table>";
+			            str += "</div>";
+			            str += "</div>";
+			        }
 	            }
 	        } else {
 	            return;
@@ -396,3 +462,4 @@ $(document).ready(function(){
 	           }
 	       }
 	   }
+	   
