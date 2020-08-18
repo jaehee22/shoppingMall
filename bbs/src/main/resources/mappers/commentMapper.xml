@@ -9,7 +9,7 @@
     	FROM SHOPPING.COMMENT
     	WHERE 	comCategory = #{comCategory}
     	AND		bbsID = #{bbsID}
-		ORDER BY commentID DESC
+		ORDER BY commentID ASC, subCommentID ASC
 		LIMIT #{displayPost}, #{postNum}
     
     </select>
@@ -32,17 +32,26 @@
     
     </select>
        
+    <select id="SubGetNext" parameterType="com.shopping.bbs.form.commentForm" resultType="com.shopping.bbs.dto.commentDTO">
+    	
+    	SELECT subCommentID
+    	FROM SHOPPING.COMMENT
+    	WHERE commentID = #{commentID}
+    	ORDER BY subCommentID DESC;
+    
+    </select>
+       
     <insert id="CommentWrite" parameterType="com.shopping.bbs.form.commentForm">
 		
 		INSERT
 		INTO SHOPPING.COMMENT
 		VALUES
 		(
-			#{commentID},
+			#{commentID},		
+			#{subCommentID},
 			#{bbsID},
 			#{comCategory},
 			#{userID},
-			#{isImage},
 			#{content}
 		) 
   
@@ -60,7 +69,8 @@
     
     	DELETE
     	FROM SHOPPING.COMMENT
-    	WHERE commentID = #{commentID}
+    	WHERE 	commentID = #{commentID}
+    	AND		subCommentID = #{subCommentID}
     
     </delete>
     
@@ -68,7 +78,8 @@
     
     	UPDATE SHOPPING.COMMENT
     	SET content = #{content}
-		WHERE commentID = #{commentID}
+		WHERE 	commentID = #{commentID}
+		AND		subCommentID = #{subCommentID}
     
     </delete>
 </mapper>
