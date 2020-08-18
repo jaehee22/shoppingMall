@@ -93,7 +93,7 @@ public class commentController {
     @RequestMapping(value = "/CommentWrite")
     @ResponseBody
     public commentDTO CommentWrite(MultipartHttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
-    	   	
+    	    	
     	commentDTO commentDTO = commentService.CommentWrite(commentForm);   
 
     	//파일 업로드
@@ -208,4 +208,22 @@ public class commentController {
     	return commentDTO;
     }
     
+    //답글 작성 page
+    @RequestMapping( value = "/subCommentWrite")
+    public String subCommentWrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "comment/subCommentWrite";
+    }
+    
+    
+  //답글작성
+  @RequestMapping(value = "/SubCommentWrite")
+  @ResponseBody
+  public commentDTO SubCommentWrite(HttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
+  	
+  	commentDTO commentDTO = commentService.CommentWrite(commentForm);   
+  	
+  	return commentDTO;
+  }
+
 }
