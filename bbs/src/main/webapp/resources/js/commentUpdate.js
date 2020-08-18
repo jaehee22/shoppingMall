@@ -66,12 +66,10 @@ function CommentUpdate(){
     var form = $('#commentForm')[0];
 	var data = new FormData(form);
 
-   	
 	if($('#newFile').val()==""){
    		data.delete('newFile');
    	}
-   	
-   	for (var pair of data.entries()) { alert(pair[0]+ ', ' + pair[1]); }
+   	alert(subCommentID);
    	$.ajax({    
         type    : "POST",    
         enctype: "multpart/form-data",
