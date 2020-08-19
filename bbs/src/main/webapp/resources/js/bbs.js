@@ -124,7 +124,7 @@
             var endPageNum = list.endPageNum; 
             var prev = list.prev;
             var next = list.next;
-            
+
             str += "<ul class=\"page_nation\">";
             
             if(prev){
