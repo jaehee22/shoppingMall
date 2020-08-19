@@ -1,6 +1,7 @@
 $(document).ready(function(){        
     BbsView();
     CommentList();
+    CommentPaging();
 });
     
 	//게시판 목록 이동
@@ -155,7 +156,7 @@ $(document).ready(function(){
 			        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/comment/"+commentID+".jpg";
 			       			        
 			        //답글은 본인 or 관리자 이외에는 비밀글로 보일 예정
-			        if(comCategory != 2 || NowUserID == userID || isManager == 1 || (a>0 && NowUserID == list[a-1].userID)){
+			        if(comCategory != 2 || NowUserID == userID || isManager == 1 || (a>0 && commentID == list[a-1].commentID && NowUserID == list[a-1].userID)){
 			        	
 				        //답글이 아닐 경우
 				        if(subCommentID == 0){
@@ -176,7 +177,7 @@ $(document).ready(function(){
 				            
 				            if(NowUserID == userID){
 				            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
-				            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
+				            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+","+subCommentID+");\">삭제</button>";
 				            }
 				            
 				            if(isManager == 1){
@@ -197,13 +198,13 @@ $(document).ready(function(){
 				        else{
 				        	str = str.slice(0,str.length-20);
 				            str += "<tr>";
-				            str += "<td bgcolor=\"white\" align=\"left\">└─&emsp;"+content+"</td>"
-			            	str += "<td bgcolor=\"white\" colspan=4 align=\"right\">";
+				            str += "<td bgcolor=\"white\"  colspan=4 align=\"left\">└─&emsp;"+content+"</td>"
+			            	str += "<td bgcolor=\"white\" align=\"right\">";
 				            
 				            //관리자
 				            if(isManager == 1){
 					            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
-					            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+");\">삭제</button>";
+					            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+","+subCommentID+");\">삭제</button>";
 				            }        
 				            
 				            str += "</td>";
@@ -220,13 +221,13 @@ $(document).ready(function(){
 				            str += "<div class=\"row\">";
 				            str += "<table  class=\"table\" style=\"text-align:center; border: 1px solid #dddddd\">";
 				            str += "<tr>";
-				            str += "<td align=\"left\">비밀글 입니다♥</td>"
+				            str += "<td colspan=6 align=\"left\">비밀글 입니다♥</td>"
+			           
 			            }else{
-				        	str = str.replace("</table></div></div>","");
-				            str += "<td align=\"left\">└─&emsp;비밀글 입니다♥</td>"
+				        	str = str.slice(0,str.length-20);
+				        	str += "<tr><td colspan=6 align=\"left\">└─&emsp;비밀글 입니다♥</td>"
 			            }
-			            
-			            str += "<td colspan=5></td>";
+			        
 			            str += "</tr>";			      
 			            str += "</table>";
 			            str += "</div>";
@@ -417,7 +418,7 @@ $(document).ready(function(){
 	
 	 
 	   //댓글 삭제
-	   function CommentDelete(commentID){
+	   function CommentDelete(commentID,subCommentID){
 	
 		   var bbsID = $("#bbsID").val();
 		   
@@ -428,7 +429,7 @@ $(document).ready(function(){
 	           $.ajax({    
 	               
 	               url        : "/comment/CommentDelete",
-	               data    : "commentID="+commentID+"&bbsID="+bbsID,
+	               data    : "commentID="+commentID+"&bbsID="+bbsID+"&subCommentID="+subCommentID,
 	               dataType: "JSON",
 	               cache   : false,
 	               async   : true,
@@ -463,3 +464,62 @@ $(document).ready(function(){
 	       }
 	   }
 	   
+	   //페이징
+	   function CommentPaging(){
+
+		   $.ajax({    
+	 			  
+	            url        : "/comment/CommentPaging",
+	            data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&num="+$("#commentNum").val(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                CommentPagingCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	            
+	         });
+	 	}
+	 	
+	 	function CommentPagingCallback(obj){
+
+	 		var bbsID = $("#bbsID").val();
+			var comCategory = $("#comCategory").val();
+	 		var commentNum = $("#commentNum").val();
+	 		
+	 		var list = obj;
+	 		
+	        if(list != null){
+	        	str = "";
+	        	
+	        	var pageNum = list.pageNum;
+	            var startPageNum = list.startPageNum; 
+	            var endPageNum = list.endPageNum; 
+	            var prev = list.prev;
+	            var next = list.next;
+	            	            
+	            str += "<ul class=\"page_nation\">";
+   	            if(prev){
+	        		str += "<a class=\"arrow prev\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(startPageNum-1)+"\"><span><<</span></a>";
+	        	}
+
+	        	for(i=startPageNum; i<=endPageNum; i++){
+	        		if(i == num){
+	        			str += "<a class=\"active\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
+	        		}
+	        		else{
+	        			str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
+	        		}
+	        	}
+	        	if(next){
+	        		str += "<a class=\"arrow next\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(endPageNum+1)+"\"><span>>></span></a>";
+	        	}
+	        	
+	        	str += "</ul>";
+
+	        	$("#tPaging").html(str);
+	        }
+	 		
+	 	}
