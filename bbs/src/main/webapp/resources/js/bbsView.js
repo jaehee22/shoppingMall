@@ -484,7 +484,7 @@ $(document).ready(function(){
 	 	}
 	 	
 	 	function CommentPagingCallback(obj){
-
+	 		
 	 		var bbsID = $("#bbsID").val();
 			var comCategory = $("#comCategory").val();
 	 		var commentNum = $("#commentNum").val();
@@ -499,14 +499,14 @@ $(document).ready(function(){
 	            var endPageNum = list.endPageNum; 
 	            var prev = list.prev;
 	            var next = list.next;
-	            	            
+
 	            str += "<ul class=\"page_nation\">";
    	            if(prev){
 	        		str += "<a class=\"arrow prev\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(startPageNum-1)+"\"><span><<</span></a>";
 	        	}
 
 	        	for(i=startPageNum; i<=endPageNum; i++){
-	        		if(i == num){
+	        		if(i == commentNum){
 	        			str += "<a class=\"active\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
 	        		}
 	        		else{
