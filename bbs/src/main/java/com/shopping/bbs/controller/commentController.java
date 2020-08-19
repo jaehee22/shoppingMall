@@ -34,7 +34,7 @@ public class commentController {
     	//카테고리별 게시물 갯수
     	int commentTotal = commentService.CommentTotal(commentForm);
     	//한페이지당 나올 개시물 수
-    	int postNum = 10;
+    	int postNum = 5;
     	//총 페이징 번호 수
     	pageNum = (int)Math.ceil((double)commentTotal/postNum);
     	//블록당 첫페이지
@@ -61,7 +61,7 @@ public class commentController {
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
     	int endPageNum_tmp = (int)(Math.ceil((double)commentTotal/(double)pageNum_cnt));
-    	
+
     	if(endPageNum > endPageNum_tmp) {
     		endPageNum=endPageNum_tmp;
     	}
