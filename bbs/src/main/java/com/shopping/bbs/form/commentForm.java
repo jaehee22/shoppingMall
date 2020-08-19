@@ -65,6 +65,7 @@ public class commentForm {
 	public void setResult(String result) {
 		this.result = result;
 	}
+	
 	public int getNum() {
 		return num;
 	}
