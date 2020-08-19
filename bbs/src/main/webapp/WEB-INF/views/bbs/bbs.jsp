@@ -128,14 +128,16 @@
 			<h2 id=tcategory></h2>
 			<br>
 				<div id = tbody class="row">
-			</div>
-		   	<input type="hidden" id="category" name="category"    value="${category}"/> <!-- 카테고리 -->
-			<input type="hidden" id="subCategory" name="subCategory"    value="${subCategory}"/> <!-- 서브카테고리 -->
-			<input type="hidden" id="num" name="num"    value="${num}"/> <!-- 페이지 -->
-			<div>
-			</div>	
-			<div class="page_wrap" id=tPaging>
-			</div>		
+				</div>
+			   	<input type="hidden" id="category" name="category"    value="${category}"/> <!-- 카테고리 -->
+				<input type="hidden" id="subCategory" name="subCategory"    value="${subCategory}"/> <!-- 서브카테고리 -->
+				<input type="hidden" id="num" name="num"    value="${num}"/> <!-- 페이지 -->
+				<div>
+				</div>	
+				<!-- 페이징 -->
+				<div class="page_wrap" id=tPaging>
+				
+				</div>		
 			</div>
 			<!-- /.col-lg-8 -->
 		</div>
