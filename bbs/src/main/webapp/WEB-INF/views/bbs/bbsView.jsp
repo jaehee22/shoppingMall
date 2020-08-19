@@ -147,6 +147,7 @@
 						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
 					    <input type="hidden" id="comCategory" name="comCategory"    value="${comCategory}"/> <!-- bbs카테고리번호 -->
+					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->													    
       				</form>
 					<nav>
 						<ul class="nav-container">
@@ -168,9 +169,12 @@
 					<!-- 댓글리스트 -->
 					<div id=tcomment>
 						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
-					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->								
 					    <input type="hidden" id="isManager" name="isManager"    value="${userForm.isManager}"/> <!-- 관리자여부 -->			
-					</div>											
+					</div>				
+					<!-- 페이징 -->
+					<div class="page_wrap" id=tPaging>
+					
+					</div>									
 					<!-- 댓글 작성칸 -->
 					<div class="form-group">
 						<form id="commentForm" name="commentForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
