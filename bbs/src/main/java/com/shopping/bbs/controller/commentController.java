@@ -54,7 +54,7 @@ public class commentController {
     	//카테고리별 게시물 갯수
     	int commentTotal = commentService.CommentTotal(commentForm);
     	//한번에 표시할 페이징 번호 개수
-    	int pageNum_cnt = 10;
+    	int pageNum_cnt = 6;
     	//표시되는 페이지 번호 중 마지막 번호
     	int endPageNum = (int)(Math.ceil((double)commentForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
     	//표시되는 페이지 번호 중 첫번째 번호
