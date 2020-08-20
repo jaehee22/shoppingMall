@@ -5,7 +5,7 @@
     
     <select id="CartList" parameterType="com.shopping.bbs.form.cartForm" resultType="com.shopping.bbs.dto.cartDTO">
     
-    	SELECT userID,CART.bbsID,amount,title,price
+    	SELECT cartID,userID,CART.bbsID,amount,title,price
     	FROM SHOPPING.CART, SHOPPING.BBS
     	WHERE 	CART.bbsID = BBS.bbsID
     	AND		userID = #{userID}
@@ -56,7 +56,7 @@
     
     	DELETE
     	FROM SHOPPING.CART
-    	WHERE cartID == #{cartID}
+    	WHERE cartID = #{cartID}
     
     </delete>
     
