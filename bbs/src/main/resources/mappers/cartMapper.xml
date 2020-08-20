@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.shopping.bbs.cartMapper">
+    
+    <select id="CartList" parameterType="com.shopping.bbs.form.cartForm" resultType="com.shopping.bbs.dto.cartDTO">
+    
+    	SELECT userID,CART.bbsID,amount,title,price
+    	FROM SHOPPING.CART, SHOPPING.BBS
+    	WHERE 	CART.bbsID = BBS.bbsID
+    	AND		userID = #{userID}
+		ORDER BY CART.bbsID DESC
+		LIMIT #{displayPost}, #{postNum}
+    
+    </select>    
+    
+    <select id="CartTotal" parameterType="com.shopping.bbs.form.cartForm" resultType="int">
+    
+    	SELECT COUNT(*)
+    	FROM SHOPPING.CART
+    	WHERE 	userID = #{userID}
+    	
+    </select>
+    
+    <select id="CartView" parameterType="com.shopping.bbs.form.cartForm" resultType="com.shopping.bbs.dto.cartDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.CART
+        WHERE	bbsID = #{bbsID}    	
+    	AND		userID = #{userID}
+    </select>
+    
+    <select id="GetNext" parameterType="com.shopping.bbs.form.cartForm" resultType="com.shopping.bbs.dto.cartDTO">
+    	
+    	SELECT cartID
+    	FROM SHOPPING.CART
+    	ORDER BY cartID DESC;
+    
+    </select>
+              
+    <insert id="CartWrite" parameterType="com.shopping.bbs.form.cartForm">
+		
+		INSERT
+		INTO SHOPPING.CART
+		VALUES
+		(
+			#{cartID},	
+			#{userID},
+			#{bbsID},
+			#{amount}
+		) 
+  
+    </insert>
+        
+    <delete id="CartDelete" parameterType="com.shopping.bbs.form.cartForm">
+    
+    	DELETE
+    	FROM SHOPPING.CART
+    	WHERE cartID == #{cartID}
+    
+    </delete>
+    
+    <delete id="CartUpdate" parameterType="com.shopping.bbs.form.cartForm">
+    
+    	UPDATE SHOPPING.CART
+    	SET amount = #{amount}
+		WHERE 	bbsID = #{bbsID}
+		AND		userID = #{userID}
+    </delete>
+</mapper>
