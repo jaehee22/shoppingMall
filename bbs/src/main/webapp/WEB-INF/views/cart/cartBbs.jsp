@@ -132,9 +132,10 @@
 			<br>
 				<table class="table" style="text-align:center;">
 					<tr>
-						<th colspan=6>장바구니</th>
+						<th colspan=7>장바구니</th>
 					</tr>
 					<tr>
+						<td>상품 선택</td>
 						<td>이미지</td>
 						<td>제품 정보</td>
 						<td>가격</td>
