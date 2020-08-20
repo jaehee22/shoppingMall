@@ -50,7 +50,7 @@
 		   					<a class="nav-link" href="/user/userView?userID=${userForm.userID}">내정보</a>
 		 				</li>
 		 				<li class="nav-item">
-		   					<a class="nav-link" href="#">장바구니</a>
+		   					<a class="nav-link" href="/cart/cartBbs?cartNum=1">장바구니</a>
 						</li>
 						<li class="nav-item">
 		    				<a class="nav-link" href="#">주문조회</a>
