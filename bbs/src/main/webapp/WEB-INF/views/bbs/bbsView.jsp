@@ -53,7 +53,7 @@
 		   					<a class="nav-link" href="/user/userView?userID=${userForm.userID}">내정보</a>
 		 				</li>
 		 				<li class="nav-item">
-		   					<a class="nav-link" href="#">장바구니</a>
+		   					<a class="nav-link" href="/cart/cartBbs?cartNum=1">장바구니</a>
 						</li>
 						<li class="nav-item">
 		    				<a class="nav-link" href="#">주문조회</a>
@@ -135,7 +135,7 @@
 								<col width="55%">              
 							</colgroup>
 							<tbody id="tbody">
-        
+							
 							</tbody>
 						</table>
 						<c:if test="${userForm != null && userForm.isManager==1 }">
@@ -147,7 +147,8 @@
 						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
 					    <input type="hidden" id="comCategory" name="comCategory"    value="${comCategory}"/> <!-- bbs카테고리번호 -->
-					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->													    
+					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->
+						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>					    													    
       				</form>
 					<nav>
 						<ul class="nav-container">
