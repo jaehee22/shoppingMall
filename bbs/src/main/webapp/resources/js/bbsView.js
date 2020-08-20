@@ -66,7 +66,7 @@ $(document).ready(function(){
 	          
 	            
 	            str += "<tr style=\"border:1px solid #444444\">";
-	            str += "<td rowspan=6 style=\"text-align:center;\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"400\" height=\"400\" alt=\"\"/></td>";
+	            str += "<td rowspan=7 style=\"text-align:center;\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"400\" height=\"400\" alt=\"\"/></td>";
 	            str += "</tr>";
 	            
 	            str += "<tr height=\"70\" style=\"border-top:1px solid #444444;\">";
@@ -84,11 +84,20 @@ $(document).ready(function(){
 	            str += "</tr>";
 	            
 	            str += "<tr>";
+	            str += "<th>수량</th>";
+	            str += "<td style=\"border-right:1px solid #444444;\">";
+	            str += "<form id=cartAmount name=cartAmount>";
+	            str += "<input type=text id=\"amount\" name=\"amount\">";
+	            str += "</form>";
+	            str += "</td>"
+	            str += "</tr>";
+	            
+	            str += "<tr>";
 	            str += "<td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><br><button type=\"button\" style=\"padding:20px 70px;\">구매하기</button>";
 	            str += "</tr>";
 
 	            str += "<tr>";
-	            str += "<td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><button type=\"button\" style=\"padding:20px 70px;\">장바구니</button><td>";
+	            str += "<td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><button type=\"button\" style=\"padding:20px 70px;\" onclick=\"javascript:CartView();\">장바구니</button><td>";
 	            str += "</tr>";
 	            
 	            str += "<tr height=\"100\" style=\"border:1px solid #444444\">";
@@ -445,7 +454,6 @@ $(document).ready(function(){
 	   
 	   function CommentDeleteCallback(obj){
 	   
-
 		   var bbsID = $("#bbsID").val();
 	       var comCategory = $("#comCategory").val();
 		   var commentNum = $("#commentNum").val();
@@ -523,3 +531,129 @@ $(document).ready(function(){
 	        }
 	 		
 	 	}
+	 	
+	    //장바구니 추가or수정
+	    function CartView(){
+	 	   
+	 	   var yn = confirm("장바구니에 담으시겠습니까?");        
+	        
+	        if(yn){
+	         
+	   		var amount = $("#amount").val(); 
+	   		var bbsID = $("#bbsID").val();
+	   		var userID = $("#userID").val();
+	   			   		
+	   		 if (amount == 0){            
+	  	        alert("수량을 입력해주세요.");
+	  	        $("#amount").focus();
+	  	        return;
+	  	    }
+	   		 
+	   		 if (userID == null){
+	   			 alert("로그인을 해주세요");
+	   			 $("#userID").focus();
+	   			 return;
+	   		 }
+	   		 
+	   		//장바구니에 이미 들어있는 품목인지 확인
+	   		$.ajax({    
+	   		  
+	            url        : "/cart/CartView",
+	            data    : $("#userID").serialize()+"&"+$("#bbsID").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {		            
+		                CartUpdate(obj.amount);                
+	            },           
+	            error     : function(xhr, status, error) {
+	            	CartWrite();
+	            	}
+	         });
+	        }
+	        
+	    }
+	    
+	    function CartUpdate(Amount){
+	    	
+	   		var amount = Number($("#amount").val()) + Number(Amount); 
+
+	   		$.ajax({    
+	  	   		  
+	            url        : "/cart/CartUpdate",
+	            data    : "amount="+amount+"&"+$("#userID").serialize()+"&"+$("#bbsID").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                CartUpdateCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	            
+	         });
+	   } 
+		
+	    //장바구니 수정 함수
+		function CartUpdateCallback(obj){	
+			
+			var bbsID = $("#bbsID").val();
+		    var comCategory = $("#comCategory").val();
+			var commentNum = $("#commentNum").val();
+			
+		    if(obj != null){        
+		        
+		    	var result = obj.result;
+		                
+		        if(result == "SUCCESS"){                
+		            alert("장바구니에 수량을 변경하였습니다.");
+		               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+		        } else {                
+		            alert("장바구니 수량 변경을 실패하였습니다.");    
+		            return;
+		        }
+		    }
+		}
+		
+		function CartWrite(){
+	    	
+	   		var amount = $("#amount").val(); 
+	   		var bbsID = $("#bbsID").val();
+	   		var userID = $("#userID").val();
+	   		 
+	   		$.ajax({    
+	  	   		  
+	            url        : "/cart/CartWrite",
+	            data    : $("#userID").serialize()+"&"+$("#bbsID").serialize()+"&"+$("#amount").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                CartWriteCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	            
+	         });
+	   }
+		//장바구니 작성 함수
+		function CartWriteCallback(obj){	
+			
+			var bbsID = $("#bbsID").val();
+		    var comCategory = $("#comCategory").val();
+			var commentNum = $("#commentNum").val();
+			
+		    if(obj != null){        
+		        
+		    	var result = obj.result;
+		                
+		        if(result == "SUCCESS"){                
+		            alert("장바구니에 추가하였습니다.");
+		            location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+		        } else {                
+		            alert("장바구니 추가를 실패하였습니다.");    
+		            return;
+		        }
+		    }
+		}
