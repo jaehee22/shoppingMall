@@ -129,25 +129,32 @@
 		    	<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
 			</div>
 			<h2>${userForm.userID}님의 장바구니 목록 입니다♥</h2>
-			<br>
-				<table class="table" style="text-align:center;">
-					<tr>
-						<th colspan=7>장바구니</th>
-					</tr>
-					<tr>
-						<td>상품 선택</td>
-						<td>이미지</td>
-						<td>제품 정보</td>
-						<td>가격</td>
-						<td>수량</td>
-						<td>합계</td>
-						<td>선택</td>
-					<tbody id = tbody>
-					</tbody>
-				</table>
+			<br><form name="checkBoxForm">
+					<table class="table" style="text-align:center;">
+						<tr>
+							<th colspan=7>장바구니</th>
+						</tr>
+						<tr>
+							<td>상품 선택</td>
+							<td>이미지</td>
+							<td>제품 정보</td>
+							<td>가격</td>
+							<td>수량</td>
+							<td>합계</td>
+							<td>선택</td>
+						<tbody id = tbody>
+						</tbody>
+						<tr>
+							<td colspan=7 style="text-align:right;">총 상품 금액 : <input name="total_sum" type="text" size="20" readonly></td>
+						</tr>
+						<tr align="center">
+							<td colspan=7><button type="button" onclick="#">선택 상품 주문</button>
+							&emsp;<button type="button" onclick="#">전체 상품 주문</button></td>
+						</tr>
+					</table>
 				<input type="hidden" id="cartNum" name="cartNum"    value="${cartNum}"/> <!-- 페이지 -->
 				<input type="hidden" id="userID" name="userID"    value="${userForm.userID}"/> <!-- 현재 유저 -->
-
+				</form>
 				<!-- 페이징 -->
 				<div class="page_wrap" id=tPaging>
 				
