@@ -38,7 +38,6 @@
         var str = "";
         
         if(listLen >  0){
-            
             for(var a=0; a<listLen; a++){            	            	
             	
             	var cartID = list[a].cartID;
@@ -50,7 +49,7 @@
                 var filePath = imgPath+bbsID+"/"+bbsID+".jpg";
                 
                 str += "<tr>";
-                str += "<td><br><input type=\"checkbox\" name=\"cartCheck\"/></td>"
+                str += "<td><br><input type=\"checkbox\" name=\"cartBox\" value=\""+(price*amount)+"\" onClick=\"javascript:itemSum(checkBoxForm);\"></td>"
                 str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
                 str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
                 str += "<td><br>"+price+"원</td>";
@@ -64,11 +63,24 @@
             
             str += "<tr>";
             str += "<td colspan=6 style=\"text-align:center;\">장바구니가 비어있습니다.</td>";
-            str += "<tr>";
+            str += "</tr>";
         }
-        	
-    		$("#tbody").html(str);
+       		$("#tbody").html(str);
     }
+    
+    //장바구니 체크 합계
+    function itemSum(frm)
+    {
+       var sum = 0;
+       var count = frm.cartBox.length;
+       for(var i=0; i < count; i++ ){
+           if(frm.cartBox[i].checked == true ){
+    	    sum += parseInt(frm.cartBox[i].value);
+           }
+       }
+       frm.total_sum.value = sum;
+    }
+    
     
     function CartPaging(cartNum){
     	
@@ -93,7 +105,6 @@
  	function CartPagingCallback(obj){
 
  		var cartNum = $("#cartNum").val();
-
  		var list = obj;
         console.log(list);
         
@@ -124,6 +135,7 @@
         	}
         	
         		str += "</ul>";
+        		
         	$("#tPaging").html(str);
         }
  		
