@@ -15,13 +15,13 @@ public class orderService {
     @Autowired
     private orderDAO orderDAO;
  
-    //게시판 목록 (main)
+    //주문 목록
     public List<orderDTO> OrderList(orderForm orderForm) throws Exception {
  
         return orderDAO.OrderList(orderForm);
     }
     
-    //게시판 뷰
+    //주문 뷰
     public orderDTO OrderView(orderForm orderForm) throws Exception {
     	
     	orderDTO orderDTO = new orderDTO();
@@ -31,7 +31,7 @@ public class orderService {
     	return orderDTO;
     }
     
-    //게시글 등록
+    //주문 등록
     public orderDTO OrderWrite(orderForm orderForm) throws Exception{
     	
     	orderDTO orderDTO = new orderDTO();
@@ -47,7 +47,7 @@ public class orderService {
     	return orderDTO;
     }
     
-    //게시글 삭제
+    //주문 삭제
     public orderDTO OrderDelete(orderForm orderForm) throws Exception{
     	
     	orderDTO orderDTO = new orderDTO();
@@ -61,7 +61,7 @@ public class orderService {
     	return orderDTO;
     }
     
-    //게시글 수정
+    //주문 수정
     public orderDTO OrderUpdate(orderForm orderForm) throws Exception{
     	
     	orderDTO orderDTO = new orderDTO();
