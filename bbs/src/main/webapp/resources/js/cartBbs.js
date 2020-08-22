@@ -172,8 +172,8 @@
 	//장바구니 선택주문
 	function CheckOrder(frm){
 		var count = frm.cartBox.length;
-		
- 		var yn = confirm("선택한 상품들을 구매하시겠습니까?");        
+		var a = 0;
+		var yn = confirm("선택한 상품들을 구매하시겠습니까?");        
 		
  		if(yn){
 			for(var i=0; i < count; i++ ){
@@ -188,6 +188,7 @@
 		 	            async   : true,
 		 	            type    : "POST",    
 		 	            success : function(obj) {
+		 	            	   a += 1;
 		 		               location.href = "/order/orderWrite";            
 		 	            },           
 		 	            error     : function(xhr, status, error) {}
@@ -195,6 +196,9 @@
 		 	         });
 				}
 			}
+ 		} 
+ 		if(a==0){
+ 			alert("선택된 제품이 없습니다.");
  		}
 	}
 	
