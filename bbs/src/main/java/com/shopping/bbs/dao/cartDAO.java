@@ -69,5 +69,15 @@ public class cartDAO {
         return sqlSession.delete(NAMESPACE + ".CartDelete", cartForm);
     }
     
-
+    //장바구니에서 선택한 물건 주문으로 update
+    public int CartOrder(cartForm cartForm) throws Exception {
+ 
+        return sqlSession.update(NAMESPACE + ".CartOrder", cartForm);
+    }
+    
+    //view에서 직접구매
+    public int ThisOrder(cartForm cartForm) throws Exception {
+    	
+        return sqlSession.insert(NAMESPACE + ".ThisOrder", cartForm);
+    }
 }
