@@ -47,7 +47,8 @@
 			#{cartID},	
 			#{userID},
 			#{bbsID},
-			#{amount}
+			#{amount},
+			#{isOrder}
 		) 
   
     </insert>
@@ -66,5 +67,16 @@
     	SET amount = #{amount}
 		WHERE 	bbsID = #{bbsID}
 		AND		userID = #{userID}
+		
+    </delete>
+    
+    <!-- 구매하는 신호 -->
+    <delete id="CartOrder" parameterType="com.shopping.bbs.form.cartForm">
+    
+    	UPDATE SHOPPING.CART
+    	SET isOrder = 1
+		WHERE 	bbsID = #{bbsID}
+		AND		userID = #{userID}
+		
     </delete>
 </mapper>
