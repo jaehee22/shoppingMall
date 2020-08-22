@@ -178,6 +178,7 @@
  		if(yn){
 			for(var i=0; i < count; i++ ){
 				if(frm.cartBox[i].checked == true ){
+					a += 1;
 					var bbsID = frm.bbsID[i].value;
 					$.ajax({    
 					 	  
@@ -188,7 +189,6 @@
 		 	            async   : true,
 		 	            type    : "POST",    
 		 	            success : function(obj) {
-		 	            	   a += 1;
 		 		               location.href = "/order/orderWrite";            
 		 	            },           
 		 	            error     : function(xhr, status, error) {}
@@ -197,7 +197,7 @@
 				}
 			}
  		} 
- 		if(a==0){
+ 		if(yn && a==0){
  			alert("선택된 제품이 없습니다.");
  		}
 	}
