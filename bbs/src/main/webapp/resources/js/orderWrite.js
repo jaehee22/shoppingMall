@@ -34,10 +34,9 @@
  
  function OrderList(){
 
-	if(category!=0 && subCategory!=0){
-		$.ajax({    
+	 $.ajax({    
   
-            url        : "/bbs/BbsbbsList",
+            url        : "/order/OrderList",
             data    : $("#userID").serialize(),
             dataType: "JSON",
             cache   : false,
@@ -49,14 +48,14 @@
             error     : function(xhr, status, error) {}
             
          });
-	}
  }
     
-    function BbsbbsListCallback(obj){
+    function OrderListCallback(obj){
 
     	var list = obj;
         var listLen = obj.length;
         var imgPath = "http://localhost:8080/resources/bbsImg/";
+        var totalPrice = 0;
         console.log(list);
         console.log(listLen);
 
@@ -74,16 +73,13 @@
                 var filePath = imgPath+bbsID+"/"+bbsID+".jpg";
 
                 str += "<tr>";
-                str += "<td><br><input type=\"checkbox\" name=\"cartBox\" value=\""+(price*amount)+"\" onClick=\"javascript:itemSum(checkBoxForm);\"></td>"
                 str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
                 str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
                 str += "<td><br>"+price+"원</td>";
-                str += "<td><br><input type=\"text\" name=\"amount\" value=\""+amount+"\" class=\"tbox\" size=\"2\"></td>";
+                str += "<td><br>"+amount+"</td>";
                 str += "<td><br>"+(price*amount)+"원</td>"
-                str += "<td><br><button type=\"button\" onclick=\"javascript:CartUpdate("+a+",checkBoxForm,"+bbsID+");\">변경</button>&emsp;";
-                str += "<button type=\"button\" onclick=\"javascript:CartDelete("+cartID+");\">삭제</button></td>";
-                str += "<td><input type=\"hidden\" name=\"bbsID\" value=\""+bbsID+"\"></td>"
                 str += "</tr>";
+                totalPrice += (price*amount);
             } 
         } else {
             
@@ -91,6 +87,9 @@
             str += "<td colspan=6 style=\"text-align:center;\">장바구니가 비어있습니다.</td>";
             str += "</tr>";
         }
+        	str += "<tr>";
+        	str += "<td colspan=7 style=\"text-align:right;\">총 상품 금액 :"+totalPrice+"</td>";
+        	str += "</tr>";
        		$("#tbody").html(str);
     }
     
