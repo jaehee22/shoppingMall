@@ -134,5 +134,23 @@ public class cartController {
     	return cartDTO;
     }
 
+    //장바구니에서 선택한 물품 주문으로update
+    @RequestMapping(value = "/CartOrder")
+    @ResponseBody
+    public  cartDTO CheckOrder(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
+        
+    	cartDTO cartDTO = cartService.CartOrder(cartForm);
 
+    	return cartDTO;
+    }
+
+    //view에서 직접구매
+    @RequestMapping(value = "/ThisOrder")
+    @ResponseBody
+    public  cartDTO ThisOrder(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
+        
+    	cartDTO cartDTO = cartService.ThisOrder(cartForm);
+
+    	return cartDTO;
+    }
 }
