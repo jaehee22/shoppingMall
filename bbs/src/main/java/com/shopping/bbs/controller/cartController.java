@@ -153,4 +153,14 @@ public class cartController {
 
     	return cartDTO;
     }
+    
+ 	//구매창에서 나갔을 때
+    @RequestMapping(value = "/OrderReset")
+    @ResponseBody
+    public  cartDTO OrderReset(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
+        
+    	cartDTO cartDTO = cartService.OrderReset(cartForm);
+
+    	return cartDTO;
+    }
 }
