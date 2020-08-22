@@ -148,8 +148,8 @@
 							<td colspan=7 style="text-align:right;">총 상품 금액 : <input name="total_sum" type="text" size="20" readonly></td>
 						</tr>
 						<tr align="center">
-							<td colspan=7><button type="button" onclick="#">선택 상품 주문</button>
-							&emsp;<button type="button" onclick="#">전체 상품 주문</button></td>
+							<td colspan=7><button type="button" >선택 상품 주문</button>
+							&emsp;<button type="button">전체 상품 주문</button></td>
 						</tr>
 					</table>
 				<input type="hidden" id="cartNum" name="cartNum"    value="${cartNum}"/> <!-- 페이지 -->
