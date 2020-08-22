@@ -95,4 +95,14 @@
 		) 
   
     </insert>
+    
+    <!-- 구매창에서 나갔을 때 리셋 -->
+     <delete id="OrderReset" parameterType="com.shopping.bbs.form.cartForm">
+    
+    	UPDATE SHOPPING.CART
+    	SET isOrder = 0
+		WHERE 	isOrder = 1
+		AND		userID = #{userID}
+		
+    </delete>
 </mapper>
