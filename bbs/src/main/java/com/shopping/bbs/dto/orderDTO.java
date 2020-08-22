@@ -14,6 +14,7 @@ public class orderDTO {
 	private int bbsID;
 	private int amount;
 	
+	private String title;
 	private String result;
 
 	public int getOrderID() {
@@ -102,6 +103,14 @@ public class orderDTO {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getResult() {
