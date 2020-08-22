@@ -18,7 +18,7 @@ public class orderDAO {
  
     private static final String NAMESPACE = "com.shopping.bbs.orderMapper";
  
-    //게시판 목록 (main)
+    //주문 목록
     public List<orderDTO> OrderList(orderForm orderForm) throws Exception {
  
         return sqlSession.selectList(NAMESPACE + ".OrderList", orderForm);
