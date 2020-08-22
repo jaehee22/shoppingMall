@@ -93,7 +93,7 @@ $(document).ready(function(){
 	            str += "</tr>";
 	            
 	            str += "<tr>";
-	            str += "<td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><br><button type=\"button\" style=\"padding:20px 70px;\">구매하기</button>";
+	            str += "<td colspan=2 style=\"text-align:center; border-right:1px solid #444444;\"><br><button type=\"button\" style=\"padding:20px 70px;\" onclick=\"javascript:ThisOrder();\">구매하기</button>";
 	            str += "</tr>";
 
 	            str += "<tr>";
@@ -656,4 +656,35 @@ $(document).ready(function(){
 		            return;
 		        }
 		    }
+		}
+		
+		//구매하기 함수
+		function ThisOrder(){
+			
+			var amount = $("#amount").val()
+			
+			 if (amount == 0){            
+		  	        alert("수량을 입력해주세요.");
+		  	        $("#amount").focus();
+		  	        return;
+		  	 }
+			
+			var yn = confirm("해당상품을 구매하시겠습니까?");        
+			
+	 		if(yn){
+				$.ajax({    
+				 	  
+	 	            url     : "/cart/ThisOrder",
+	 	            data    : $("#userID").serialize()+"&"+$("#amount").serialize()+"&"+$("#bbsID").serialize(),
+	 	            dataType: "JSON",
+	 	            cache   : false,
+	 	            async   : true,
+	 	            type    : "POST",    
+	 	            success : function(obj) {
+	 		               location.href = "/order/orderWrite";            
+	 	            },           
+	 	            error     : function(xhr, status, error) {}
+	 	            
+	 	         });
+			}
 		}
