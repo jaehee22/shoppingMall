@@ -1,4 +1,5 @@
- $(document).ready(function(){        
+ $(document).ready(function(){      
+	 OrderList();
     });
  
  var checkUnload = true;
@@ -31,32 +32,29 @@
  }
 
  
- function BbsbbsList(num){
-		
-    	var category = $("#category").val();
-		var subCategory = $("#subCategory").val();
+ function OrderList(){
 
-		if(category!=0 && subCategory!=0){
-			$.ajax({    
-	  
-	            url        : "/bbs/BbsbbsList",
-	            data    : $("#category").serialize()+"&"+$("#subCategory").serialize()+"&"+$("#num").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-		                BbsbbsListCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {}
-	            
-	         });
-		}
-    }
+	if(category!=0 && subCategory!=0){
+		$.ajax({    
+  
+            url        : "/bbs/BbsbbsList",
+            data    : $("#userID").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+	                OrderListCallback(obj);                
+            },           
+            error     : function(xhr, status, error) {}
+            
+         });
+	}
+ }
     
     function BbsbbsListCallback(obj){
-		var num = $("#num").val();
-        var list = obj;
+
+    	var list = obj;
         var listLen = obj.length;
         var imgPath = "http://localhost:8080/resources/bbsImg/";
         console.log(list);
@@ -69,34 +67,31 @@
             for(var a=0; a<listLen; a++){            	            	
             	
             	var bbsID = list[a].bbsID;
-                var category = list[a].category; 
-                var subCategory = list[a].subCategory; 
                 var title = list[a].title;
                 var price = list[a].price;
-                var sell = list[a].sell;
+                var amount = list[a].amount;
             	
                 var filePath = imgPath+bbsID+"/"+bbsID+".jpg";
 
-                str += "<div class=\"col-lg-4 col-md-6 mb-4\">";
-                str += "<div class=\"card h-100\">";
-                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"300\" height=\"171\" alt=\"\"/></a>";
-                str += "<div class=\"card-body\">";
-                str += "<h4 class=\"card-title\">";
-                str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\">"+title+"</a>";
-                str += "</h4>";
-                str += "<h5>"+price+"원</h5>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
+                str += "<tr>";
+                str += "<td><br><input type=\"checkbox\" name=\"cartBox\" value=\""+(price*amount)+"\" onClick=\"javascript:itemSum(checkBoxForm);\"></td>"
+                str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
+                str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
+                str += "<td><br>"+price+"원</td>";
+                str += "<td><br><input type=\"text\" name=\"amount\" value=\""+amount+"\" class=\"tbox\" size=\"2\"></td>";
+                str += "<td><br>"+(price*amount)+"원</td>"
+                str += "<td><br><button type=\"button\" onclick=\"javascript:CartUpdate("+a+",checkBoxForm,"+bbsID+");\">변경</button>&emsp;";
+                str += "<button type=\"button\" onclick=\"javascript:CartDelete("+cartID+");\">삭제</button></td>";
+                str += "<td><input type=\"hidden\" name=\"bbsID\" value=\""+bbsID+"\"></td>"
+                str += "</tr>";
             } 
         } else {
             
-            str += "<tr colspan='3'>";
-            str += "<td>등록된 글이 존재하지 않습니다.</td>";
             str += "<tr>";
+            str += "<td colspan=6 style=\"text-align:center;\">장바구니가 비어있습니다.</td>";
+            str += "</tr>";
         }
-        	
-    		$("#tbody").html(str);
+       		$("#tbody").html(str);
     }
     
     function goPopup(){
