@@ -9,6 +9,7 @@
     	FROM SHOPPING.CART, SHOPPING.BBS
     	WHERE 	CART.bbsID = BBS.bbsID
     	AND		userID = #{userID}
+    	AND		isOrder = 1
     
     </select>   
     
