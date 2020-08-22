@@ -48,7 +48,7 @@
 			#{userID},
 			#{bbsID},
 			#{amount},
-			#{isOrder}
+			0
 		) 
   
     </insert>
@@ -79,4 +79,20 @@
 		AND		userID = #{userID}
 		
     </delete>
+    
+    <!-- view에서 직접 구매 -->
+     <insert id="ThisOrder" parameterType="com.shopping.bbs.form.cartForm">
+		
+		INSERT
+		INTO SHOPPING.CART
+		VALUES
+		(
+			#{cartID},	
+			#{userID},
+			#{bbsID},
+			#{amount},
+			1
+		) 
+  
+    </insert>
 </mapper>
