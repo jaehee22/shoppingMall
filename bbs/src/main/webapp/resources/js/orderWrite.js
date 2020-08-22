@@ -1,8 +1,37 @@
  $(document).ready(function(){        
-        BbsbbsList();
     });
+ 
+ var checkUnload = true;
+ $(window).on("beforeunload", function(){
+     if(checkUnload){
+    	 return OrderReset();
+     }
+ });
 
-    function BbsbbsList(category,subCategory, num){
+ $("#OrderWrite").on("click", function(){
+	    checkUnload = false;
+	});
+
+ //페이지에서 나가면 다시 isOrder=0으로 셋팅해준다.
+ function OrderReset(){
+	 
+	 $.ajax({    
+		  
+         url        : "/cart/OrderReset",
+         data    : $("#userID").serialize(),
+         dataType: "JSON",
+         cache   : false,
+         async   : true,
+         type    : "POST",    
+         success : function(obj) {
+         },           
+         error     : function(xhr, status, error) {}
+         
+      });
+ }
+
+ 
+ function BbsbbsList(num){
 		
     	var category = $("#category").val();
 		var subCategory = $("#subCategory").val();
