@@ -56,6 +56,7 @@
                 str += "<td><br>"+(price*amount)+"원</td>"
                 str += "<td><br><button type=\"button\" onclick=\"javascript:CartUpdate("+a+",checkBoxForm,"+bbsID+");\">변경</button>&emsp;";
                 str += "<button type=\"button\" onclick=\"javascript:CartDelete("+cartID+");\">삭제</button></td>";
+                str += "<td><input type=\"hidden\" name=\"bbsID\" value=\""+bbsID+"\"></td>"
                 str += "</tr>";
             } 
         } else {
@@ -166,4 +167,63 @@
 	            return;
 	        }
 	    }
+	}
+	
+	//장바구니 선택주문
+	function CheckOrder(frm){
+		var count = frm.cartBox.length;
+		
+ 		var yn = confirm("선택한 상품들을 구매하시겠습니까?");        
+		
+ 		if(yn){
+			for(var i=0; i < count; i++ ){
+				if(frm.cartBox[i].checked == true ){
+					var bbsID = frm.bbsID[i].value;
+					$.ajax({    
+					 	  
+		 	            url     : "/cart/CartOrder",
+		 	            data    : $("#userID").serialize()+"&bbsID="+bbsID,
+		 	            dataType: "JSON",
+		 	            cache   : false,
+		 	            async   : true,
+		 	            type    : "POST",    
+		 	            success : function(obj) {
+		 		               location.href = "/order/orderWrite";            
+		 	            },           
+		 	            error     : function(xhr, status, error) {}
+		 	            
+		 	         });
+				}
+			}
+ 		}
+	}
+	
+	//장바구니 선택주문
+	function AllOrder(frm){
+		
+		var count = frm.cartBox.length;
+		
+ 		var yn = confirm("전체 상품을 구매하시겠습니까?");        
+		
+ 		if(yn){
+			for(var i=0; i < count; i++ ){
+				
+				var bbsID = frm.bbsID[i].value;
+				$.ajax({    
+				 	  
+	 	            url     : "/cart/CartOrder",
+	 	            data    : $("#userID").serialize()+"&bbsID="+bbsID,
+	 	            dataType: "JSON",
+	 	            cache   : false,
+	 	            async   : true,
+	 	            type    : "POST",    
+	 	            success : function(obj) {
+	 		               location.href = "/order/orderWrite";            
+	 	            },           
+	 	            error     : function(xhr, status, error) {}
+	 	            
+	 	         });
+			}
+			
+ 		}
 	}
