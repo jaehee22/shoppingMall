@@ -80,4 +80,33 @@ public class cartService {
     	return cartDTO;
     }
     
+    //장바구니 선택한 물품 order로 update
+    public cartDTO CartOrder(cartForm cartForm) throws Exception{
+    	
+    	cartDTO cartDTO = new cartDTO();
+    	
+    	int cnt = cartDAO.CartOrder(cartForm);
+    	
+    	if(cnt>0) {
+    		cartDTO.setResult("SUCCESS");
+    	}
+    	
+    	return cartDTO;
+    }
+    
+    //view에서 직접구매
+    public cartDTO ThisOrder(cartForm cartForm) throws Exception{
+    	
+    	cartDTO cartDTO = new cartDTO();
+    
+        cartForm.setCartID(cartDAO.GetNext());
+    	
+    	int cnt = cartDAO.ThisOrder(cartForm);
+    	
+    	if(cnt>0) {
+    		cartDTO.setResult("SUCCESS");
+    	}
+    	
+    	return cartDTO;
+    }
 }
