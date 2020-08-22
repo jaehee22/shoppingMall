@@ -109,17 +109,12 @@ public class orderComtroller {
         
     	return orderDTO;
     }
-    //林巩 格废 page
-    @RequestMapping( value = "/Sample")
-    public String Sample(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        
-        return "order/Sample";
-    }
-    //林巩 格废 page
+
+    //林家八祸 page
     @RequestMapping( value = "/jusoPopup")
     public String jusoPopup(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "order/jusoPopup";
     }
- 
+
 }
