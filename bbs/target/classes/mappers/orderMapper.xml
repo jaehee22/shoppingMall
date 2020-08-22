@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.shopping.bbs.orderMapper">
+    
+    <select id="OrderList" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
+    
+    	SELECT userID,CART.bbsID,amount,title,price
+    	FROM SHOPPING.CART, SHOPPING.BBS
+    	WHERE 	CART.bbsID = BBS.bbsID
+    	AND		userID = #{userID}
+    
+    </select>   
+    
+    <select id="GetNext" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
+    	
+    	SELECT orderID
+    	FROM SHOPPING.ITEMORDER
+    	ORDER BY orderID DESC;
+    
+    </select>
+    
+    <!-- 주문 이후의 주문 내역 -->
+    <select id="OrderView" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
+    
+    	SELECT *
+        FROM SHOPPING.ITEMORDER, SHOPPING.ORDERITEMS
+        WHERE 	ITEMORDER.orderID = #{orderID}
+        AND		ITEMORDER.orderID = ORDERITEMS.orderID
+    
+    </select>
+    
+    <insert id="OrderWrite" parameterType="com.shopping.bbs.form.orderForm">
+		
+		INSERT
+		INTO SHOPPING.ITEMORDER
+		VALUES
+		(
+			#{orderID},
+			#{userID},
+			#{orderName},
+			#{addr1},
+			#{addr2},
+			#{addr3},
+			#{phoneNumber},
+			#{orderMemo},
+			"상품준비중"
+		) 
+  
+    </insert>
+    
+    <delete id="OrderDelete" parameterType="com.shopping.bbs.form.orderForm">
+    
+    	DELETE
+    	FROM SHOPPING.ITEMORDER
+    	WHERE orderID = #{orderID}
+    
+    </delete>
+    
+    <delete id="OrderUpdate" parameterType="com.shopping.bbs.form.orderForm">
+    
+    	UPDATE SHOPPING.BBS
+    	SET orderName = #{orderName},
+			addr1 = #{addr1},
+			addr2 = #{addr2},
+			addr3 = #{addr3},
+			phoneNumber = #{phoneNumber},
+			orderMemo = #{orderMemo},
+			delivery = #{delivery},
+		WHERE orderID = #{orderID}
+    
+    </delete>
+</mapper>
