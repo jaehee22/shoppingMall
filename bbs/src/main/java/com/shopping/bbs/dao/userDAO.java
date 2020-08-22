@@ -8,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.shopping.bbs.dto.userDTO;
-import com.shopping.bbs.dto.userDTO;
-import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.form.userForm;
  
 @Repository
