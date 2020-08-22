@@ -122,53 +122,68 @@
 			
 			<div class="col-lg-8">
 	   		<br>
-	   			<div id="carouselExampleIndicators">				
-					<form id="orderForm" name="orderForm">
-						<table class="table" style="border:1px solid #dddddd">
-							<colgroup>
-								<col width="30%">
-								<col width="*%">
-								<col width="15%">
-							</colgroup>
+	   			<div id="carouselExampleIndicators">
+		   			<table class="table" style="text-align:center;">
 							<tr>
-								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 주문</th>
+								<th colspan=7>장바구니</th>
 							</tr>
-							<tbody id="tOrder">
-								<tr>
-									<th>수령인</th>
-									<td colspan=2><input id="orderName" name="orderName" value=""  class="tbox" size="10" maxlength="30" /></td>
-								</tr>
-								<tr>
-									<th>폰번호</th>
-									<td colspan=2><input id="phoneNumber" name="phoneNumber" value=""  class="tbox" size="15" maxlength="30" /></td>
-								</tr>	
-								<tr>
-									<th>우편번호</th>
-									<td><input type="text" id="addr1" name="addr1" class="form-control" placeholder="주소"/></td>
-									<td><input type="button" onClick="goPopup();" value="주소 검색"/></td>								
-								</tr>
-								<tr>
-									<th>주소</th>
-									<td><input type="text" id="addr2" name="addr2" class="form-control" placeholder="주소"/></td>
-								</tr>
-								<tr>
-									<th>상세주소</th>
-									<td colspan=2><input type="text" id="addr3" name="addr3" value=""  class="tbox" size="40" maxlength="30" /></td>
-								</tr>	
-								<tr>
-									<th>주문 요청 사항</th>
-									<td colspan=2><input type="text" id="orderMemo" name="orderMemo" value=""  class="tbox" size="40" height="30" maxlength="30" /></td>
-								</tr>	
-								<tr>
-									<td colspan=3 style="text-align:center;">
-										<button type="button" class="btn btn-primary" onclick="javascript:bbsList();">목록</button>
-										<button type="button" class="btn btn-primary" onclick="javascript:BbsWrite();">주문</button>
-									</td>
-								</tr>
+							<tr>
+								<td>이미지</td>
+								<td>제품 정보</td>
+								<td>가격</td>
+								<td>수량</td>
+								<td>합계</td>
+							<tbody id = tbody>
 							</tbody>
-						</table>
-						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
-					</form>			
+						</table>		
+						<div class="container">
+							<form id="orderForm" name="orderForm">
+								<table class="table" style="border:1px solid #dddddd">
+									<colgroup>
+										<col width="30%">
+										<col width="*%">
+										<col width="15%">
+									</colgroup>
+									<tr>
+										<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 주문</th>
+									</tr>
+									<tbody id="tOrder">
+										<tr>
+											<th>수령인</th>
+											<td colspan=2><input id="orderName" name="orderName" value=""  class="tbox" size="10" maxlength="30" /></td>
+										</tr>
+										<tr>
+											<th>폰번호</th>
+											<td colspan=2><input id="phoneNumber" name="phoneNumber" value=""  class="tbox" size="15" maxlength="30" /></td>
+										</tr>	
+										<tr>
+											<th>우편번호</th>
+											<td><input type="text" id="addr1" name="addr1" class="form-control" placeholder="주소"/></td>
+											<td><input type="button" onClick="goPopup();" value="주소 검색"/></td>								
+										</tr>
+										<tr>
+											<th>주소</th>
+											<td><input type="text" id="addr2" name="addr2" class="form-control" placeholder="주소"/></td>
+										</tr>
+										<tr>
+											<th>상세주소</th>
+											<td colspan=2><input type="text" id="addr3" name="addr3" value=""  class="tbox" size="40" maxlength="30" /></td>
+										</tr>	
+										<tr>
+											<th>주문 요청 사항</th>
+											<td colspan=2><input type="text" id="orderMemo" name="orderMemo" value=""  class="tbox" size="40" height="30" maxlength="30" /></td>
+										</tr>	
+										<tr>
+											<td colspan=3 style="text-align:center;">
+												<button type="button" class="btn btn-primary" onclick="javascript:bbsList();">목록</button>
+												<button type="button" class="btn btn-primary" onclick="javascript:BbsWrite();">주문</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
+							</form>		
+						</div>	
 				</div>
 			</div>
 			<!-- /.col-lg-9 -->
