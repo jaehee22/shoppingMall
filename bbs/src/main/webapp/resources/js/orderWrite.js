@@ -103,3 +103,70 @@
 		document.orderForm.addr3.value = addr3;
 		document.orderForm.addr1.value = addr1;
     }
+    
+    function OrderWrite(){
+    	
+    	var userID = $("#userID").val();
+    	var orderName = $("#orderName").val();
+    	var addr1 = $("#addr1").val();
+    	var addr2 = $("#addr2").val();
+    	var addr3 = $("#addr3").val();
+    	var phoneNumber = $("#phoneNumber").val();
+
+    	if(userID==""||orderName==""||addr1==""||addr2==""||addr3==""||phoneNumber==""){
+    		alert("모든 칸을 채워주세요");
+    		return;
+    	}
+    	
+    	$.ajax({    
+  		  
+            url        : "/order/OrderWrite",
+            data    : $("#orderForm").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+	                SubOrderWrite(obj);                
+            },           
+            error     : function(xhr, status, error) {}
+         });
+    }
+    function SubOrderWrite(obj){
+    	
+    	if(obj!=null){
+    		
+    		var orderID = obj.orderID;
+	    	alert(orderID);
+    		$.ajax({    
+	    		  
+	            url        : "/order/SubOrderWrite",
+	            data    : "orderID="+orderID+"&"+$("#userID").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                OrderWriteCallback(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	         });
+    	}
+    }
+    
+    //주문서 작성 함수
+    function OrderWriteCallback(obj){
+
+        if(obj != null){        
+            
+            var result = obj.result;
+            
+            if(result == "SUCCESS"){                
+                alert("주문을 성공하였습니다.");                
+                location.href = "/bbs/home";                 
+            } else {                
+                alert("주문을 실패하였습니다.");    
+                return;
+            }
+        }
+    }
