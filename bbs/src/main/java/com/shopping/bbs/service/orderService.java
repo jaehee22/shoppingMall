@@ -63,18 +63,25 @@ public class orderService {
     	return orderDTO;
     }
    
-    //주문 등록(sub)
+    //주문 등록(sub) && 판매량 추가
     public orderDTO SubOrderWrite(orderForm orderForm) throws Exception{
     	
     	//등록 list
     	List<orderForm> SubOrderForm = orderDAO.SubOrderList(orderForm);
     	
+    	//판매량 추가 Form 
+    	orderForm sell = new orderForm();
+    	
     	//완성됐다는걸 알려주는 DTO
     	orderDTO orderDTO = new orderDTO();
+	
     	int cnt = 0;
 
     	for(int i=0; i<SubOrderForm.size(); i++) {
     		SubOrderForm.get(i).setOrderID(orderForm.getOrderID());
+    		sell.setBbsID(SubOrderForm.get(i).getBbsID());
+    		sell.setAmount(SubOrderForm.get(i).getAmount());
+    		orderDAO.SellUpdate(sell);
         	orderDAO.SubOrderWrite(SubOrderForm.get(i));
         	cnt++;
     	}
@@ -86,7 +93,7 @@ public class orderService {
     	return orderDTO;
     }
     
-    //주문완료시 cart데이터 삭제
+    //주문완료시 cart데이터 삭제 
     public orderDTO SubOrderSuccess(orderForm orderForm) throws Exception{
     	    	
     	orderDTO orderDTO = new orderDTO();
