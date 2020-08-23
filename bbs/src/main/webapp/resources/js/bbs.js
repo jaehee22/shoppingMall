@@ -90,7 +90,7 @@
     		$("#tbody").html(str);
     }
     
-    function BbsPaging(category,subCategory,num){
+    function BbsPaging(){
  		var category = $("#category").val();
 		var subCategory = $("#subCategory").val();
  		
