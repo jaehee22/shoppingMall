@@ -681,7 +681,7 @@ $(document).ready(function(){
 	 	            async   : true,
 	 	            type    : "POST",    
 	 	            success : function(obj) {
-	 		               location.href = "/order/orderWrite";            
+	 		               location.href = "/order/orderWrite?whereOrder=1";            
 	 	            },           
 	 	            error     : function(xhr, status, error) {}
 	 	            
