@@ -110,12 +110,26 @@ public class cartService {
     	return cartDTO;
     }
     
-    //구매창에서 나갔을 때
-    public cartDTO OrderReset(cartForm cartForm) throws Exception{
+    //구매창에서 나갔을 때(장바구니)
+    public cartDTO CartOrderReset(cartForm cartForm) throws Exception{
     	
     	cartDTO cartDTO = new cartDTO();
     	
-    	int cnt = cartDAO.OrderReset(cartForm);
+    	int cnt = cartDAO.CartOrderReset(cartForm);
+    	
+    	if(cnt>0) {
+    		cartDTO.setResult("SUCCESS");
+    	}
+    	
+    	return cartDTO;
+    }
+    
+    //구매창에서 나갔을 때(bbs)
+    public cartDTO BbsOrderReset(cartForm cartForm) throws Exception{
+    	
+    	cartDTO cartDTO = new cartDTO();
+    	
+    	int cnt = cartDAO.BbsOrderReset(cartForm);
     	
     	if(cnt>0) {
     		cartDTO.setResult("SUCCESS");
