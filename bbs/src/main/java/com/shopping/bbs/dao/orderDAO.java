@@ -53,7 +53,18 @@ public class orderDAO {
     	
         return sqlSession.insert(NAMESPACE + ".OrderWrite", orderForm);
     }
+    //sub에 입력할 주문 목록
+    public List<orderForm> SubOrderList(orderForm orderForm) throws Exception {
+ 
+        return sqlSession.selectList(NAMESPACE + ".SubOrderList", orderForm);
+    }
     
+    
+    //sub주문 등록
+    public int SubOrderWrite(orderForm orderForm) throws Exception {
+    	
+        return sqlSession.insert(NAMESPACE + ".SubOrderWrite", orderForm);
+    }
     //주문 삭제
     public int OrderDelete(orderForm orderForm) throws Exception {
  
