@@ -58,7 +58,7 @@
 
 						</li>
 						<li class="nav-item">
-		    				<a class="nav-link" href="#">주문조회</a>
+		    				<a class="nav-link" href="/order/orderBbs?orderNum=1">주문조회</a>
 						</li>
 						<li class="nav-item">
 		    				<a class="nav-link" href="/user/Logout">로그아웃</a>
