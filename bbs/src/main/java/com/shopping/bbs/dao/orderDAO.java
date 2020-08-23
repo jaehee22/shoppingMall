@@ -18,10 +18,16 @@ public class orderDAO {
  
     private static final String NAMESPACE = "com.shopping.bbs.orderMapper";
  
-    //주문 목록
+    //주문 목록 (주문write할때 구매할 목록)
     public List<orderDTO> OrderList(orderForm orderForm) throws Exception {
  
         return sqlSession.selectList(NAMESPACE + ".OrderList", orderForm);
+    }
+    
+    //주문목록 (주문완료)
+    public List<orderDTO> OrderBbs(orderForm orderForm) throws Exception {
+    	 
+        return sqlSession.selectList(NAMESPACE + ".OrderBbs", orderForm);
     }
     
     //주문 뷰
@@ -46,6 +52,10 @@ public class orderDAO {
     		i = orderDTO.get(0).getOrderID()+1;
     	}    		
     	return i;
+    }
+    
+    public int Items(orderForm orderForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".Items" , orderForm);
     }
     
     //주문 등록
