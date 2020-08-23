@@ -15,10 +15,25 @@ public class orderService {
     @Autowired
     private orderDAO orderDAO;
  
-    //주문 목록
+    //주문 목록 (주문write할때 구매할 목록)
     public List<orderDTO> OrderList(orderForm orderForm) throws Exception {
  
         return orderDAO.OrderList(orderForm);
+    }
+    
+    //주문 목록 (주문완료)
+    public List<orderDTO> OrderBbs(orderForm orderForm) throws Exception {
+    	
+    	List<orderDTO> orderDTO = orderDAO.OrderBbs(orderForm);
+    	
+    	orderForm count = new orderForm(); 
+    	
+    	for(int i=0; i<orderDTO.size(); i++) {
+    		count.setOrderID(orderDTO.get(i).getOrderID());
+    		orderDTO.get(i).setItems(orderDAO.Items(count));
+    	}
+    	
+    	return orderDTO;
     }
     
     //주문 뷰
