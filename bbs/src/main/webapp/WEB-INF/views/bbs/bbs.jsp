@@ -55,7 +55,7 @@
 		   					<a class="nav-link" href="/cart/cartBbs?cartNum=1">장바구니</a>
 						</li>
 						<li class="nav-item">
-		    				<a class="nav-link" href="#">주문조회</a>
+		    				<a class="nav-link" href="/order/orderBbs?orderNum=1">주문조회</a>
 						</li>
 						<li class="nav-item">
 		    				<a class="nav-link" href="/user/Logout">로그아웃</a>
