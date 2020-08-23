@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
  
 import com.shopping.bbs.dao.orderDAO;
 import com.shopping.bbs.dto.orderDTO;
-import com.shopping.bbs.form.bbsForm;
 import com.shopping.bbs.form.orderForm;
  
 @Service
@@ -40,14 +39,11 @@ public class orderService {
     public int OrderTotal(orderForm orderForm) throws Exception{
     	return orderDAO.OrderTotal(orderForm);
     }
+    
     //주문 뷰
-    public orderDTO OrderView(orderForm orderForm) throws Exception {
+    public List<orderDTO> OrderView(orderForm orderForm) throws Exception {
     	
-    	orderDTO orderDTO = new orderDTO();
-    	
-    	orderDTO = orderDAO.OrderView(orderForm);
-    	
-    	return orderDTO;
+    	return orderDAO.OrderView(orderForm);
     }
     
     //주문 등록
