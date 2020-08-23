@@ -113,35 +113,60 @@
     	var addr3 = $("#addr3").val();
     	var phoneNumber = $("#phoneNumber").val();
 
-    	if(userID==""||orderName==""||addr1==""||addr2==""||addr3==""||phoneNumber==""){
+    	if(userID==""||orderName==""||addr1==""||addr2==""||phoneNumber==""){
     		alert("모든 칸을 채워주세요");
     		return;
     	}
     	
-    	$.ajax({    
-  		  
-            url        : "/order/OrderWrite",
-            data    : $("#orderForm").serialize(),
-            dataType: "JSON",
-            cache   : false,
-            async   : true,
-            type    : "POST",    
-            success : function(obj) {
-	                SubOrderWrite(obj);                
-            },           
-            error     : function(xhr, status, error) {}
-         });
+	    var yn = confirm("주문을 하시겠습니까?");        
+	    
+	    if(yn){
+	 	    	$.ajax({    
+	  		  
+	            url        : "/order/OrderWrite",
+	            data    : $("#orderForm").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                SubOrderWrite(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	         });
+    	}
     }
     function SubOrderWrite(obj){
     	
     	if(obj!=null){
     		
     		var orderID = obj.orderID;
-	    	alert(orderID);
+    		
     		$.ajax({    
 	    		  
 	            url        : "/order/SubOrderWrite",
 	            data    : "orderID="+orderID+"&"+$("#userID").serialize(),
+	            dataType: "JSON",
+	            cache   : false,
+	            async   : true,
+	            type    : "POST",    
+	            success : function(obj) {
+		                SubOrderSuccess(obj);                
+	            },           
+	            error     : function(xhr, status, error) {}
+	         });
+    	}
+    }
+    
+    //주문이 완료되면 cart에 있는 데이터를 없애준다.
+    function SubOrderSuccess(obj){
+    	
+    	if(obj!=null){
+
+    		$.ajax({    
+	    		  
+	            url        : "/order/SubOrderSuccess",
+	            data    : $("#userID").serialize(),
 	            dataType: "JSON",
 	            cache   : false,
 	            async   : true,
@@ -153,7 +178,6 @@
 	         });
     	}
     }
-    
     //주문서 작성 함수
     function OrderWriteCallback(obj){
 
