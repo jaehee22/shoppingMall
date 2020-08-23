@@ -9,26 +9,45 @@
      }
  });
 
- $("#OrderWrite").on("click", function(){
-	    checkUnload = false;
-	});
-
- //페이지에서 나가면 다시 isOrder=0으로 셋팅해준다.
+ //주문서를 작성하지 않고 페이지를 나갈 때
  function OrderReset(){
 	 
-	 $.ajax({    
-		  
-         url        : "/cart/OrderReset",
-         data    : $("#userID").serialize(),
-         dataType: "JSON",
-         cache   : false,
-         async   : true,
-         type    : "POST",    
-         success : function(obj) {
-         },           
-         error     : function(xhr, status, error) {}
-         
-      });
+	 var whereOrder = $("#whereOrder").val();
+	 
+	 if(whereOrder==0){
+		 $.ajax({    
+			  
+	         url        : "/cart/CartOrderReset",
+	         data    : $("#userID").serialize(),
+	         dataType: "JSON",
+	         cache   : false,
+	         async   : true,
+	         type    : "POST",    
+	         success : function(obj) {
+	        	 alert("주문이 취소되었습니다.")
+	         },           
+	         error     : function(xhr, status, error) {}
+	         
+	      });
+	 }
+	 
+	 else{
+		 $.ajax({    
+			  
+	         url        : "/cart/BbsOrderReset",
+	         data    : $("#userID").serialize(),
+	         dataType: "JSON",
+	         cache   : false,
+	         async   : true,
+	         type    : "POST",    
+	         success : function(obj) {
+	        	 alert("주문이 취소되었습니다.")
+	         },           
+	         error     : function(xhr, status, error) {}
+	         
+	      });
+	 }
+	
  }
 
  
@@ -186,7 +205,8 @@
             var result = obj.result;
             
             if(result == "SUCCESS"){                
-                alert("주문을 성공하였습니다.");                
+                alert("주문을 성공하였습니다.");    
+        	    checkUnload = false;
                 location.href = "/bbs/home";                 
             } else {                
                 alert("주문을 실패하였습니다.");    
