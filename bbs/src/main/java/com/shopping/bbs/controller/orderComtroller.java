@@ -20,15 +20,8 @@ public class orderComtroller {
  
     @Autowired
     private orderService orderService;
-   
-    //주문 목록 page
-    @RequestMapping( value = "/orderList")
-    public String orderList(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        
-        return "order/orderList";
-    }
- 
-    //주문 목록
+    
+    //주문 목록 (주문write할때 구매할 목록)
     @RequestMapping(value = "/OrderList")
     @ResponseBody
     public List<orderDTO> OrderList(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
@@ -37,7 +30,24 @@ public class orderComtroller {
         
     	return orderDTO;
     }
+    
+    //주문 목록 page (주문 완료)
+    @RequestMapping( value = "/orderBbs")
+    public String orderBbs(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
+        return "order/orderBbs";
+    }
+    
+    //주문목록 (주문완료)
+    @RequestMapping(value = "/OrderBbs")
+    @ResponseBody
+    public List<orderDTO> OrderBbs(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+        
+    	List<orderDTO> orderDTO = orderService.OrderBbs(orderForm);
+        
+    	return orderDTO;
+    }
+    
     //주문 뷰 page
     @RequestMapping( value = "/orderView")
     public String orderView(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -65,7 +75,7 @@ public class orderComtroller {
     	return orderDTO;
     }
     
-    //게시글 작성 page
+    //주문 작성 page
     @RequestMapping( value = "/orderWrite")
     public String orderWrite(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
@@ -102,7 +112,7 @@ public class orderComtroller {
     	return orderDTO;
     }
     
-    //주문 삭제
+    //주문 삭제 (구매취소)
     @RequestMapping(value = "/OrderDelete")
     @ResponseBody
     public orderDTO OrderDelete(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
@@ -112,14 +122,14 @@ public class orderComtroller {
     	return orderDTO;
     }
     
-    //게시글 수정 page
+    //구매 수정 page
     @RequestMapping( value = "/orderUpdate")
     public String orderUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "order/orderUpdate";
     }
  
-    //게시글 수정
+    //구매 수정
     @RequestMapping(value = "/OrderUpdate")
     @ResponseBody
     public orderDTO OrderUpdate(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
