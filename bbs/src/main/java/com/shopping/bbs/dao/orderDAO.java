@@ -77,6 +77,12 @@ public class orderDAO {
  
         return sqlSession.delete(NAMESPACE + ".SubOrderSuccess", orderForm);
     }
+    //주문성공 시 해당 제품 판매량 추가
+    public int SellUpdate(orderForm orderForm) throws Exception {
+ 
+        return sqlSession.update(NAMESPACE + ".SellUpdate", orderForm);
+    }
+    
     //주문 삭제
     public int OrderDelete(orderForm orderForm) throws Exception {
  
@@ -88,4 +94,5 @@ public class orderDAO {
  
         return sqlSession.update(NAMESPACE + ".OrderUpdate", orderForm);
     }
+    
 }
