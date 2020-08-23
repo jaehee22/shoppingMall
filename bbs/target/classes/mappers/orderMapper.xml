@@ -107,6 +107,7 @@
     	DELETE
     	FROM SHOPPING.ITEMORDER
     	WHERE orderID = #{orderID}
+    	AND delivery = "상품준비중"
     
     </delete>
     
