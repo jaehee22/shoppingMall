@@ -11,6 +11,11 @@
 
 	<title>악세사리 쇼핑몰</title>
 
+<%
+	int whereOrder = Integer.parseInt(request.getParameter("whereOrder"));     
+%>
+	<c:set var="whereOrder" value="<%=whereOrder%>"/> <!-- 어디서 구매하기를 눌렀는지 -->
+
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -181,6 +186,7 @@
 										</tr>
 									</tbody>
 								</table>
+								<input type="hidden" id="whereOrder" name="whereOrder" value="${whereOrder}"/>
 								<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>
 							</form>		
 						</div>	
