@@ -13,6 +13,7 @@ public class orderForm {
 	
 	private int bbsID;
 	private int amount;
+	private int price;
 	
 	private String result;
 
@@ -102,6 +103,14 @@ public class orderForm {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getResult() {
