@@ -15,6 +15,10 @@ public class orderForm {
 	private int amount;
 	private int price;
 	
+	int num;
+	int displayPost;
+	int postNum;
+	int pageNum;
 	private String result;
 
 	public int getOrderID() {
@@ -111,6 +115,38 @@ public class orderForm {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public int getDisplayPost() {
+		return displayPost;
+	}
+
+	public void setDisplayPost(int displayPost) {
+		this.displayPost = displayPost;
+	}
+
+	public int getPostNum() {
+		return postNum;
+	}
+
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
+	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
 	}
 
 	public String getResult() {
