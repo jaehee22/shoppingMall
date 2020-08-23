@@ -82,6 +82,17 @@ public class orderComtroller {
     	return orderDTO;
     }
     
+    //林巩 累己(sub)
+    @RequestMapping(value = "/SubOrderWrite")
+    @ResponseBody
+    public orderDTO SubOrderWrite(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+    	   	
+    	orderDTO orderDTO = orderService.SubOrderWrite(orderForm);   
+    	
+    	return orderDTO;
+    }
+
+    
     //林巩 昏力
     @RequestMapping(value = "/OrderDelete")
     @ResponseBody
