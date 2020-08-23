@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shopping.bbs.dto.orderDTO;
+import com.shopping.bbs.dto.pagingDTO;
 import com.shopping.bbs.form.orderForm;
 import com.shopping.bbs.service.orderService;
  
@@ -38,15 +39,61 @@ public class orderComtroller {
         return "order/orderBbs";
     }
     
+    
+    int pageNum = 0;
+
     //주문목록 (주문완료)
     @RequestMapping(value = "/OrderBbs")
     @ResponseBody
     public List<orderDTO> OrderBbs(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
         
+    	//카테고리별 게시물 갯수
+    	int orderTotal = orderService.OrderTotal(orderForm);
+    	//한페이지당 나올 개시물 수
+    	int postNum = 10;
+    	//총 페이징 번호 수
+    	pageNum = (int)Math.ceil((double)orderTotal/postNum);
+    	//블록당 첫페이지(bbsID)
+    	int displayPost = (orderForm.getNum()-1)*postNum;
+    	orderForm.setDisplayPost(displayPost);
+    	orderForm.setPostNum(postNum);
     	List<orderDTO> orderDTO = orderService.OrderBbs(orderForm);
         
     	return orderDTO;
     }
+    
+    //페이징
+    @RequestMapping(value = "/OrderPaging")
+    @ResponseBody
+    public pagingDTO OrderPaging(HttpServletRequest request, HttpServletResponse response,orderForm orderForm) throws Exception {    	
+    	    	
+    	//카테고리별 게시물 갯수
+    	int orderTotal = orderService.OrderTotal(orderForm);
+    	//한번에 표시할 페이징 번호 개수
+    	int pageNum_cnt = 10;
+    	//표시되는 페이지 번호 중 마지막 번호
+    	int endPageNum = (int)(Math.ceil((double)orderForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	//표시되는 페이지 번호 중 첫번째 번호
+    	int startPageNum = endPageNum - (pageNum_cnt -1);
+    	//마지막 번호 재계산
+    	int endPageNum_tmp = (int)(Math.ceil((double)orderTotal/(double)pageNum_cnt));
+    	
+    	if(endPageNum > endPageNum_tmp) {
+    		endPageNum=endPageNum_tmp;
+    	}
+    	
+    	boolean prev = startPageNum == 1 ? false : true;
+    	boolean next = endPageNum * pageNum_cnt >= orderTotal ? false : true;
+    	
+    	pagingDTO pagingDTO = new pagingDTO();
+    	pagingDTO.setPageNum(pageNum);
+    	pagingDTO.setStartPageNum(startPageNum);
+    	pagingDTO.setEndPageNum(endPageNum);
+    	pagingDTO.setPrev(prev);
+    	pagingDTO.setNext(next);
+    	
+    	return pagingDTO;
+    }  
     
     //주문 뷰 page
     @RequestMapping( value = "/orderView")
