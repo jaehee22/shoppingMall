@@ -13,6 +13,16 @@
     
     </select>   
     
+    <select id="SubOrderList" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.form.orderForm">
+    
+    	SELECT userID,CART.bbsID,amount,title,price
+    	FROM SHOPPING.CART, SHOPPING.BBS
+    	WHERE 	CART.bbsID = BBS.bbsID
+    	AND		userID = #{userID}
+    	AND		isOrder = 1
+    
+    </select>  
+    
     <select id="GetNext" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
     	
     	SELECT orderID
@@ -46,6 +56,20 @@
 			#{phoneNumber},
 			#{orderMemo},
 			"상품준비중"
+		) 
+  
+    </insert>
+    
+    <insert id="SubOrderWrite" parameterType="com.shopping.bbs.form.orderForm">
+		
+		INSERT
+		INTO SHOPPING.ORDERITEMS
+		VALUES
+		(
+			#{orderID},
+			#{bbsID},
+			#{amount},
+			#{price}
 		) 
   
     </insert>
