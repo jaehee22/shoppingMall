@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.shopping.bbs.dto.orderDTO;
-import com.shopping.bbs.form.bbsForm;
 import com.shopping.bbs.form.orderForm;
  
 @Repository
@@ -32,13 +31,9 @@ public class orderDAO {
     }
     
     //ÁÖ¹® ºä
-    public orderDTO OrderView(orderForm orderForm) throws Exception {
-       
-    	orderDTO orderDTO = new orderDTO();
-    	
-    	orderDTO = sqlSession.selectOne(NAMESPACE + ".OrderView", orderForm);
-    	
-    	return orderDTO;
+    public List<orderDTO> OrderView(orderForm orderForm) throws Exception {
+          	
+    	return sqlSession.selectList(NAMESPACE + ".OrderView", orderForm);
     }
     
     //orderID»ý¼º
