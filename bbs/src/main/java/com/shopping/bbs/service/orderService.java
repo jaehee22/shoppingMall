@@ -36,9 +36,33 @@ public class orderService {
     	
     	orderDTO orderDTO = new orderDTO();
     	
-    	orderForm.setBbsID(orderDAO.GetNext());
+    	orderForm.setOrderID(orderDAO.GetNext());
     	
     	int cnt = orderDAO.OrderWrite(orderForm);
+    	
+    	if(cnt>0) {
+    		orderDTO.setResult("SUCCESS");
+    		orderDTO.setOrderID(orderForm.getOrderID());
+    	}
+    	
+    	return orderDTO;
+    }
+   
+    //주문 등록(sub)
+    public orderDTO SubOrderWrite(orderForm orderForm) throws Exception{
+    	
+    	//등록 list
+    	List<orderForm> SubOrderForm = orderDAO.SubOrderList(orderForm);
+    	
+    	//완성됐다는걸 알려주는 DTO
+    	orderDTO orderDTO = new orderDTO();
+    	int cnt = 0;
+
+    	for(int i=0; i<SubOrderForm.size(); i++) {
+    		SubOrderForm.get(i).setOrderID(orderForm.getOrderID());
+        	orderDAO.SubOrderWrite(SubOrderForm.get(i));
+        	cnt++;
+    	}
     	
     	if(cnt>0) {
     		orderDTO.setResult("SUCCESS");
