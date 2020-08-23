@@ -154,12 +154,22 @@ public class cartController {
     	return cartDTO;
     }
     
- 	//구매창에서 나갔을 때
-    @RequestMapping(value = "/OrderReset")
+ 	//구매창에서 나갔을 때(장바구니)
+    @RequestMapping(value = "/CartOrderReset")
     @ResponseBody
-    public  cartDTO OrderReset(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
+    public  cartDTO CartOrderReset(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
         
-    	cartDTO cartDTO = cartService.OrderReset(cartForm);
+    	cartDTO cartDTO = cartService.CartOrderReset(cartForm);
+
+    	return cartDTO;
+    }
+ 	
+    //구매창에서 나갔을 때(bbs)
+    @RequestMapping(value = "/BbsOrderReset")
+    @ResponseBody
+    public  cartDTO BbsOrderReset(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
+        
+    	cartDTO cartDTO = cartService.BbsOrderReset(cartForm);
 
     	return cartDTO;
     }
