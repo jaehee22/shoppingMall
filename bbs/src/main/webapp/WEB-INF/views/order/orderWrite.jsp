@@ -176,7 +176,7 @@
 										<tr>
 											<td colspan=3 style="text-align:center;">
 												<button type="button" class="btn btn-primary" onclick="javascript:bbsList();">목록</button>
-												<button type="button" class="btn btn-primary" onclick="javascript:BbsWrite();">주문</button>
+												<button type="button" class="btn btn-primary" onclick="javascript:OrderWrite();">주문</button>
 											</td>
 										</tr>
 									</tbody>
