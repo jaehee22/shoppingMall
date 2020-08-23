@@ -91,7 +91,16 @@ public class orderComtroller {
     	
     	return orderDTO;
     }
-
+    
+    //주문작성완료(cart데이터 삭제)
+    @RequestMapping(value = "/SubOrderSuccess")
+    @ResponseBody
+    public orderDTO SubOrderSuccess(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+    	   	
+    	orderDTO orderDTO = orderService.SubOrderSuccess(orderForm);   
+    	
+    	return orderDTO;
+    }
     
     //주문 삭제
     @RequestMapping(value = "/OrderDelete")
