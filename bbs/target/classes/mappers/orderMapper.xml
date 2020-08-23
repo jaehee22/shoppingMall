@@ -13,6 +13,16 @@
     
     </select>   
     
+    <select id="OrderBbs" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.ITEMORDER, SHOPPING.ORDERITEMS
+    	WHERE 	userID = #{userID}
+    	AND		ITEMORDER.orderID=ORDERITEMS.orderID
+    	GROUP BY ORDERITEMS.orderID
+    
+    </select>  
+    
     <select id="SubOrderList" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.form.orderForm">
     
     	SELECT userID,CART.bbsID,amount,title,price
@@ -22,6 +32,14 @@
     	AND		isOrder = 1
     
     </select>  
+    
+    <select id="Items" parameterType="com.shopping.bbs.form.orderForm" resultType="int">
+    	
+    	SELECT COUNT(*)
+    	FROM SHOPPING.ORDERITEMS
+    	WHERE orderID = #{orderID}
+    
+    </select>
     
     <select id="GetNext" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
     	
