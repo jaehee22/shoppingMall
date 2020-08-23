@@ -81,10 +81,15 @@ public class cartDAO {
         return sqlSession.insert(NAMESPACE + ".ThisOrder", cartForm);
     }
     
-    //장바구니 삭제
-    public int OrderReset(cartForm cartForm) throws Exception {
+    //주문 리셋(장바구니)
+    public int CartOrderReset(cartForm cartForm) throws Exception {
  
-        return sqlSession.delete(NAMESPACE + ".OrderReset", cartForm);
+        return sqlSession.delete(NAMESPACE + ".CartOrderReset", cartForm);
     }
-
+    
+    //주문 리셋(bbs)
+    public int BbsOrderReset(cartForm cartForm) throws Exception {
+ 
+        return sqlSession.delete(NAMESPACE + ".BbsOrderReset", cartForm);
+    }
 }
