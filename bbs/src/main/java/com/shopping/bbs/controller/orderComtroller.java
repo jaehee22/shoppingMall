@@ -105,9 +105,9 @@ public class orderComtroller {
     //¡÷πÆ ∫‰
     @RequestMapping(value = "/OrderView")
     @ResponseBody
-    public  orderDTO OrderView(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+    public  List<orderDTO> OrderView(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
         
-    	orderDTO orderDTO = orderService.OrderView(orderForm);
+    	List<orderDTO> orderDTO = orderService.OrderView(orderForm);
 
     	return orderDTO;
     }
