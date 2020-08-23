@@ -82,6 +82,15 @@
     
     </delete>
     
+    <delete id="SubOrderSuccess" parameterType="com.shopping.bbs.form.orderForm">
+    
+    	DELETE
+    	FROM SHOPPING.CART
+    	WHERE 	userID = #{userID}
+    	AND		isOrder = 1
+    
+    </delete>
+    
     <delete id="OrderUpdate" parameterType="com.shopping.bbs.form.orderForm">
     
     	UPDATE SHOPPING.BBS
