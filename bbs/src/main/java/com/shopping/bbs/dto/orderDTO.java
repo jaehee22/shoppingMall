@@ -16,6 +16,8 @@ public class orderDTO {
 	
 	private String title;
 	private String price;
+	private int items;
+	
 	private String result;
 
 	public int getOrderID() {
@@ -120,6 +122,14 @@ public class orderDTO {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public int getItems() {
+		return items;
+	}
+
+	public void setItems(int items) {
+		this.items = items;
 	}
 
 	public String getResult() {
