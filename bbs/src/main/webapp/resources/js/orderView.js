@@ -9,8 +9,8 @@ $(document).ready(function(){
 	
 	//주문 수정 이동
 	function goBbsUpdate(){
-		var bbsID = $("#bbsID").val();
-		location.href = "/bbs/bbsUpdate?bbsID="+bbsID;
+		var bbsID = $("#orderID").val();
+		location.href = "/bbs/bbsUpdate?orderID="+orderID;
 	}
 	
 	//게시판 뷰
@@ -84,6 +84,7 @@ $(document).ready(function(){
 		        	str2 += "<td colspan=5><br>총 가격 : "+totalPrice+"</td>";
 		        	str2 += "</tr>";
 		        	str2 += "<tr><td colspan=5><br><h3>현재 상태 : "+delivery+"</td></tr>";
+		        	str2 += "<input type=\"hidden\" id=\"delivery\" name=\"delivery\" value="+delivery+">";
 		        	
 	        } else {
 	            
@@ -93,4 +94,51 @@ $(document).ready(function(){
 	        
 	        $("#tstr1").html(str1);
 	        $("#tstr2").html(str2);
+	   }
+	   
+	   function OrderDelete(){
+				       
+	       var yn = confirm("주문취소 하시겠습니까?");        
+	       
+	       if(yn){
+	           
+	           $.ajax({    
+	               
+	               url        : "/order/OrderDelete",
+	               data    : $("#orderID").serialize(),
+	               dataType: "JSON",
+	               cache   : false,
+	               async   : true,
+	               type    : "POST",    
+	               success : function(obj) {
+	                   OrderDeleteCallback(obj);                
+	               },           
+	               error     : function(xhr, status, error) {}
+	               
+	            });
+	       }        
+	   }
+	   
+	   function OrderDeleteCallback(obj){
+	   
+	       if(obj != null){        
+	           
+	           var result = obj.result;
+	           
+	           if(result == "SUCCESS"){                
+	               alert("주문취소를 성공하였습니다.");                
+	               location.href="/bbs/home";
+	           } else {                
+	               alert("취소는 상품준비중일 때만 가능합니다♥\n고객센터로 연락해주세요:)");    
+	               return;
+	           }
+	       }
+	   }
+	   
+	   function OrderUpdate(delivery){
+		 if(delivery=="상품준비중"){
+			 location.href = "/order/orderUpdate?orderID="+$("#orderID").val();
+		 }else{
+			 alert("배송지 수정은 상품 준비중일 때만 가능합니다♥\n고객센터로 연락해주세요:)");
+		 }
 	   }
