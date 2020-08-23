@@ -125,26 +125,24 @@
 			<br><form name="checkBoxForm">
 					<table class="table" style="text-align:center;">
 						<tr>
-							<th colspan=4>주문내역</th>
+							<th colspan=3>주문내역</th>
 						</tr>
 						<tr>
 							<td>주문번호</td>
-							<td>제품 정보</td>
-							<td>합계</td>
+							<td>주문정보</td>
 							<td>배송상태</td>
 						<tbody id = tbody>
 						</tbody>
-						<tr align="center">
-							<td colspan=4><button type="button" onclick="javascript:goList()">목록</button></td>
-						</tr>
 					</table>
 				<input type="hidden" id="orderNum" name="orderNum"    value="${orderNum}"/> <!-- 페이지 -->
 				<input type="hidden" id="userID" name="userID" value="${userForm.userID }"/>
 				</form>
+				<br>
 				<!-- 페이징 -->
 				<div class="page_wrap" id=tPaging>
 				
-				</div>		
+				</div>
+				<br><br>		
 			</div>
 			<!-- /.col-lg-8 -->
 		</div>
