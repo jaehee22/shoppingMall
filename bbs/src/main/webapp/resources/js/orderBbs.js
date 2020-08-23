@@ -1,12 +1,13 @@
  $(document).ready(function(){        
         OrderBbs();
+        OrderPaging();
     });
-
+ 
     function OrderBbs(){
 		$.ajax({    
   
             url        : "/order/OrderBbs",
-            data    : $("#userID").serialize(),
+            data    : $("#userID").serialize()+"&num="+$("#orderNum").val(),
             dataType: "JSON",
             cache   : false,
             async   : true,
@@ -33,15 +34,23 @@
             	
             	var orderID = list[a].orderID;
             	var title = list[a].title;
-            	var amount = list[a].amount;
-            	var price = list[a].price;
             	var items = list[a].items;
+            	var delivery = list[a].delivery;
+            	
             	if(orderID!=tmp){
             		
             	}
                 str += "<tr>";
                 str += "<td>"+orderID+"</td>";
-                str += "<td>"+title+"</td>";
+                
+                if(list[a].items == 1){
+                	str += "<td><a href=\"/order/orderView?orderID="+orderID+"\">"+title+"</td>";
+                }
+                if(list[a].items > 1){
+                	str += "<td><a href=\"/order/orderView?orderID="+orderID+"\">"+title+" 외"+(items-1)+"개의 제품</td>";
+                }
+                str += "<td>"+delivery+"</td>";
+                
             } 
         } else {
             
@@ -53,32 +62,28 @@
     		$("#tbody").html(str);
     }
     
-    function BbsPaging(category,subCategory,num){
- 		var category = $("#category").val();
-		var subCategory = $("#subCategory").val();
+    function OrderPaging(){
  		
  		$.ajax({    
  			  
-            url        : "/bbs/BbsPaging",
-            data    : $("#category").serialize()+"&"+$("#subCategory").serialize()+"&"+$("#num").serialize(),
+            url     : "/order/OrderPaging",
+            data    : "num="+$("#orderNum").val()+"&"+$("#userID").serialize(),
             dataType: "JSON",
             cache   : false,
             async   : true,
             type    : "POST",    
             success : function(obj) {
-	                BbsPagingCallback(obj);                
+	                OrderPagingCallback(obj);                
             },           
             error     : function(xhr, status, error) {}
             
          });
  	}
  	
- 	function BbsPagingCallback(obj){
- 		var category = $("#category").val();
-		var subCategory = $("#subCategory").val();
- 		var num = $("#num").val();
+ 	function OrderPagingCallback(obj){
+ 		
+ 		var orderNum = $("#orderNum").val();
  		var list = obj;
-        console.log(list);
         
         if(list != null){
         	str = "";
@@ -91,19 +96,19 @@
             str += "<ul class=\"page_nation\">";
             
             if(prev){
-        		str += "<a class=\"arrow prev\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+(startPageNum-1)+"\"><span><<</span></a>";
+        		str += "<a class=\"arrow prev\" href=\"/order/orderBbs?orderNum="+(startPageNum-1)+"\"><span><<</span></a>";
         	}
         	for(i=startPageNum; i<=endPageNum; i++){
-        		if(i == num){
-        			str += "<a class=\"active\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+i+"\">"+i+"</a>";
+        		if(i == orderNum){
+        			str += "<a class=\"active\" href=\"/order/orderBbs?orderNum="+i+"\">"+i+"</a>";
         		}
         		else{
-        			str += "<a href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+i+"\">"+i+"</a>";
+        			str += "<a href=\"/order/orderBbs?orderNum="+i+"\">"+i+"</a>";
         		}
         	}
         	
         	if(next){
-        		str += "<a class=\"arrow next\" href=\"/bbs/bbs?category="+category+"&subCategory="+subCategory+"&num="+(endPageNum+1)+"\"><span>>></span></a>";
+        		str += "<a class=\"arrow next\" href=\"/order/orderBbs?orderNum="+(endPageNum+1)+"\"><span>>></span></a>";
         	}
         	
         		str += "</ul>";
