@@ -71,6 +71,21 @@ public class orderService {
     	return orderDTO;
     }
     
+    //주문완료시 cart데이터 삭제
+    public orderDTO SubOrderSuccess(orderForm orderForm) throws Exception{
+    	    	
+    	orderDTO orderDTO = new orderDTO();
+    	
+    	int cnt = orderDAO.SubOrderSuccess(orderForm);
+    	
+    	if(cnt>0) {
+    		orderDTO.setResult("SUCCESS");
+    	}
+    	
+    	return orderDTO;
+    }
+    
+    
     //주문 삭제
     public orderDTO OrderDelete(orderForm orderForm) throws Exception{
     	
