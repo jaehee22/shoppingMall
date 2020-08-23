@@ -189,7 +189,7 @@
 		 	            async   : true,
 		 	            type    : "POST",    
 		 	            success : function(obj) {
-		 		               location.href = "/order/orderWrite";            
+		 		               location.href = "/order/orderWrite?whereOrder=0";            
 		 	            },           
 		 	            error     : function(xhr, status, error) {}
 		 	            
@@ -202,7 +202,7 @@
  		}
 	}
 	
-	//장바구니 선택주문
+	//장바구니 전체주문
 	function AllOrder(frm){
 		
 		var count = frm.cartBox.length;
@@ -222,7 +222,7 @@
 	 	            async   : true,
 	 	            type    : "POST",    
 	 	            success : function(obj) {
-	 		               location.href = "/order/orderWrite";            
+	 		               location.href = "/order/orderWrite?whereOrder=0";            
 	 	            },           
 	 	            error     : function(xhr, status, error) {}
 	 	            
