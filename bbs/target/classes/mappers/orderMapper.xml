@@ -62,10 +62,10 @@
     <!-- 주문 이후의 주문 내역 -->
     <select id="OrderView" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
     
-    	SELECT *
-        FROM SHOPPING.ITEMORDER, SHOPPING.ORDERITEMS
-        WHERE 	ITEMORDER.orderID = #{orderID}
-        AND		ITEMORDER.orderID = ORDERITEMS.orderID
+    	SELECT bbsID,title,price,amount,orderName,addr1,addr2,addr3,phoneNumber,orderMemo,delivery
+		FROM SHOPPING.ITEMORDER,
+		(SELECT orderID,BBS.bbsID,amount,BBS.price,title from SHOPPING.ORDERITEMS,SHOPPING.BBS WHERE ORDERITEMS.bbsID=BBS.bbsID) AS ITEM
+		WHERE userID=#{userID} AND ITEMORDER.orderID=#{orderID} AND ITEMORDER.orderID=ITEM.orderID
     
     </select>
     
