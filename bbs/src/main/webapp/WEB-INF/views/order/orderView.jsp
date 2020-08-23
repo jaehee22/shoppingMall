@@ -24,6 +24,12 @@
 </head>
 
 <body>
+	<c:if test="${userForm == null}">
+		<script>
+			alert("로그인해주세요");
+			location.href="/bbs/home";
+		</script>
+	</c:if>
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   		<div class="container">
@@ -157,7 +163,7 @@
 						<div align=center>
 							<h3>수정 또는 취소는 상품 준비중일때만 가능합니다♥<br><br></h3>
 							<button type="button" onclick="javascript:OrderDelete();">주문 취소</button>&emsp;
-							<button type="button" onclick="javascript:OrderUpdate();">배송지 수정</button>
+							<button type="button" onclick="javascript:OrderUpdate(orderForm.delivery.value);">배송지 수정</button>
 							<br><br>
 						</div>
 					    <input type="hidden" id="orderID" name="orderID"    value="${orderID}"/> <!-- 주문 번호 -->
