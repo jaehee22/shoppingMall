@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
  
 import com.shopping.bbs.dao.orderDAO;
 import com.shopping.bbs.dto.orderDTO;
+import com.shopping.bbs.form.bbsForm;
 import com.shopping.bbs.form.orderForm;
  
 @Service
@@ -35,7 +36,10 @@ public class orderService {
     	
     	return orderDTO;
     }
-    
+    //ÁÖ¹® ÃÑ °¹¼ö
+    public int OrderTotal(orderForm orderForm) throws Exception{
+    	return orderDAO.OrderTotal(orderForm);
+    }
     //ÁÖ¹® ºä
     public orderDTO OrderView(orderForm orderForm) throws Exception {
     	
