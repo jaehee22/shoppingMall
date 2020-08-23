@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.shopping.bbs.dto.orderDTO;
+import com.shopping.bbs.form.bbsForm;
 import com.shopping.bbs.form.orderForm;
  
 @Repository
@@ -57,7 +58,10 @@ public class orderDAO {
     public int Items(orderForm orderForm) throws Exception{
     	return sqlSession.selectOne(NAMESPACE + ".Items" , orderForm);
     }
-    
+    //ÁÖ¹® ÃÑ °¹¼ö
+    public int OrderTotal(orderForm orderForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".OrderTotal", orderForm);
+    }
     //ÁÖ¹® µî·Ï
     public int OrderWrite(orderForm orderForm) throws Exception {
     	
