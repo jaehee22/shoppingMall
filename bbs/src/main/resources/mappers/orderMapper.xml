@@ -10,18 +10,28 @@
     	WHERE 	CART.bbsID = BBS.bbsID
     	AND		userID = #{userID}
     	AND		isOrder = 1
-    
+    	
     </select>   
     
     <select id="OrderBbs" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
     
     	SELECT *
-    	FROM SHOPPING.ITEMORDER, SHOPPING.ORDERITEMS
+    	FROM SHOPPING.ITEMORDER, (SELECT ORDERID,BBS.bbsID,amount,BBS.price,title from SHOPPING.ORDERITEMS,SHOPPING.BBS WHERE ORDERITEMS.bbsID=BBS.bbsID) AS ITEM
     	WHERE 	userID = #{userID}
-    	AND		ITEMORDER.orderID=ORDERITEMS.orderID
-    	GROUP BY ORDERITEMS.orderID
-    
+    	AND		ITEMORDER.orderID=ITEM.orderID
+    	GROUP BY ITEM.orderID
+    	ORDER BY bbsID DESC
+		LIMIT #{displayPost}, #{postNum}
+    	
     </select>  
+    
+    <select id="OrderTotal" parameterType="com.shopping.bbs.form.bbsForm" resultType="int">
+    
+    	SELECT COUNT(*)
+    	FROM SHOPPING.ITEMORDER
+		WHERE userID = #{userID}
+    
+    </select>
     
     <select id="SubOrderList" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.form.orderForm">
     
