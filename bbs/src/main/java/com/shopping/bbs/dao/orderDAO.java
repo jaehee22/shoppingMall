@@ -88,6 +88,14 @@ public class orderDAO {
  
         return sqlSession.delete(NAMESPACE + ".OrderDelete", orderForm);
     }
+    //주문삭제 시 해당 제품 판매량 감소
+    public List<orderForm> SellRefund1(orderForm orderForm) throws Exception {
+ 
+        return sqlSession.selectList(NAMESPACE + ".SellRefund1", orderForm);
+    }
+    public int SellRefund2(orderForm orderForm) throws Exception {
+    	return sqlSession.update(NAMESPACE + ".SellRefund2",orderForm);
+    }
     
     //주문 수정
     public int OrderUpdate(orderForm orderForm) throws Exception {
