@@ -140,6 +140,13 @@ public class commentController {
     	return commentDTO;
     }
     
+    @RequestMapping(value = "/UserReview")
+    @ResponseBody
+    public int UserReview(HttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
+        
+    	return commentService.UserReview(commentForm);
+    }
+    
     //¥Ò±€ ªË¡¶
     @RequestMapping(value = "/CommentDelete")
     @ResponseBody
