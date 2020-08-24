@@ -68,6 +68,11 @@ public class commentDAO {
         return sqlSession.selectOne(NAMESPACE + ".CommentView", commentForm);
     }
     
+    //후기작성할 조건 충족여부
+    public int UserReview(commentForm commentForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE+".UserReview",commentForm);
+    }
+    
     //댓글 삭제
     public int CommentDelete(commentForm commentForm) throws Exception {
  
