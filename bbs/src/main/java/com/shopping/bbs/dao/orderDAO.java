@@ -102,5 +102,19 @@ public class orderDAO {
  
         return sqlSession.update(NAMESPACE + ".OrderUpdate", orderForm);
     }
+    //배송상태 수정
+    public int DeliveryUpdate(orderForm orderForm) throws Exception {
+ 
+        return sqlSession.update(NAMESPACE + ".DeliveryUpdate", orderForm);
+    }
     
+    //회원들 주문목록
+    public List<orderDTO> UserOrder(orderForm orderForm) throws Exception {
+    	 
+        return sqlSession.selectList(NAMESPACE + ".UserOrder", orderForm);
+    }
+    //회원 주문 총 갯수
+    public int UserOrderTotal(orderForm orderForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".UserOrderTotal", orderForm);
+    }
 }
