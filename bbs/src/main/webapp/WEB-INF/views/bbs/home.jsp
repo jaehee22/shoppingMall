@@ -134,10 +134,10 @@
 	<!-- /.container -->
 
 	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-	    	<p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-	  	</div>
+	<footer class="py-5 bg-light">
+	  <div class="container">
+	    <p class="m-0 text-center text-white">Copyright &copy; Accessory ShoppingMall 2020</p>
+	  </div>
 		<!-- /.container -->
 	</footer>
 	
