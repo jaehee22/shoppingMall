@@ -59,6 +59,23 @@
     
     </delete>
     
+    <select id="SellRefund1" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.form.orderForm">
+    
+    	SELECT bbsID,amount
+    	FROM SHOPPING.ITEMORDER, SHOPPING.ORDERITEMS
+    	WHERE 	ITEMORDER.orderID = ORDERITEMS.orderID
+    	AND		ITEMORDER.orderID = #{orderID}
+    	
+    </select> 
+    
+    <delete id="SellRefund2" parameterType="com.shopping.bbs.form.orderForm">
+    
+    	UPDATE SHOPPING.BBS
+    	SET sell = sell - #{amount}
+		WHERE bbsID = #{bbsID}
+    
+    </delete>
+    
     <select id="GetNext" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
     	
     	SELECT orderID
