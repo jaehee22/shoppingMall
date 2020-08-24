@@ -41,7 +41,7 @@
 		      	<ul class="navbar-nav ml-auto">   
 					<c:if test="${userForm != null && userForm.isManager==1 }">
 						<li class="nav-item">
-					   		<a class="nav-link" href="/user/userList">회원 관리</a>
+					   		<a class="nav-link" href="/user/userList?userNum=1">회원 관리</a>
 						</li>
 						<li class="nav-item">
 					   		<a class="nav-link" href="/bbs/bbsWrite">제품 등록</a>
