@@ -1,5 +1,6 @@
  $(document).ready(function(){  
 	 UserList();
+	 UserPaging();
  });
 
  //유저 정보 list
@@ -7,7 +8,7 @@
 	 $.ajax({    
   
 		 url        : "/user/UserList",
-		 data    : $("#userForm").serialize(),
+		 data    : $("#userForm").serialize()+"&num="+$("#userNum").val(),
 		 dataType: "JSON",
 		 cache   : false,
 		 async   : true,
@@ -56,5 +57,61 @@ function UserListCallback(obj){
     }
     
     $("#tbody").html(str);
+}
+
+//페이징
+function UserPaging(){
+	
+	$.ajax({    
+		  
+        url     : "/user/UserPaging",
+        data    : "num="+$("#userNum").val(),
+        dataType: "JSON",
+        cache   : false,
+        async   : true,
+        type    : "POST",    
+        success : function(obj) {
+                UserPagingCallback(obj);                
+        },           
+        error     : function(xhr, status, error) {}
+        
+     });
+}
+ 	
+function UserPagingCallback(obj){
+	
+	var userNum = $("#UserNum").val();
+	var list = obj;
+    
+    if(list != null){
+    	str = "";
+    	var pageNum = list.pageNum;
+        var startPageNum = list.startPageNum; 
+        var endPageNum = list.endPageNum; 
+        var prev = list.prev;
+        var next = list.next;
+
+        str += "<ul class=\"page_nation\">";
+        
+        if(prev){
+    		str += "<a class=\"arrow prev\" href=\"/user/userList?userNum="+(startPageNum-1)+"\"><span><<</span></a>";
+    	}
+    	for(i=startPageNum; i<=endPageNum; i++){
+    		if(i == userNum){
+    			str += "<a class=\"active\" href=\"/user/userList?userNum="+i+"\">"+i+"</a>";
+    		}
+    		else{
+    			str += "<a href=\"/user/userList?userNum="+i+"\">"+i+"</a>";
+    		}
+    	}
+    	
+    	if(next){
+    		str += "<a class=\"arrow next\" href=\"/user/userList?userNum="+(endPageNum+1)+"\"><span>>></span></a>";
+    	}
+    	
+    		str += "</ul>";
+    	$("#tPaging").html(str);
+    }
+	
 }
     
