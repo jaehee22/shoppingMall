@@ -90,7 +90,7 @@
     	SELECT bbsID,title,price,amount,orderName,addr1,addr2,addr3,phoneNumber,orderMemo,delivery
 		FROM SHOPPING.ITEMORDER,
 		(SELECT orderID,BBS.bbsID,amount,BBS.price,title from SHOPPING.ORDERITEMS,SHOPPING.BBS WHERE ORDERITEMS.bbsID=BBS.bbsID) AS ITEM
-		WHERE userID=#{userID} AND ITEMORDER.orderID=#{orderID} AND ITEMORDER.orderID=ITEM.orderID
+		WHERE ITEMORDER.orderID=#{orderID} AND ITEMORDER.orderID=ITEM.orderID
     
     </select>
     
