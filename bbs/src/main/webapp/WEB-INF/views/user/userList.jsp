@@ -27,9 +27,9 @@
 	</c:if>
 	
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
   		<div class="container">
-    		<a class="navbar-brand" href="/bbs/home">악세사리 쇼핑몰</a>
+    		<a class="navbar-brand" href="/bbs/home">♥ACCESSORY♥</a>
     		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       			<span class="navbar-toggler-icon"></span>
     		</button>
@@ -55,7 +55,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<h1 class="my-4">악세사리</h1>
+				<br>
+				<h1 class="my-4"><img class="d-block img-fluid" width="300" height="100" src="${pageContext.request.contextPath}/resources/img/로고.JPG"></h1>
 				<br>
      			<div class="menu">
       				<ul class="accordion">
@@ -102,7 +103,7 @@
 				<br>
 				<table class="table" style="text-align:center;">
 					<tr>
-						<th colspan=5>회원정보 리스트</th>
+						<th colspan=5 bgcolor="beige">회원정보 리스트</th>
 					</tr>
 					<tr>
 						<th>아이디</th>
