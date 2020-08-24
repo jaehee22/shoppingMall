@@ -200,7 +200,14 @@
 								<tr>
 									<td style="border-bottom:none;" valign="middle"><br><br>${userForm.userID}</td>
 									<td><textarea id="content" name="content" cols="70" rows="5" maxlength="2048" class="tbox"/></textarea></td>
-									<td style="text-align:center;"><br><br><button type="button" class="btn btn-primary" onclick="javascript:CommentWrite(${bbsID},${comCategory},${userForm.userID});">작성</button></td>
+									<td style="text-align:center;"><br><br>
+									<c:if test="${comCategory==1}">
+									<button type="button" class="btn btn-primary" onclick="javascript:UserReview();">작성</button>
+									</c:if>
+									<c:if test="${comCategory==2}">
+									<button type="button" class="btn btn-primary" onclick="javascript:CommentWrite();">작성</button>
+									</c:if>
+									</td>
 								</tr>
 								<tr>
 									<td colspan="3"><input type="file" id="fileName" name="fileName"></td>									
