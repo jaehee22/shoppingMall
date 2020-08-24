@@ -10,7 +10,11 @@
 	<meta name="author" content="">
 
 	<title>악세사리 쇼핑몰</title>
-
+<%
+	int userNum = Integer.parseInt(request.getParameter("userNum"));
+%>
+ 
+	<c:set var="userNum" value="<%=userNum%>"/> <!-- 유저페이지번호 -->
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 
@@ -116,7 +120,12 @@
 					
 					</tbody>
 				</table>
+				<input type="hidden" id="userNum" name="userNum"    value="${userNum}"/> <!-- 유저 페이지 번호 -->							
 				<br>
+				<!-- 페이징 -->
+				<div class="page_wrap" id=tPaging>
+				
+				</div>	
 			</div>
 			<!-- /.col-lg-9 -->
 		</div>
