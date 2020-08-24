@@ -2,35 +2,30 @@ $(document).ready(function(){
 	CommentView();
 });
     
-	//게시판 목록 이동
-	function goBbsList(){                
-		location.href = document.referrer;
-	}
-		
-	//게시판 뷰
-	function CommentView(commentID){
-		
-		var commentID = $("#commentID").val();
-		var subCommentID = $("#subCommentID").val();
+//기존댓글 가져오기
+function CommentView(commentID){
+	
+	var commentID = $("#commentID").val();
+	var subCommentID = $("#subCommentID").val();
 
-		if(commentID!=0){
-			$.ajax({    
-	  
-	            url     : "/comment/CommentView",
-	            data    : "commentID="+commentID+"&subCommentID="+subCommentID,
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-	                CommentViewCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {} 
-	         });
-	    } else {
-	        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-		}
+	if(commentID!=0){
+		$.ajax({    
+  
+            url     : "/comment/CommentView",
+            data    : "commentID="+commentID+"&subCommentID="+subCommentID,
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+                CommentViewCallback(obj);                
+            },           
+            error     : function(xhr, status, error) {} 
+         });
+    } else {
+        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
 	}
+}
 function CommentViewCallback(obj){
 
     var str = "";
@@ -47,11 +42,11 @@ function CommentViewCallback(obj){
 	} else {
 	    alert("등록된 댓글이 존재하지 않습니다.");
 	    return;
-	    }        
-	}
+	}        
+}
    
 
-//게시글 수정
+//댓글 수정
 function CommentUpdate(){
 	
     var content = $("#content").val();
