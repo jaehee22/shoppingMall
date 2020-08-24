@@ -23,7 +23,7 @@
 </head>
 
 <body>
-	<c:if test="${userForm.isManager == 0}">
+	<c:if test="${userForm.isManager == 0 || userForm==null}">
 		<script>
 			alert("권한이 없습니다.");
 			location.href = "/bbs/home";
@@ -145,7 +145,6 @@
 							<tr>
 								<th>대분류</th>
 								<td style="text-align:left;">
-								&emsp;
 								<select id="category" name="category" class="tbox" onchange="SubCategory(category)">
 									<option>=== 선택 ===</option>
 									<option value=1>귀걸이</option>
@@ -159,7 +158,6 @@
 							<tr>
 								<th>소분류</th>
 								<td style="text-align:left;">
-									&emsp;
 									<select id="subCategory" name="subCategory" class="tbox">
 										<option>=== 선택 ===</option>
 									</select>
@@ -181,25 +179,27 @@
 								<tr>
 									<th>이미지<input type="file" id="bbsImage" name="bbsImage"></th>
 									<td colspan=2><div class="select_img"><img width=300 src=""/></div></td>
+								</tr>
+								<tr>
+									<td colspan=3 style="text-align:center;"><button type="button" class="btn black" onclick="javascript:BbsUpdate();">수정</button>&emsp;					
+									<button type="button" class="btn black mr5" onclick="javascript:GoView();">목록</button></td>
 								</tr>					
 							</tbody>
 						</table>
 						<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/> 
 					</form>
-					<button type="button" class="btn black mr5" onclick="javascript:goBbsList();">목록</button>
-					<button type="button" class="btn black" onclick="javascript:BbsUpdate();">수정</button>
 				</div>
 		    </div>
 		    <!-- /.col-lg-9 -->
 		</div>
 		<!-- /.row -->
-	</div>
+	</div><br><br>
 	<!-- /.container -->
 
 	<!-- Footer -->
 	<footer class="py-5 bg-light">
 	  <div class="container">
-	    <p class="m-0 text-center text-white">Copyright &copy; Accessory ShoppingMall 2020</p>
+	    <p class="m-0 text-center text-dark">Copyright &copy; Accessory ShoppingMall 2020</p>
 	  </div>
 	  <!-- /.container -->
 	</footer>
