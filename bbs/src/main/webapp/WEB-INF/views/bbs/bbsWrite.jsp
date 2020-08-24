@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	 <c:if test="${userForm.isManager == 0}">
+	 <c:if test="${userForm.isManager == 0 || userForm==null}">
 	 	<script>
 	 		alert("권한이 없습니다.");
 			location.href = "/bbs/home";
