@@ -187,11 +187,91 @@ public class orderComtroller {
     	return orderDTO;
     }
 
+    //배송상태 수정 page
+    @RequestMapping( value = "/deliveryState")
+    public String deliveryState(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "order/deliveryState";
+    }
+ 
+    //배송상태 수정
+    @RequestMapping(value = "/DeliveryUpdate")
+    @ResponseBody
+    public orderDTO DeliveryUpdate(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+            	
+    	
+    	orderDTO orderDTO = orderService.DeliveryUpdate(orderForm);
+        
+    	return orderDTO;
+    }
+    
     //주소검색 page
     @RequestMapping( value = "/jusoPopup")
     public String jusoPopup(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         return "order/jusoPopup";
     }
-
+    
+    //회원 주문 전체 목록 page
+    @RequestMapping( value = "/userOrder")
+    public String userOrder(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        
+        return "order/userOrder";
+    }
+    
+    int pageNum2=0;
+    
+    //회원 주문 전체 목록
+    @RequestMapping(value = "/UserOrder")
+    @ResponseBody
+    public List<orderDTO> UserOrder(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
+        
+    	//카테고리별 게시물 갯수
+    	int UserOrderTotal = orderService.UserOrderTotal(orderForm);
+    	//한페이지당 나올 개시물 수
+    	int postNum2 = 10;
+    	//총 페이징 번호 수
+    	pageNum2 = (int)Math.ceil((double)UserOrderTotal/postNum2);
+    	//블록당 첫페이지(bbsID)
+    	int displayPost = (orderForm.getNum()-1)*postNum2;
+    	orderForm.setDisplayPost(displayPost);
+    	orderForm.setPostNum(postNum2);
+    	
+    	List<orderDTO> orderDTO = orderService.UserOrder(orderForm);
+        
+    	return orderDTO;
+    }
+    
+    //페이징
+    @RequestMapping(value = "/UserOrderPaging")
+    @ResponseBody
+    public pagingDTO UserOrderPaging(HttpServletRequest request, HttpServletResponse response,orderForm orderForm) throws Exception {    	
+    	    	
+    	//카테고리별 게시물 갯수
+    	int UserOrderTotal = orderService.UserOrderTotal(orderForm);
+    	//한번에 표시할 페이징 번호 개수
+    	int pageNum_cnt = 10;
+    	//표시되는 페이지 번호 중 마지막 번호
+    	int endPageNum = (int)(Math.ceil((double)orderForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	//표시되는 페이지 번호 중 첫번째 번호
+    	int startPageNum = endPageNum - (pageNum_cnt -1);
+    	//마지막 번호 재계산
+    	int endPageNum_tmp = (int)(Math.ceil((double)UserOrderTotal/(double)pageNum_cnt));
+    	
+    	if(endPageNum > endPageNum_tmp) {
+    		endPageNum=endPageNum_tmp;
+    	}
+    	
+    	boolean prev = startPageNum == 1 ? false : true;
+    	boolean next = endPageNum * pageNum_cnt >= UserOrderTotal ? false : true;
+    	
+    	pagingDTO pagingDTO = new pagingDTO();
+    	pagingDTO.setPageNum(pageNum2);
+    	pagingDTO.setStartPageNum(startPageNum);
+    	pagingDTO.setEndPageNum(endPageNum);
+    	pagingDTO.setPrev(prev);
+    	pagingDTO.setNext(next);
+    	
+    	return pagingDTO;
+    }  
 }
