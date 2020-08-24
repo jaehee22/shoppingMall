@@ -111,7 +111,15 @@ public class orderService {
     //주문 삭제
     public orderDTO OrderDelete(orderForm orderForm) throws Exception{
     	
+    	//판매량 줄일 리스트
+    	List<orderForm> sellRefund = orderDAO.SellRefund1(orderForm);
+    	
+    	//주문서1삭제 dto
     	orderDTO orderDTO = new orderDTO();
+
+    	for(int i=0; i<sellRefund.size(); i++) {
+    		orderDAO.SellRefund2(sellRefund.get(i));
+    	}
     	
     	int cnt = orderDAO.OrderDelete(orderForm);
     	
