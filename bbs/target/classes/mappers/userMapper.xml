@@ -7,7 +7,8 @@
     
         SELECT *
         FROM SHOPPING.USER
-        
+        ORDER BY userID DESC
+		LIMIT #{displayPost}, #{postNum}
     
     </select>
        
@@ -19,15 +20,20 @@
     
     </select>
     
-      <select id="UserView" parameterType="com.shopping.bbs.form.userForm" resultType="com.shopping.bbs.dto.userDTO">
+     <select id="UserView" parameterType="com.shopping.bbs.form.userForm" resultType="com.shopping.bbs.dto.userDTO">
+  	 	
+  	 	SELECT *
+  	 	FROM SHOPPING.USER
+  	    WHERE userID = #{userID}    	
+   
+	  </select>
     
-    	SELECT *
+     <select id="UserTotal" parameterType="com.shopping.bbs.form.userForm" resultType="int">
+    
+    	SELECT COUNT(*)
     	FROM SHOPPING.USER
-        WHERE userID = #{userID}    	
     
     </select>
-    
-    
     
     <select id="Login" parameterType="com.shopping.bbs.form.userForm" resultType="com.shopping.bbs.dto.userDTO">
     
