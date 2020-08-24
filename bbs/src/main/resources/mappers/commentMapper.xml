@@ -73,6 +73,7 @@
 		WHERE	ITEMORDER.userID=#{userID}
 		AND	ORDERITEMS.bbsID=#{bbsID}
 		AND	ITEMORDER.orderID=ORDERITEMS.orderID
+		AND ITEMORDER.delivery = "배송완료"
     
     </select>
     
