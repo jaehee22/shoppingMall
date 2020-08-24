@@ -125,7 +125,7 @@ $(document).ready(function(){
 	           
 	           var result = obj.result;
 	           
-	           if(result == "SUCCESS"){                
+	           if(result == "SUCCESS"){
 	               alert("주문취소를 성공하였습니다.");                
 	               location.href="/bbs/home";
 	           } else {                
