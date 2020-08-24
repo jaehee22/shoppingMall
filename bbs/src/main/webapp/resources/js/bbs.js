@@ -42,7 +42,7 @@ function Category(){
 	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
 	sub[5] = new Array('발찌');
 	
-	str += sub[category][0]+">"+sub[category][subCategory-1];
+	str += sub[category][0]+"▷"+sub[category][subCategory-1];
 	
 	$("#tcategory").html(str);
 }
