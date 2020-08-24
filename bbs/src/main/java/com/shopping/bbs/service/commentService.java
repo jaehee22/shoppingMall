@@ -55,6 +55,10 @@ public class commentService {
     	return commentDTO;
     }
     
+    public int UserReview(commentForm commentForm) throws Exception {
+    	return commentDAO.UserReview(commentForm);
+    }
+    
     //¥Ò±€ ªË¡¶
     public commentDTO CommentDelete(commentForm commentForm) throws Exception{
     	
