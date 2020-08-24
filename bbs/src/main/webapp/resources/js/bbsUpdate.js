@@ -2,6 +2,7 @@ $(document).ready(function(){
     BbsView();
 });
 
+//이미지 미리보기
 $("#bbsImage").change(function(){
 	    var reader = new FileReader;
 	    reader.onload = function(data) {
@@ -10,9 +11,9 @@ $("#bbsImage").change(function(){
 	    reader.readAsDataURL(this.files[0]);
 });
 
-	//게시판 목록 이동
-	function goBbsList(){                
-		location.href = document.referrer;
+	//게시물 수정 취소 돌아가기
+	function goView(){                
+		location.href = "/bbs/bbsView?bbsID="+$("#bbsID").val()+"&comCategory=1&commentNum=1";
 	}
 	
 	var sub = new Array();	
