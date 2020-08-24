@@ -61,7 +61,7 @@
 					   		<a class="nav-link" href="/user/userList?userNum=1">회원 관리</a>
 						</li>
 						<li class="nav-item">
-					   		<a class="nav-link" href="/order/userOrder">주문 관리</a>
+					   		<a class="nav-link" href="/order/userOrder?userOrderNum=1">주문 관리</a>
 						</li>
 						<li class="nav-item">
 					   		<a class="nav-link" href="/bbs/bbsWrite">제품 등록</a>
