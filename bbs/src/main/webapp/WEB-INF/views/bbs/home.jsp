@@ -19,9 +19,9 @@
 </head>
 <body>
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
   		<div class="container">
-    		<a class="navbar-brand" href="/bbs/home">악세사리 쇼핑몰</a>
+    		<a class="navbar-brand" href="/bbs/home">♥ACCESSORY♥</a>
     		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       			<span class="navbar-toggler-icon"></span>
     		</button>
@@ -56,6 +56,9 @@
 					   		<a class="nav-link" href="/user/userList">회원 관리</a>
 						</li>
 						<li class="nav-item">
+					   		<a class="nav-link" href="/order/userOrder">주문 관리</a>
+						</li>
+						<li class="nav-item">
 					   		<a class="nav-link" href="/bbs/bbsWrite">제품 등록</a>
 						</li>
 						<li class="nav-item">
@@ -71,7 +74,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<h1 class="my-4">악세사리</h1>
+				<br>
+				<h1 class="my-4"><img class="d-block img-fluid" width="300" height="100" src="${pageContext.request.contextPath}/resources/img/로고.JPG"></h1>
 				<br>
      			<div class="menu">
       				<ul class="accordion">
@@ -114,7 +118,7 @@
 			
     		<div class="col-lg-9">
 				<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-					<img class="d-block img-fluid" width="900" height="300" src="${pageContext.request.contextPath}/resources/img/악세사리.jpg">
+					<img class="d-block img-fluid" width="900" height="50" src="${pageContext.request.contextPath}/resources/img/홈로고.jpg">
 				</div>
 				<h1>NEW</h1>
 				<br>
