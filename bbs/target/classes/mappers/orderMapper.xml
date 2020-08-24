@@ -33,6 +33,25 @@
     
     </select>
     
+    <select id="UserOrder" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.dto.orderDTO">
+    
+    	SELECT *
+    	FROM SHOPPING.ITEMORDER, (SELECT ORDERID,BBS.bbsID,amount,BBS.price,title from SHOPPING.ORDERITEMS,SHOPPING.BBS WHERE ORDERITEMS.bbsID=BBS.bbsID) AS ITEM
+    	WHERE ITEMORDER.orderID=ITEM.orderID
+    	GROUP BY ITEM.orderID
+    	ORDER BY bbsID DESC
+		LIMIT #{displayPost}, #{postNum}
+    	
+    </select>  
+    
+    <select id="UserOrderTotal" parameterType="com.shopping.bbs.form.bbsForm" resultType="int">
+    
+    	SELECT COUNT(*)
+    	FROM SHOPPING.ITEMORDER
+    
+    </select>
+    
+    
     <select id="SubOrderList" parameterType="com.shopping.bbs.form.orderForm" resultType="com.shopping.bbs.form.orderForm">
     
     	SELECT userID,CART.bbsID,amount,title,price
@@ -153,9 +172,17 @@
 			addr2 = #{addr2},
 			addr3 = #{addr3},
 			phoneNumber = #{phoneNumber},
-			orderMemo = #{orderMemo},
-			delivery = #{delivery},
+			orderMemo = #{orderMemo}
 		WHERE orderID = #{orderID}
     
     </delete>
+    
+    <delete id="DeliveryUpdate" parameterType="com.shopping.bbs.form.orderForm">
+    
+    	UPDATE SHOPPING.ITEMORDER
+    	SET delivery = #{delivery}
+		WHERE orderID = #{orderID}
+    
+    </delete>
+    
 </mapper>
