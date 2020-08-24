@@ -24,6 +24,12 @@
 </head>
 
 <body>
+	<c:if test="${userForm==null}">
+		<script>
+			alert("권한이 없습니다.");
+			location.href = "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
+		</script>
+	</c:if>
 	<div class="container" align="center">
 		<div class="col-lg-10">
 			<div class="jumbotron" style="padding-top: 1px;">				
