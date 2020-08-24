@@ -290,13 +290,13 @@ function UserReview(){
           type    : "POST",    
           success : function(count) {
         	  if(count == 0){
-        		  alert("상품을 구매하신분만 후기작성이 가능합니다.");
+        		  alert("상품을 구매, 배송완료되신분만 후기작성이 가능합니다.");
         		  return;
         	  }
         	  CommentWrite();
           },           
           error     : function(xhr, status, error) {
-          	alert("상품을 구매하신분만 후기작성이 가능합니다.");
+          	alert("상품을 구매, 배송완료되신분만 후기작성이 가능합니다.");
           	return;
           }
           
@@ -375,328 +375,329 @@ function CommentWriteCallback(obj){
 	}
 }
 
-   //댓글 수정
-   function BbsUpdate(){
+//게시글 수정
+function BbsUpdate(){
+	
+	var title = $("#title").val();
+    var price = $("#price").val();
+    var content = $("#content").val();
+        
+    if (title == ""){            
+        alert("제목을 입력해주세요.");
+        $("#title").focus();
+        return;
+    }
+    
+    if (price == 0){            
+        alert("가격을 입력해 주세요");
+        $("#price").focus();
+        return;
+    }
+    
+    if (content == ""){            
+        alert("내용을 입력해주세요.");
+        $("#content").focus();
+        return;
+    }
+    
+    var yn = confirm("게시글을 수정하시겠습니까?");        
+    if(yn){
+            
+        $.ajax({    
+            
+            url        : "/bbs/BbsUpdate",
+            data    : $("#bbsForm").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+                BbsUpdateCallback(obj);                
+            },           
+            error     : function(xhr, status, error) {}
+            
+        });
+    }
+}
 
-	    var title = $("#title").val();
-	    var price = $("#price").val();
-	    var content = $("#content").val();
-	        
-	    if (title == ""){            
-	        alert("제목을 입력해주세요.");
-	        $("#title").focus();
-	        return;
-	    }
-	    
-	    if (price == 0){            
-	        alert("가격을 입력해 주세요");
-	        $("#price").focus();
-	        return;
-	    }
-	    
-	    if (content == ""){            
-	        alert("내용을 입력해주세요.");
-	        $("#content").focus();
-	        return;
-	    }
-	    
-	    var yn = confirm("게시글을 수정하시겠습니까?");        
-	    if(yn){
-	            
-	        $.ajax({    
-	            
-	            url        : "/bbs/BbsUpdate",
-	            data    : $("#bbsForm").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-	                BbsUpdateCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {}
-	            
-	        });
-	    }
-	}
-
-	//댓글 수정 함수
-	function BbsUpdateCallback(obj){	
+//게시글 수정 함수
+function BbsUpdateCallback(obj){	
 		
-	    if(obj != null){        
-	        
-	    	var result = obj.result;
-	                
-	        if(result == "SUCCESS"){                
-	            alert("게시글 수정을 성공하였습니다.");
-	            location.href = history.back(-3);
-	        } else {                
-	            alert("게시글 수정을 실패하였습니다.");    
-	            return;
-	        }
-	    }
+	var bbsID = $("#bbsID").val();
+	
+	if(obj != null){        
+		
+		var result = obj.result;
+		
+		if(result == "SUCCESS"){                
+			alert("게시글 수정을 성공하였습니다.");
+			location.href = location.href = "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
+		} else {                
+			alert("게시글 수정을 실패하였습니다.");    
+			return;
+		}
 	}
+}
 	
 	 
-	   //댓글 삭제
-	   function CommentDelete(commentID,subCommentID){
+//댓글 삭제
+function CommentDelete(commentID,subCommentID){
 	
-		   var bbsID = $("#bbsID").val();
-		   
-	       var yn = confirm("댓글을 삭제하시겠습니까?");        
+	var bbsID = $("#bbsID").val();		   
+	var yn = confirm("댓글을 삭제하시겠습니까?");        
 	       
-	       if(yn){
+	if(yn){
 	           
-	           $.ajax({    
+		$.ajax({    
 	               
-	               url        : "/comment/CommentDelete",
-	               data    : "commentID="+commentID+"&bbsID="+bbsID+"&subCommentID="+subCommentID,
-	               dataType: "JSON",
-	               cache   : false,
-	               async   : true,
-	               type    : "POST",    
-	               success : function(obj) {
-	                   CommentDeleteCallback(obj);                
-	               },           
-	               error     : function(xhr, status, error) {}
-	               
-	            });
-	       }        
-	   }
+			url        : "/comment/CommentDelete",
+			data    : "commentID="+commentID+"&bbsID="+bbsID+"&subCommentID="+subCommentID,
+			dataType: "JSON",
+			cache   : false,
+			async   : true,
+			type    : "POST",    
+			success : function(obj) {
+				CommentDeleteCallback(obj);                
+			},           
+			error     : function(xhr, status, error) {}
+			
+		});
+	}        
+}
 	   
-	   function CommentDeleteCallback(obj){
+function CommentDeleteCallback(obj){
+	
+	var bbsID = $("#bbsID").val();
+	var comCategory = $("#comCategory").val();
+	var commentNum = $("#commentNum").val();
+	
+	if(obj != null){        
+		
+		var result = obj.result;
+		
+		if(result == "SUCCESS"){                
+			alert("댓글 삭제를 성공하였습니다.");                
+			location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+		} else {                
+			alert("댓글 삭제를 실패하였습니다.");    
+			return;
+		}
+	}
+}
 	   
-		   var bbsID = $("#bbsID").val();
-	       var comCategory = $("#comCategory").val();
-		   var commentNum = $("#commentNum").val();
-	       
-	       if(obj != null){        
-	           
-	           var result = obj.result;
-	           
-	           if(result == "SUCCESS"){                
-	               alert("댓글 삭제를 성공하였습니다.");                
-	               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
-	           } else {                
-	               alert("댓글 삭제를 실패하였습니다.");    
-	               return;
-	           }
-	       }
-	   }
-	   
-	   //페이징
-	   function CommentPaging(){
+//페이징	
+function CommentPaging(){
 
-		   $.ajax({    
+	$.ajax({    
 	 			  
-	            url        : "/comment/CommentPaging",
-	            data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&num="+$("#commentNum").val(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-		                CommentPagingCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {}
-	            
-	         });
-	 	}
+		url        : "/comment/CommentPaging",
+		data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&num="+$("#commentNum").val(),
+		dataType: "JSON",
+		cache   : false,
+		async   : true,
+		type    : "POST",    
+		success : function(obj) {
+			CommentPagingCallback(obj);                
+		},           
+		error     : function(xhr, status, error) {}	
+	});
+}	
 	 	
-	 	function CommentPagingCallback(obj){
+function CommentPagingCallback(obj){
 	 		
-	 		var bbsID = $("#bbsID").val();
-			var comCategory = $("#comCategory").val();
-	 		var commentNum = $("#commentNum").val();
-	 		
-	 		var list = obj;
-	 		
-	        if(list != null){
-	        	str = "";
-	        	
-	        	var pageNum = list.pageNum;
-	            var startPageNum = list.startPageNum; 
-	            var endPageNum = list.endPageNum; 
-	            var prev = list.prev;
-	            var next = list.next;
-
-	            str += "<ul class=\"page_nation\">";
-   	            if(prev){
-	        		str += "<a class=\"arrow prev\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(startPageNum-1)+"\"><span><<</span></a>";
-	        	}
-
-	        	for(i=startPageNum; i<=endPageNum; i++){
-	        		if(i == commentNum){
-	        			str += "<a class=\"active\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
-	        		}
-	        		else{
-	        			str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
-	        		}
-	        	}
-	        	if(next){
-	        		str += "<a class=\"arrow next\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(endPageNum+1)+"\"><span>>></span></a>";
-	        	}
-	        	
-	        	str += "</ul>";
-
-	        	$("#tPaging").html(str);
-	        }
-	 		
-	 	}
-	 	
-	    //장바구니 추가or수정
-	    function CartView(){
-	 	   
-	 	   var yn = confirm("장바구니에 담으시겠습니까?");        
-	        
-	        if(yn){
-	         
-	   		var amount = $("#amount").val(); 
-	   		var bbsID = $("#bbsID").val();
-	   		var userID = $("#userID").val();
-	   			   		
-	   		 if (amount == 0){            
-	  	        alert("수량을 입력해주세요.");
-	  	        $("#amount").focus();
-	  	        return;
-	  	    }
-	   		 
-	   		 if (userID == null){
-	   			 alert("로그인을 해주세요");
-	   			 $("#userID").focus();
-	   			 return;
-	   		 }
-	   		 
-	   		//장바구니에 이미 들어있는 품목인지 확인
-	   		$.ajax({    
-	   		  
-	            url        : "/cart/CartView",
-	            data    : $("#userID").serialize()+"&"+$("#bbsID").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {		            
-		                CartUpdate(obj.amount);                
-	            },           
-	            error     : function(xhr, status, error) {
-	            	CartWrite();
-	            	}
-	         });
-	        }
-	        
-	    }
-	    
-	    function CartUpdate(Amount){
-	    	
-	   		var amount = Number($("#amount").val()) + Number(Amount); 
-
-	   		$.ajax({    
-	  	   		  
-	            url        : "/cart/CartUpdate",
-	            data    : "amount="+amount+"&"+$("#userID").serialize()+"&"+$("#bbsID").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-		                CartUpdateCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {}
-	            
-	         });
-	   } 
+	var bbsID = $("#bbsID").val();
+	var comCategory = $("#comCategory").val();
+	var commentNum = $("#commentNum").val();
+	
+	var list = obj;
+	
+	if(list != null){
+		str = "";
 		
-	    //장바구니 수정 함수
-		function CartUpdateCallback(obj){	
-			
-			var bbsID = $("#bbsID").val();
-		    var comCategory = $("#comCategory").val();
-			var commentNum = $("#commentNum").val();
-			
-		    if(obj != null){        
-		        
-		    	var result = obj.result;
-		                
-		        if(result == "SUCCESS"){                
-		            alert("장바구니에 수량을 변경하였습니다.");
-		               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
-		        } else {                
-		            alert("장바구니 수량 변경을 실패하였습니다.");    
-		            return;
-		        }
-		    }
+		var pageNum = list.pageNum;
+		var startPageNum = list.startPageNum; 
+		var endPageNum = list.endPageNum; 
+		var prev = list.prev;
+		var next = list.next;
+		
+		str += "<ul class=\"page_nation\">";
+		if(prev){
+			str += "<a class=\"arrow prev\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(startPageNum-1)+"\"><span><<</span></a>";
 		}
 		
-		function CartWrite(){
-	    	
-	   		var amount = $("#amount").val(); 
-	   		var bbsID = $("#bbsID").val();
-	   		var userID = $("#userID").val();
-	   		 
-	   		$.ajax({    
-	  	   		  
-	            url        : "/cart/CartWrite",
-	            data    : $("#userID").serialize()+"&"+$("#bbsID").serialize()+"&"+$("#amount").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-		                CartWriteCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {}
-	            
-	         });
-	   }
-		//장바구니 작성 함수
-		function CartWriteCallback(obj){	
-			
-			var bbsID = $("#bbsID").val();
-		    var comCategory = $("#comCategory").val();
-			var commentNum = $("#commentNum").val();
-			
-		    if(obj != null){        
-		        
-		    	var result = obj.result;
-		                
-		        if(result == "SUCCESS"){                
-		            alert("장바구니에 추가하였습니다.");
-		            location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
-		        } else {                
-		            alert("장바구니 추가를 실패하였습니다.");    
-		            return;
-		        }
-		    }
-		}
-		
-		//구매하기 함수
-		function ThisOrder(){
-			
-			var amount = $("#amount").val()
-			
-			 if (amount == 0){            
-		  	        alert("수량을 입력해주세요.");
-		  	        $("#amount").focus();
-		  	        return;
-		  	 }
-			
-			var yn = confirm("해당상품을 구매하시겠습니까?");        
-			
-	 		if(yn){
-				$.ajax({    
-				 	  
-	 	            url     : "/cart/ThisOrder",
-	 	            data    : $("#userID").serialize()+"&"+$("#amount").serialize()+"&"+$("#bbsID").serialize(),
-	 	            dataType: "JSON",
-	 	            cache   : false,
-	 	            async   : true,
-	 	            type    : "POST",    
-	 	            success : function(obj) {
-	 		               location.href = "/order/orderWrite?whereOrder=1";            
-	 	            },           
-	 	            error     : function(xhr, status, error) {}
-	 	            
-	 	         });
+		for(i=startPageNum; i<=endPageNum; i++){
+			if(i == commentNum){
+				str += "<a class=\"active\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
+			}
+			else{
+				str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+i+"\">"+i+"</a>";
 			}
 		}
+		if(next){
+			str += "<a class=\"arrow next\" href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory="+comCategory+"&commentNum="+(endPageNum+1)+"\"><span>>></span></a>";
+		}
+		
+		str += "</ul>";
+		
+		$("#tPaging").html(str);
+	}
+	
+}
+
+//장바구니 담기
+function CartWrite(){
+	
+	var amount = $("#amount").val(); 
+	var bbsID = $("#bbsID").val();
+	var userID = $("#userID").val();
+	 
+	$.ajax({    
+ 		  
+      url        : "/cart/CartWrite",
+      data    : $("#userID").serialize()+"&"+$("#bbsID").serialize()+"&"+$("#amount").serialize(),
+      dataType: "JSON",
+      cache   : false,
+      async   : true,
+      type    : "POST",    
+          success : function(obj) {
+	                CartWriteCallback(obj);                
+          },           
+          error     : function(xhr, status, error) {}
+          
+       });
+ }
+//장바구니 작성 함수
+function CartWriteCallback(obj){	
+	
+	var bbsID = $("#bbsID").val();
+	var comCategory = $("#comCategory").val();
+	var commentNum = $("#commentNum").val();
+	
+	if(obj != null){        
+		
+		var result = obj.result;
+		
+		if(result == "SUCCESS"){                
+			alert("장바구니에 추가하였습니다.");
+			location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+		} else {                
+			alert("장바구니 추가를 실패하였습니다.");    
+			return;
+		}
+	}
+}	
+		
+//장바구니 추가or수정
+function CartView(){
+	 	   
+	var yn = confirm("장바구니에 담으시겠습니까?");        
+	
+	if(yn){	 
+		var amount = $("#amount").val(); 
+		var bbsID = $("#bbsID").val();
+		var userID = $("#userID").val();
+			   		
+		 if (amount == 0){            
+		    alert("수량을 입력해주세요.");
+		    $("#amount").focus();
+		    return;
+		}
+		 
+		 if (userID == null){
+			 alert("로그인을 해주세요");
+			 $("#userID").focus();
+			 return;
+		 }
+		 
+		//장바구니에 이미 들어있는 품목인지 확인
+		$.ajax({    
+		  
+	        url        : "/cart/CartView",
+	        data    : $("#userID").serialize()+"&"+$("#bbsID").serialize(),
+	        dataType: "JSON",
+	        cache   : false,
+	        async   : true,
+	        type    : "POST",    
+	        success : function(obj) {		            
+	                CartUpdate(obj.amount);                
+	        },           
+	        error     : function(xhr, status, error) {
+	        	CartWrite();
+	        }
+		});
+	}
+	        
+}
+
+//장바구니에 들어있으므로 수정
+function CartUpdate(Amount){
+	
+	var amount = Number($("#amount").val()) + Number(Amount); 
+
+	$.ajax({    
+   		  
+		url        : "/cart/CartUpdate",
+        data    : "amount="+amount+"&"+$("#userID").serialize()+"&"+$("#bbsID").serialize(),
+        dataType: "JSON",
+        cache   : false,
+        async   : true,
+        type    : "POST",    
+        success : function(obj) {
+        	CartUpdateCallback(obj);                
+        },           
+        error     : function(xhr, status, error) {}
+        
+	});
+} 
+	
+//장바구니 수정 함수
+function CartUpdateCallback(obj){	
+	
+	var bbsID = $("#bbsID").val();
+    var comCategory = $("#comCategory").val();
+	var commentNum = $("#commentNum").val();
+	
+    if(obj != null){        
+        
+    	var result = obj.result;
+                
+        if(result == "SUCCESS"){                
+            alert("장바구니에 수량을 변경하였습니다.");
+               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+        } else {                
+            alert("장바구니 수량 변경을 실패하였습니다.");    
+            return;
+        }
+    }
+}
+
+//구매하기 함수 (view에서 바로 구매)
+function ThisOrder(){
+	
+	var amount = $("#amount").val()
+	
+	 if (amount == 0){            
+  	        alert("수량을 입력해주세요.");
+  	        $("#amount").focus();
+  	        return;
+  	 }
+	
+	var yn = confirm("해당상품을 구매하시겠습니까?");        
+	
+	if(yn){
+		$.ajax({    
+		 	  
+            url     : "/cart/ThisOrder",
+            data    : $("#userID").serialize()+"&"+$("#amount").serialize()+"&"+$("#bbsID").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+	               location.href = "/order/orderWrite?whereOrder=1";            
+            },           
+            error     : function(xhr, status, error) {}
+            
+         });
+	}
+}
