@@ -58,7 +58,10 @@ public class userService {
     	 
         return userDAO.UserList(userForm);
     }
-    
+    //ÃÑ À¯Àú 
+    public int UserTotal(userForm userForm) throws Exception{
+    	return userDAO.UserTotal(userForm);
+    }
     //È¸¿ø »èÁ¦//È¸¿ø Å»Åð
     public userDTO UserDelete(userForm userForm) throws Exception{
     	
