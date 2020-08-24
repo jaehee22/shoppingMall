@@ -39,7 +39,10 @@ public class userDAO {
     public userDTO UserView(userForm userForm) throws Exception {
         return sqlSession.selectOne(NAMESPACE + ".UserView", userForm);
     }
-    
+    //총 유저
+    public int UserTotal(userForm userForm) throws Exception{
+    	return sqlSession.selectOne(NAMESPACE + ".UserTotal", userForm);
+    }
     //회원리스트
     public List<userDTO> UserList(userForm userForm) throws Exception {
         return sqlSession.selectList(NAMESPACE + ".UserList", userForm);
