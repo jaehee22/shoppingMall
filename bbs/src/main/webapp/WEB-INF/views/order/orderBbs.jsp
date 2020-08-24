@@ -157,7 +157,7 @@
 	<!-- Footer -->
 	<footer class="py-5 bg-light">
 	  <div class="container">
-	    <p class="m-0 text-center text-white">Copyright &copy; Accessory ShoppingMall 2020</p>
+	    <p class="m-0 text-center text-dark">Copyright &copy; Accessory ShoppingMall 2020</p>
 	  </div>
 	  <!-- /.container -->
 	</footer>
