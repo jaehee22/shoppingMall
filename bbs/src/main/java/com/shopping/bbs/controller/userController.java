@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shopping.bbs.dto.pagingDTO;
 import com.shopping.bbs.dto.userDTO;
 import com.shopping.bbs.form.userForm;
 import com.shopping.bbs.service.userService;
@@ -105,16 +106,61 @@ public class userController {
         return "user/userList";
     }
     
+    int pageNum = 0;
+    
     //회원 목록
     @RequestMapping(value = "/UserList")
     @ResponseBody
     public List<userDTO> UserList(HttpServletRequest request, HttpServletResponse response, userForm userForm) throws Exception {
         
+    	//카테고리별 게시물 갯수
+    	int UserTotal = userService.UserTotal(userForm);
+    	//한페이지당 나올 개시물 수
+    	int postNum = 10;
+    	//총 페이징 번호 수
+    	pageNum = (int)Math.ceil((double)UserTotal/postNum);
+    	//블록당 첫페이지(bbsID)
+    	int displayPost = (userForm.getNum()-1)*postNum;
+    	userForm.setDisplayPost(displayPost);
+    	userForm.setPostNum(postNum);
+    	
     	List<userDTO> userDTO = userService.UserList(userForm);
         
     	return userDTO;
     }
 
+    //유저list 페이징
+    @RequestMapping(value = "/UserPaging")
+    @ResponseBody
+    public pagingDTO BbsPaging(HttpServletRequest request, HttpServletResponse response,userForm userForm) throws Exception {    	
+    	    	
+    	//카테고리별 게시물 갯수
+    	int UserTotal = userService.UserTotal(userForm);
+    	//한번에 표시할 페이징 번호 개수
+    	int pageNum_cnt = 10;
+    	//표시되는 페이지 번호 중 마지막 번호
+    	int endPageNum = (int)(Math.ceil((double)userForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	//표시되는 페이지 번호 중 첫번째 번호
+    	int startPageNum = endPageNum - (pageNum_cnt -1);
+    	//마지막 번호 재계산
+    	int endPageNum_tmp = (int)(Math.ceil((double)UserTotal/(double)pageNum_cnt));
+    	
+    	if(endPageNum > endPageNum_tmp) {
+    		endPageNum=endPageNum_tmp;
+    	}
+    	
+    	boolean prev = startPageNum == 1 ? false : true;
+    	boolean next = endPageNum * pageNum_cnt >= UserTotal ? false : true;
+    	
+    	pagingDTO pagingDTO = new pagingDTO();
+    	pagingDTO.setPageNum(pageNum);
+    	pagingDTO.setStartPageNum(startPageNum);
+    	pagingDTO.setEndPageNum(endPageNum);
+    	pagingDTO.setPrev(prev);
+    	pagingDTO.setNext(next);
+    	
+    	return pagingDTO;
+    }  
     
     //회원 삭제 //회원탈퇴
     @RequestMapping(value = "/UserDelete")
