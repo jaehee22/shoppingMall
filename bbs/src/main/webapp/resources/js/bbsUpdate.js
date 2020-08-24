@@ -38,35 +38,36 @@ function SubCategory(category){
 	}
 }
 
-function subCat(category,subCategory){
-		
+//subCategory 띄우기
+function subCat(category,subCategory){		
 	for(var i=0; i<sub[category].length; i++){
 		$("#subCategory").append("<option value="+(i+1)+">"+sub[category][i]+"</option>");
 	}
 	$("#subCategory").val(subCategory);
 }
 		
-	//게시판 뷰
-	function BbsView(bbsID){
-		var bbsID = $("#bbsID").val();
-		if(bbsID!=0){
-			$.ajax({    
-	  
-	            url     : "/bbs/BbsView",
-	            data    : $("#bbsID").serialize(),
-	            dataType: "JSON",
-	            cache   : false,
-	            async   : true,
-	            type    : "POST",    
-	            success : function(obj) {
-	                BbsViewCallback(obj);                
-	            },           
-	            error     : function(xhr, status, error) {} 
-	         });
-	    } else {
-	        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
-		}
+//게시판 뷰
+function BbsView(){
+	var bbsID = $("#bbsID").val();
+	if(bbsID!=0){
+		$.ajax({    
+  
+            url     : "/bbs/BbsView",
+            data    : $("#bbsID").serialize(),
+            dataType: "JSON",
+            cache   : false,
+            async   : true,
+            type    : "POST",    
+            success : function(obj) {
+                BbsViewCallback(obj);                
+            },           
+            error     : function(xhr, status, error) {} 
+         });
+    } else {
+        alert("오류가 발생했습니다.\n관리자에게 문의하세요.");
 	}
+}
+
 function BbsViewCallback(obj){
 
     var str = "";
@@ -87,10 +88,10 @@ function BbsViewCallback(obj){
 	    subCat(category,subCategory);
 	    
 	} else {
-	    alert("등록된 글이 존재하지 않습니다.");
+		alert("등록된 글이 존재하지 않습니다.");
 	    return;
-	    }        
-	}
+	}        
+}
    
 
 //게시글 수정
