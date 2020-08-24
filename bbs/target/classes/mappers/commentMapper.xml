@@ -66,6 +66,16 @@
     
     </select>
     
+    <select id="UserReview" parameterType="com.shopping.bbs.form.commentForm" resultType="int">
+    
+		SELECT COUNT(*)
+		FROM SHOPPING.ITEMORDER,SHOPPING.ORDERITEMS
+		WHERE	ITEMORDER.userID=#{userID}
+		AND	ORDERITEMS.bbsID=#{bbsID}
+		AND	ITEMORDER.orderID=ORDERITEMS.orderID
+    
+    </select>
+    
     <delete id="CommentDelete" parameterType="com.shopping.bbs.form.commentForm">
     
     	DELETE
