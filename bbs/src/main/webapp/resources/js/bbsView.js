@@ -350,31 +350,30 @@ function CommentWrite(){
                },           
                error     : function(xhr, status, error) {}
                
-           });
-       }
-       
-   }
+       	});
+	}
+}
 
-   //댓글 작성 함수
-   function CommentWriteCallback(obj){
-	   
-	   var bbsID = $("#bbsID").val();
-       var comCategory = $("#comCategory").val();
-	   var commentNum = $("#commentNum").val();
+//댓글 작성 함수
+function CommentWriteCallback(obj){
+	
+	var bbsID = $("#bbsID").val();
+	var comCategory = $("#comCategory").val();
+	var commentNum = $("#commentNum").val();
+   
+	if(obj != null){        
        
-       if(obj != null){        
-           
-           var result = obj.result;
-           
-           if(result == "SUCCESS"){                
-               alert("댓글 등록을 성공하였습니다.");                
-               location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
-           } else {                
-               alert("댓글 등록을 실패하였습니다.");    
-               return;
-           }
-       }
-   }
+		var result = obj.result;
+       
+		if(result == "SUCCESS"){                
+			alert("댓글 등록을 성공하였습니다.");                
+			location.href = "/bbs/bbsView?bbsID="+encodeURI(bbsID)+"&comCategory="+comCategory+"&commentNum="+encodeURI(commentNum);
+		} else {                
+			alert("댓글 등록을 실패하였습니다.");    
+			return;
+		}
+	}
+}
 
    //댓글 수정
    function BbsUpdate(){
