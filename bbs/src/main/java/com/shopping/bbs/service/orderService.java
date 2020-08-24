@@ -143,5 +143,36 @@ public class orderService {
     	
     	return orderDTO;
     }
+    //배송상태 수정
+    public orderDTO DeliveryUpdate(orderForm orderForm) throws Exception{
+    	
+    	orderDTO orderDTO = new orderDTO();
+    	
+    	int cnt = orderDAO.DeliveryUpdate(orderForm);
+    	
+    	if(cnt>0) {
+    		orderDTO.setResult("SUCCESS");
+    	}
+    	
+    	return orderDTO;
+    }
     
+    //회원 주문 목록
+    public List<orderDTO> UserOrder(orderForm orderForm) throws Exception {
+    	
+    	List<orderDTO> orderDTO = orderDAO.UserOrder(orderForm);
+    	
+    	orderForm count = new orderForm(); 
+    	
+    	for(int i=0; i<orderDTO.size(); i++) {
+    		count.setOrderID(orderDTO.get(i).getOrderID());
+    		orderDTO.get(i).setItems(orderDAO.Items(count));
+    	}
+    	
+    	return orderDTO;
+    }
+    //주문 총 갯수
+    public int UserOrderTotal(orderForm orderForm) throws Exception{
+    	return orderDAO.UserOrderTotal(orderForm);
+    }
 }
