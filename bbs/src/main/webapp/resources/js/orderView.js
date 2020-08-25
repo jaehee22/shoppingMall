@@ -43,6 +43,7 @@ function OrderViewCallback(obj){
 	var totalPrice = 0;
 	var str1 = "";
 	var str2 = "";
+	var str3 = "";
 	
 	if(listLen >  0){
 		
@@ -65,6 +66,7 @@ function OrderViewCallback(obj){
             totalPrice += (price*amount);
         }	  
         
+			var userID = list[0].userID;
             var orderName = list[0].orderName;
         	var addr1 = list[0].addr1;
         	var addr2 = list[0].addr2;
@@ -86,12 +88,18 @@ function OrderViewCallback(obj){
         	str2 += "<tr><td colspan=5><br><h3>현재 상태 : "+delivery+"</td></tr>";
         	str2 += "<input type=\"hidden\" id=\"delivery\" name=\"delivery\" value="+delivery+">";
         	
+			str3 += "<h3>수정 또는 취소는 상품 준비중일때만 가능합니다♥<br><br></h3>";
+			str3 +=	"<button type=\"button\" onclick=\"javascript:OrderDelete();\">주문 취소</button>&emsp;";
+			str3 += "<button type=\"button\" onclick=\"javascript:OrderUpdate(orderForm.delivery.value,"+userID+");\">배송지 수정</button>";
+			str3 +=	"<br><br></div>";
+        	
 	} else {        
 		alert("등록된 글이 존재하지 않습니다.");
 		return;
 	}            
 	$("#tstr1").html(str1);
     $("#tstr2").html(str2);
+    $("#tstr3").html(str3);
 }
 
 //주문 취소
@@ -134,9 +142,9 @@ function OrderDeleteCallback(obj){
 }
 
 //배송지 수정창으로 가는 함수
-function OrderUpdate(delivery){
+function OrderUpdate(delivery,userID){
 	if(delivery=="상품준비중"){
-		location.href = "/order/orderUpdate?orderID="+$("#orderID").val();
+		location.href = "/order/orderUpdate?orderID="+$("#orderID").val()+"&userID="+userID;
 	}else{
 		alert("배송지 수정은 상품 준비중일 때만 가능합니다♥\n고객센터로 연락해주세요:)");
 	}
