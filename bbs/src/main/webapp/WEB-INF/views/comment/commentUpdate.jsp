@@ -15,19 +15,23 @@
     int bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	int commentID = Integer.parseInt(request.getParameter("commentID"));
 	int subCommentID = Integer.parseInt(request.getParameter("subCommentID"));
+	String userID = request.getParameter("userID");	//userID
 %>
  
 	<c:set var="bbsID" value="<%=bbsID%>"/> <!-- 게시글번호 -->
 	<c:set var="commentID" value="<%=commentID%>"/> <!-- 댓글번호 -->
 	<c:set var="subCommentID" value="<%=subCommentID %>"/><!-- 답글번호 -->
+	<c:set var="userID" value="<%=userID%>"/> <!-- 유저 아이디 -->
 	
 </head>
 
 <body>
-	<c:if test="${userForm==null}">
+	<c:if test="${userForm==null || userID != userForm.userID}">
 		<script>
+			var bbsID = <%=bbsID%>;
 			alert("권한이 없습니다.");
-			location.href = "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
+        	window.opener.location.href= "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
+    		window.close();
 		</script>
 	</c:if>
 	<div class="container" align="center">
