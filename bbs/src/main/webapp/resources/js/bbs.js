@@ -38,9 +38,8 @@ function Category(){
 	var sub = new Array('','귀걸이','목걸이','반지','팔찌','발찌');	
 	sub[1] = new Array('귀걸이','피어싱','귀찌','이어커프');
 	sub[2] = new Array('목걸이','초커','패션 목걸이');
-	sub[3] = new Array('반지','레이어드 링','은반지','금반지');
+	sub[3] = new Array('반지','은반지','금반지');
 	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
-	sub[5] = new Array('발찌');
 	
 	str += sub[category][0]+"▷"+sub[category][subCategory-1];
 	
@@ -70,7 +69,7 @@ function BbsbbsListCallback(obj){
 
             str += "<div class=\"col-lg-4 col-md-6 mb-4\">";
             str += "<div class=\"card h-100\">";
-            str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"300\" height=\"171\" alt=\"\"/></a>";
+            str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/300x200?text=No Image'\" width=\"300\" height=\"200\" alt=\"\"/></a>";
             str += "<div class=\"card-body\">";
             str += "<h4 class=\"card-title\">";
             str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\">"+title+"</a>";
