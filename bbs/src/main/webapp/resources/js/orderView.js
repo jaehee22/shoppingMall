@@ -57,7 +57,7 @@ function OrderViewCallback(obj){
 	        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/"+bbsID+".jpg";
 
         	str1 += "<tr>";
-            str1 += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
+            str1 += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/80x80?text=No Image'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
             str1 += "<td colspan=2><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
             str1 += "<td><br>"+price+"원</td>";
             str1 += "<td><br>"+amount+"</td>";
