@@ -97,9 +97,8 @@
 				      	<li><a href="#menu3">반지</a>
 				      		<ul>
 				      			<li><a href="/bbs/bbs?category=3&subCategory=1&num=1">반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=2&num=1">레이어드 링</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=3&num=1">은반지</a></li>
-				      			<li><a href="/bbs/bbs?category=3&subCategory=4&num=1">금반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=2&num=1">은반지</a></li>
+				      			<li><a href="/bbs/bbs?category=3&subCategory=3&num=1">금반지</a></li>
 				      		</ul>
 				      	</li>
 				      	<li><a href="#menu4">팔찌</a>
@@ -110,7 +109,6 @@
 				      			<li><a href="/bbs/bbs?category=4&subCategory=4&num=1">은 팔찌</a></li>
 				      		</ul>
 				      	</li>
-				      	<li><a href="/bbs/bbs?category=5&subCategory=1&num=1">발찌</a></li>        		        		
 					</ul>
 				</div>				
 			</div>
