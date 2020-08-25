@@ -61,7 +61,7 @@ function BbsViewCallback(obj){
 		
 		
 		str += "<tr style=\"border:1px solid #444444\">";
-		str += "<td rowspan=7 style=\"text-align:center;\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"400\" height=\"400\" alt=\"\"/></td>";
+		str += "<td rowspan=7 style=\"text-align:center;\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/400x400?text=No Image'\" width=\"400\" height=\"400\" alt=\"\"/></td>";
 		str += "</tr>";
 		
 		str += "<tr height=\"70\" style=\"border-top:1px solid #444444;\">";
