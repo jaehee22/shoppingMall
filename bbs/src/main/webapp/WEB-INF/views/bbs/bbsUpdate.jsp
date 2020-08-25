@@ -133,7 +133,7 @@
 					<form id="bbsForm" name="bbsForm" enctype="multipart/form-data" method="post" onsubmit="return false;">
 						<table class="table" style="border:1px solid #dddddd">
 							<tr>
-								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 등록</th>
+								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 수정</th>
 							</tr>
 							<colgroup>
 								<col width="15%">
