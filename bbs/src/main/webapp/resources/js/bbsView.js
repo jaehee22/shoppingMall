@@ -11,9 +11,9 @@ function goBbsUpdate(){
 }
 	
 //댓글 수정 자식창으로 이동
-function nwindow(bbsID,commentID,subCommentID){
+function nwindow(bbsID,commentID,subCommentID,userID){
   window.name = "commentParant";										//이름이 없으니까 그냥 이름을 설정해줍니다.
-  var url= "/comment/commentUpdate?bbsID="+bbsID+"&commentID="+commentID+"&subCommentID="+subCommentID;
+  var url= "/comment/commentUpdate?bbsID="+bbsID+"&commentID="+commentID+"&subCommentID="+subCommentID+"&userID="+userID;
   window.open(url,"","width=500,height=200,left=300");					//자식창이 되는 주소를 오픈해줌 (크기도 설정해 줍니다.)
 }
 
@@ -176,7 +176,7 @@ function CommentListCallback(obj){
 		            str += "<td colspan=2 align=\"right\">";
 		            
 		            if(NowUserID == userID){
-		            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
+		            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+","+userID+")\">수정</button>";
 		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+","+subCommentID+");\">삭제</button>";
 		            }
 		            
