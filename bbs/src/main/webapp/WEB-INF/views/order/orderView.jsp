@@ -164,11 +164,8 @@
 							
 							</tbody>
 						</table>
-						<div align=center>
-							<h3>수정 또는 취소는 상품 준비중일때만 가능합니다♥<br><br></h3>
-							<button type="button" onclick="javascript:OrderDelete();">주문 취소</button>&emsp;
-							<button type="button" onclick="javascript:OrderUpdate(orderForm.delivery.value);">배송지 수정</button>
-							<br><br>
+						<div align=center id=tstr3>
+							
 						</div>
 					    <input type="hidden" id="orderID" name="orderID"    value="${orderID}"/> <!-- 주문 번호 -->
 						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>					    													    
