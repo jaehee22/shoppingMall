@@ -143,7 +143,7 @@ public class bbsController {
     @RequestMapping(value = "/BbsWrite")
     @ResponseBody
     public bbsDTO BbsWrite(MultipartHttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-    	   	
+    	
     	bbsDTO bbsDTO = bbsService.BbsWrite(bbsForm);   
     	
     	//파일 업로드
