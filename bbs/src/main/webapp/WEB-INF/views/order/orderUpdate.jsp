@@ -70,7 +70,8 @@
 					   		<a class="nav-link" href="/user/userList?userNum=1">회원 관리</a>
 						</li>
 						<li class="nav-item">
-					   		<a class="nav-link" href="/order/userOrder?userOrderNum=1">주문 관리</a>						</li>
+					   		<a class="nav-link" href="/order/userOrder?userOrderNum=1">주문 관리</a>
+						</li>
 						<li class="nav-item">
 					   		<a class="nav-link" href="/bbs/bbsWrite">제품 등록</a>
 						</li>
@@ -131,7 +132,18 @@
 
    			<div class="col-lg-9">
    			<br>
-     			<div id="carouselExampleIndicators">				
+     			<div id="carouselExampleIndicators">
+     				<table class="table" style="text-align:center;" style="border:1px solid #dddddd">	
+						<tr bgcolor="beige">
+							<th>이미지</th>
+							<th>상품명</th>
+							<th>가격</th>
+							<th>수량</th>
+						</tr>
+						<tbody id="str">
+						
+						</tbody>
+					</table>				
 					<form id="orderForm" name="orderForm">
 						<table class="table" style="border:1px solid #dddddd">
 							<colgroup>
@@ -140,7 +152,7 @@
 								<col width="15%">
 							</colgroup>
 							<tr>
-								<th colspan=3 style="background-color:#d3d3d3; text-align:center;">상품 주문</th>
+								<th colspan=3 bgcolor="beige" style="text-align:center;">배송지 수정</th>
 							</tr>
 							<tbody id="tOrder">
 								<tr>
@@ -158,7 +170,7 @@
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input type="text" id="addr2" name="addr2" class="form-control" placeholder="주소"/></td>
+									<td colspan=2><input type="text" id="addr2" name="addr2" size="40" class="form-control" placeholder="주소"/></td>
 								</tr>
 								<tr>
 									<th>상세주소</th>
@@ -167,7 +179,11 @@
 								<tr>
 									<th>주문 요청 사항</th>
 									<td colspan=2><input type="text" id="orderMemo" name="orderMemo" value=""  class="tbox" size="40" height="30" maxlength="30" /></td>
-								</tr>					
+								</tr>	
+								<tr>
+									<td colspan=3 style="text-align:center;"><button type="button" class="btn black" onclick="javascript:OrderUpdate();">수정</button>&emsp;					
+									<button type="button" class="btn black mr5" onclick="javascript:goView();">목록</button></td>
+								</tr>				
 							</tbody>
 						</table>
 						<input type="hidden" id="orderID" name="orderID" value="${orderID}"/> 
@@ -191,7 +207,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bbsUpdate.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/orderUpdate.js"></script>
 </body>
 
 </html>
