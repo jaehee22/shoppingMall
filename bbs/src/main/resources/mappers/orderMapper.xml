@@ -166,7 +166,7 @@
     
     <delete id="OrderUpdate" parameterType="com.shopping.bbs.form.orderForm">
     
-    	UPDATE SHOPPING.BBS
+    	UPDATE SHOPPING.ITEMORDER
     	SET orderName = #{orderName},
 			addr1 = #{addr1},
 			addr2 = #{addr2},
