@@ -21,7 +21,7 @@
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
 
 ## 4. 기능
-![image](https://user-images.githubusercontent.com/58822916/91165925-8417d680-e70c-11ea-97f8-e4963d9a7e47.png)
+
 
 ## 5. 배포 AWS (준비중)
 <관리자 정보>
