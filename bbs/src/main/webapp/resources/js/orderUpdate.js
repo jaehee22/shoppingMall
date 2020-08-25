@@ -1,65 +1,29 @@
 $(document).ready(function(){        
-    BbsView();
+    OrderView();
 });
 
-//이미지 미리보기
-$("#bbsImage").change(function(){
-	    var reader = new FileReader;
-	    reader.onload = function(data) {
-	     $(".select_img img").attr("src", data.target.result).width(300);        
-	    }
-	    reader.readAsDataURL(this.files[0]);
-});
-
-	//게시물 수정 취소 돌아가기
-	function goView(){                
-		location.href = "/bbs/bbsView?bbsID="+$("#bbsID").val()+"&comCategory=1&commentNum=1";
-	}
-	
-	var sub = new Array();	
-	sub[1] = new Array('귀걸이','피어싱','귀찌','이어커프');
-	sub[2] = new Array('목걸이','초커','패션 목걸이');
-	sub[3] = new Array('반지','레이어드 링','은반지','금반지');
-	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
-	sub[5] = new Array('발찌');
-	
-//subCategory설정
-function SubCategory(category){
-	var category = category.value;
-	var target = document.getElementById("subCategory");
-	
-	target.options.length = 0;
-	
-	for(var i=0; i<sub[category].length; i++){
-		var option = document.createElement("option");
-		option.value = i+1;
-		option.innerHTML = sub[category][i];
-		target.appendChild(option);
-	}
+//배송지 수정 취소 돌아가기
+function goView(){                
+	location.href = "/order/orderView?orderID="+$("#orderID").val();
 }
-
-//subCategory 띄우기
-function subCat(category,subCategory){		
-	for(var i=0; i<sub[category].length; i++){
-		$("#subCategory").append("<option value="+(i+1)+">"+sub[category][i]+"</option>");
-	}
-	$("#subCategory").val(subCategory);
-}
+	
 		
 //게시판 뷰
-function BbsView(){
-	var bbsID = $("#bbsID").val();
-	if(bbsID!=0){
+function OrderView(){
+	
+	var orderID = $("#orderID").val();
+	
+	if(orderID!=0){
 		$.ajax({    
   
-            url     : "/bbs/BbsView",
-            data    : $("#bbsID").serialize(),
+            url     : "/order/OrderView",
+            data    : $("#orderID").serialize(),
             dataType: "JSON",
             cache   : false,
             async   : true,
             type    : "POST",    
             success : function(obj) {
-                BbsViewCallback(obj);                
+                OrderViewCallback(obj);                
             },           
             error     : function(xhr, status, error) {} 
          });
@@ -68,96 +32,102 @@ function BbsView(){
 	}
 }
 
-function BbsViewCallback(obj){
+function OrderViewCallback(obj){
+	
+	var list = obj;
+	var listLen = obj.length;
+	var totalPrice = 0;
+	var str1 = "";
+	
+	if(listLen >  0){
+		
+		for(var a=0; a<listLen; a++){
+			
+			var bbsID = list[a].bbsID;
+			var title = list[a].title;
+        	var price = list[a].price;
+        	var amount = list[a].amount;
+        		
+	        var filePath = "http://localhost:8080/resources/bbsImg/"+bbsID+"/"+bbsID+".jpg";
 
-    var str = "";
-    if(obj != null){
-    	var category = obj.category;
-    	var subCategory = obj.subCategory;
-        var title = obj.title;
-        var price = obj.price;
-        var content = obj.content;
-        var sell = obj.sell;
-	    
-        $("#category").val(category);
-        $("#subCategory").val(subCategory);
-	    $("#title").val(title);
-	    $("#price").val(price);
-	    $("#content").text(content);
-	    
-	    subCat(category,subCategory);
+        	str1 += "<tr>";
+            str1 += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
+            str1 += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
+            str1 += "<td><br>"+price+"원</td>";
+            str1 += "<td><br>"+amount+"</td>";
+            str1 += "</tr>";
+
+        }	
+		
+	    	var orderName = list[0].orderName;
+	    	var addr1 = list[0].addr1;
+	    	var addr2 = list[0].addr2;
+	    	var addr3 = list[0].addr3;
+	    	var phoneNumber = list[0].phoneNumber;
+	    	var orderMemo = list[0].orderMemo;
+	    	
+	        $("#orderName").val(orderName);
+	        $("#addr1").val(addr1);
+	        $("#addr2").val(addr2);
+	        $("#addr3").val(addr3);
+	        $("#phoneNumber").val(phoneNumber);
+		    $("#orderMemo").val(orderMemo);
 	    
 	} else {
-		alert("등록된 글이 존재하지 않습니다.");
 	    return;
-	}        
+	}       
+			$("#str").html(str1);
 }
    
 
-//게시글 수정
-function BbsUpdate(){
+//배송지 수정
+function OrderUpdate(){
+	
+	 var userID = $("#userID").val();
+	 var orderName = $("#orderName").val();
+	 var addr1 = $("#addr1").val();
+	 var addr2 = $("#addr2").val();
+	 var addr3 = $("#addr3").val();
+	 var phoneNumber = $("#phoneNumber").val();
 
-    var title = $("#title").val();
-    var price = $("#price").val();
-    var content = $("#content").val();
-        
-    if (title == ""){            
-        alert("제목을 입력해주세요.");
-        $("#title").focus();
-        return;
-    }
-    
-    if (price == 0){            
-        alert("가격을 입력해 주세요");
-        $("#price").focus();
-        return;
-    }
-    
-    if (content == ""){            
-        alert("내용을 입력해주세요.");
-        $("#content").focus();
-        return;
-    }
-    
-    var yn = confirm("게시글을 수정하시겠습니까?");        
-    var form = $('#bbsForm')[0];
-	var data = new FormData(form);
-
-   	if($('#bbsImage').val()==""){
-   		data.delete('bbsImage');
-   	}
-   	
-	$.ajax({    
-        type    : "POST",    
-        enctype: "multpart/form-data",
-        url     : "/bbs/BbsUpdate",
-        data    : data,
-        cache   : false,
-        processData: false,
-        contentType: false,
-        success : function(obj) {
-            BbsUpdateCallback(obj);                
-        },           
-        error     : function(xhr, status, error) {}
-        
-    });
-    
+	 if(userID==""||orderName==""||addr1==""||addr2==""||phoneNumber==""){
+		 alert("모든 칸을 채워주세요");
+		 return;
+	 }
+   		
+	 var yn = confirm("배송지를 수정 하시겠습니까?");        
+	    
+	 if(yn){
+		 $.ajax({    
+			 
+			 url        : "/order/OrderUpdate",
+			 data    : $("#orderForm").serialize(),
+			 dataType: "JSON",
+			 cache   : false,
+			 async   : true,
+			 type    : "POST",    
+			 success : function(obj) {
+				 OrderUpdateCallback(obj);             
+			 },           
+			 error     : function(xhr, status, error) {}
+		 });
+	 }
 }
 
 //게시글 수정 함수
-function BbsUpdateCallback(obj){	
+function OrderUpdateCallback(obj){	
 	
-	var bbsID = $("#bbsID").val();
+	var orderID = $("#orderID").val();
 	
     if(obj != null){        
         
     	var result = obj.result;
                 
         if(result == "SUCCESS"){                
-            alert("게시글 수정을 성공하였습니다.");
-            location.href = "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
+            alert("배송지 수정을 성공하였습니다.");
+            location.href = "/order/orderView?orderID="+orderID;
         } else {                
-            alert("게시글 수정을 실패하였습니다.");    
+            alert("배송지 수정을 실패하였습니다.");    
             return;
         }
     }
