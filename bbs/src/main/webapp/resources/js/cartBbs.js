@@ -50,7 +50,7 @@ function CartListCallback(obj){
             
             str += "<tr>";
             str += "<td><br><input type=\"checkbox\" name=\"cartBox\" value=\""+(price*amount)+"\" onClick=\"javascript:itemSum(checkBoxForm);\"></td>"
-            str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/700x400'\" width=\"80\" height=\"80\" alt=\"\"/></a></td>";
+            str += "<a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><img class=\"card-img-top\" src=\""+filePath+"\" onerror=\"this.src='http://placehold.it/300x200?text=No Image'\" width=\"300\" height=\"200\" alt=\"\"/></a>";
             str += "<td><a href=\"/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1\"><br>"+title+"</a></td>";
             str += "<td><br>"+price+"원</td>";
             str += "<td><br><input type=\"text\" name=\"amount\" value=\""+amount+"\" class=\"tbox\" size=\"2\"></td>";
