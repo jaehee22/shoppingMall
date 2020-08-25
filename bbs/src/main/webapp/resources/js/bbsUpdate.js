@@ -19,9 +19,8 @@ $("#bbsImage").change(function(){
 	var sub = new Array();	
 	sub[1] = new Array('귀걸이','피어싱','귀찌','이어커프');
 	sub[2] = new Array('목걸이','초커','패션 목걸이');
-	sub[3] = new Array('반지','레이어드 링','은반지','금반지');
+	sub[3] = new Array('반지','은반지','금반지');
 	sub[4] = new Array('팔찌','가죽 팔찌','원석 팔찌','은 팔찌');
-	sub[5] = new Array('발찌');
 	
 //subCategory설정
 function SubCategory(category){
