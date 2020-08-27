@@ -3,7 +3,7 @@
  
 <mapper namespace="com.shopping.bbs.bbsMapper">
  
-    <select id="BbsList" parameterType="com.shopping.bbs.form.bbsForm" resultType="com.shopping.bbs.dto.bbsDTO">
+    <select id="BbsList" resultType="com.shopping.bbs.dto.bbsDTO">
     
         SELECT *
         FROM SHOPPING.BBS
