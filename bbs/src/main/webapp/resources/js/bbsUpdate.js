@@ -69,7 +69,6 @@ function BbsView(){
 
 function BbsViewCallback(obj){
 
-    var str = "";
     if(obj != null){
     	var category = obj.category;
     	var subCategory = obj.subCategory;
