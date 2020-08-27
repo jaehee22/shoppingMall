@@ -16,9 +16,9 @@ public class bbsService {
     private bbsDAO bbsDAO;
  
     //게시판 목록 (main)
-    public List<bbsDTO> BbsList(bbsForm bbsForm) throws Exception {
+    public List<bbsDTO> BbsList() throws Exception {
  
-        return bbsDAO.BbsList(bbsForm);
+        return bbsDAO.BbsList();
     }
 
     //게시판 목록 (bbs)
