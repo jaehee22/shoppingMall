@@ -19,9 +19,9 @@ public class bbsDAO {
     private static final String NAMESPACE = "com.shopping.bbs.bbsMapper";
  
     //게시판 목록 (main)
-    public List<bbsDTO> BbsList(bbsForm bbsForm) throws Exception {
+    public List<bbsDTO> BbsList() throws Exception {
  
-        return sqlSession.selectList(NAMESPACE + ".BbsList", bbsForm);
+        return sqlSession.selectList(NAMESPACE + ".BbsList");
     }
 
     //게시판 목록 (bbs)
