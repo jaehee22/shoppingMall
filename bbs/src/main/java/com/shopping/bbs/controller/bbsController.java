@@ -43,9 +43,9 @@ public class bbsController {
     //게시판 목록 (main)
     @RequestMapping(value = "/BbsList")
     @ResponseBody
-    public List<bbsDTO> BbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
+    public List<bbsDTO> BbsList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
-    	List<bbsDTO> bbsDTO = bbsService.BbsList(bbsForm);
+    	List<bbsDTO> bbsDTO = bbsService.BbsList();
         
     	return bbsDTO;
     }
