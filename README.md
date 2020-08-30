@@ -2,7 +2,7 @@
 
 ## 0. 목차
 
-(1. 기술)[#기술]
+[1. 기술](#기술)
 (2. database EER Diagram)[#database eer diagram]
 (3. 사이트 맵)[#사이트-맵]
 (4. 기능)[#기능]
