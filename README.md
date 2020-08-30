@@ -3,8 +3,8 @@
 ## 0. 목차
 
 1. 기술 (#1. 기술)
-2. database EER Diagram (#2. database EER Diagram)
-3. 사이트 맵 (#3. 사이트 맵)
+2. database EER Diagram (# 2. database EER Diagram)
+3. 사이트 맵 (# 3. 사이트 맵)
 4. 기능 (#4. 기능)
 5. 배포 AWS (5. 배포 AWS)
 
