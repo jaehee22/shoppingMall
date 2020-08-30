@@ -47,7 +47,7 @@ https://blog.naver.com/2ejhi/222072881152
 주문하기 : https://blog.naver.com/2ejhi/222073597072
 
 주문목록, 수정, 취소 : https://blog.naver.com/2ejhi/222073675123
-## 6. 후기, Q&A (댓글방식)
+### 6. 후기, Q&A (댓글방식)
 https://blog.naver.com/2ejhi/222075338564
 
 
