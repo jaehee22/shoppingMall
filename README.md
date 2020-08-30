@@ -3,10 +3,11 @@
 ## 0. 목차
 
 [1. 기술](#기술)
-(2. database EER Diagram)[#database eer diagram]
-(3. 사이트 맵)[#사이트-맵]
-(4. 기능)[#기능]
-(5. 배포 AWS)[#배포-AWS]
+[2. database EER Diagram](#database eer diagram)
+[3. 사이트 맵](#사이트-맵)
+[4. 기능](#기능)
+[5. 배포 AWS](#배포-AWS)
+
 
 
 ## 기술
@@ -16,12 +17,15 @@
 4. 개발환경 : `Eclipse`, `Maven`
 
 
+
 ## database EER Diagram
 ![image](https://user-images.githubusercontent.com/58822916/91158601-d8698900-e701-11ea-8395-30ce84e891fb.png)
 
 
+
 ## 사이트 맵
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
+
 
 
 ## 기능
@@ -41,6 +45,7 @@ https://blog.naver.com/2ejhi/222072881152
 주문목록, 수정, 취소 : https://blog.naver.com/2ejhi/222073675123
 ## 6. 후기, Q&A (댓글방식)
 https://blog.naver.com/2ejhi/222075338564
+
 
 
 ## 배포 AWS (준비중)
