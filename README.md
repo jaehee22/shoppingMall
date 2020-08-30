@@ -2,29 +2,29 @@
 
 ## 0. 목차
 
-[1. 기술] (#1.기술)
-[2. database EER Diagram] (#2.-database-EER-Diagram)
-[3. 사이트 맵] (#3.-사이트-맵)
-[4. 기능 ](#4.-기능)
-[5. 배포 AWS] (5.-배포-AWS)
+(1. 기술)[#기술]
+(2. database EER Diagram)[#database eer diagram]
+(3. 사이트 맵)[#사이트-맵]
+(4. 기능)[#기능]
+(5. 배포 AWS)[#배포-AWS]
 
 
-## 1. 기술
+## 기술
 1. Web Front : `HTML5` , `CSS`, `JavaScript`, `Bootstrap`, `jQuery`
 2. Web Server :  `Java`, `Spring Framework`, `MyBatis`, `ApacheTomcat`
 3. DBMS : `MySQL`
 4. 개발환경 : `Eclipse`, `Maven`
 
 
-## 2. database EER Diagram
+## database EER Diagram
 ![image](https://user-images.githubusercontent.com/58822916/91158601-d8698900-e701-11ea-8395-30ce84e891fb.png)
 
 
-## 3. 사이트 맵
+## 사이트 맵
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
 
 
-## 4. 기능
+## 기능
 ### 1. 회원가입 & 로그인
 https://blog.naver.com/2ejhi/222070927093
 ### 2. 게시물 CURD
@@ -43,7 +43,7 @@ https://blog.naver.com/2ejhi/222072881152
 https://blog.naver.com/2ejhi/222075338564
 
 
-## 5. 배포 AWS (준비중)
+## 배포 AWS (준비중)
 <관리자 정보>
 
 id : manager
