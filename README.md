@@ -21,7 +21,20 @@
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
 
 ## 4. 기능
-
+### 1. 회원가입 & 로그인
+https://blog.naver.com/2ejhi/222070927093
+### 2. 게시물 CURD
+게시물 쓰기, 수정, 삭제 : https://blog.naver.com/2ejhi/222071995537
+화면 UI, 게시판 읽기, paging : https://blog.naver.com/2ejhi/222072594003
+### 3. 회원관리
+https://blog.naver.com/2ejhi/222072780335
+### 4. 장바구니
+https://blog.naver.com/2ejhi/222072881152
+### 5. 주문하기
+주문하기 : https://blog.naver.com/2ejhi/222073597072
+주문목록, 수정, 취소 : https://blog.naver.com/2ejhi/222073675123
+### 6. 후기, Q&A (댓글방식)
+https://blog.naver.com/2ejhi/222075338564
 
 ## 5. 배포 AWS (준비중)
 <관리자 정보>
