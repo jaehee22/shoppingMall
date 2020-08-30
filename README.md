@@ -8,17 +8,21 @@
 4. 기능
 5. 배포 AWS
 
+
 ## 1. 기술
 1. Web Front : `HTML5` , `CSS`, `JavaScript`, `Bootstrap`, `jQuery`
 2. Web Server :  `Java`, `Spring Framework`, `MyBatis`, `ApacheTomcat`
 3. DBMS : `MySQL`
 4. 개발환경 : `Eclipse`, `Maven`
 
+
 ## 2. database EER Diagram
 ![image](https://user-images.githubusercontent.com/58822916/91158601-d8698900-e701-11ea-8395-30ce84e891fb.png)
 
+
 ## 3. 사이트 맵
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
+
 
 ## 4. 기능
 ### 1. 회원가입 & 로그인
@@ -35,8 +39,9 @@ https://blog.naver.com/2ejhi/222072881152
 주문하기 : https://blog.naver.com/2ejhi/222073597072
 
 주문목록, 수정, 취소 : https://blog.naver.com/2ejhi/222073675123
-### 6. 후기, Q&A (댓글방식)
+## 6. 후기, Q&A (댓글방식)
 https://blog.naver.com/2ejhi/222075338564
+
 
 ## 5. 배포 AWS (준비중)
 <관리자 정보>
