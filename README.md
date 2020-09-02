@@ -51,11 +51,3 @@ https://blog.naver.com/2ejhi/222072881152
 https://blog.naver.com/2ejhi/222075338564
 
 
-
-## 배포 AWS (준비중)
-<관리자 정보>
-
-id : manager
-
-password : 1234
-
