@@ -1,18 +1,18 @@
  $(document).ready(function(){        
         CartList();
+        CartPaging();
     });
 
 //장바구니 리스트
 function CartList(){
 	
-	var cartNum = $("#cartNum").val();
 	var userID = $("#userID").val();
 
-	if(cartNum !=0 && userID != null){
+	if(userID != null){
 		$.ajax({    
   
             url     : "/cart/CartList",
-            data    : "num="+$("#cartNum").val()+"&"+$("#userID").serialize(),
+            data    : $("#cartNum").serialize()+"&"+$("#userID").serialize(),
             dataType: "JSON",
             cache   : false,
             async   : true,
@@ -32,8 +32,7 @@ function CartListCallback(obj){
     var list = obj;
     var listLen = obj.length;
     var imgPath = "http://localhost:8080/resources/bbsImg/";
-    console.log(list);
-    console.log(listLen);
+
 
     var str = "";
     
@@ -68,7 +67,61 @@ function CartListCallback(obj){
     }
    		$("#tbody").html(str);
 }
+//페이징
+function CartPaging(){
+	
+	$.ajax({    
+		  
+        url        : "/cart/CartPaging",
+        data    : $("#userID").serialize()+"&"+$("#cartNum").serialize(),
+        dataType: "JSON",
+        cache   : false,
+        async   : true,
+        type    : "POST",    
+        success : function(obj) {
+                CartPagingCallback(obj);                
+        },           
+        error     : function(xhr, status, error) {}
+        
+     });
+}
+ 	
+function CartPagingCallback(obj){
+
+	var cartNum = $("#cartNum").val();
+	var list = obj;
     
+    if(list != null){
+    	str = "";
+        var startPageNum = list.startPageNum; 
+        var endPageNum = list.endPageNum; 
+        var prev = list.prev;
+        var next = list.next;
+        
+        str += "<ul class=\"page_nation\">";
+        
+        if(prev){
+    		str += "<a class=\"arrow prev\" href=\"/cart/cartBbs?cartNum="+(startPageNum-1)+"\"><span><<</span></a>";
+    	}
+    	for(i=startPageNum; i<=endPageNum; i++){
+    		if(i == cartNum){
+    			str += "<a class=\"active\" href=\"/cart/cartBbs?cartNum="+i+"\">"+i+"</a>";
+    		}
+    		else{
+    			str += "<a href=\"/cart/cartBbs?cartNum="+i+"\">"+i+"</a>";
+    		}
+    	}
+    	
+    	if(next){
+    		str += "<a class=\"arrow next\" href=\"/cart/cartBbs?cartNum="+(endPageNum+1)+"\"><span>>></span></a>";
+    	}
+    	
+    		str += "</ul>";
+    	$("#tPaging").html(str);
+    }
+	
+}
+
 //장바구니 체크 합계
 function itemSum(frm){
    var sum = 0;
