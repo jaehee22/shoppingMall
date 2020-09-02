@@ -1,17 +1,6 @@
 $(document).ready(function(){        
     OrderView();
 });
-    
-//주문 목록 이동
-function goBbsList(){       
-	location.href = "/order/orderBbs?orderNum=1";
-}
-
-//주문 수정 이동
-function goBbsUpdate(){
-	var bbsID = $("#orderID").val();
-	location.href = "/bbs/bbsUpdate?orderID="+orderID;
-}
 	
 //게시판 뷰
 function OrderView(){
