@@ -21,9 +21,6 @@ public class cartController {
  
     @Autowired
     private cartService cartService;
-    int pageNum = 0;
-    
-    
     
     //장바구니 bbs page
     @RequestMapping( value = "/cartBbs")
@@ -36,14 +33,10 @@ public class cartController {
     @RequestMapping(value = "/CartList")
     @ResponseBody
     public List<cartDTO> CartList(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
-    	//카테고리별 게시물 갯수
-    	int cartTotal = cartService.CartTotal(cartForm);
     	//한페이지당 나올 개시물 수
     	int postNum = 5;
-    	//총 페이징 번호 수
-    	pageNum = (int)Math.ceil((double)cartTotal/postNum);
     	//블록당 첫페이지
-    	int displayPost = (cartForm.getNum()-1)*postNum;
+    	int displayPost = (cartForm.getCartNum()-1)*postNum;
     	cartForm.setDisplayPost(displayPost);
     	cartForm.setPostNum(postNum);
         	
@@ -55,17 +48,19 @@ public class cartController {
     @RequestMapping(value = "/CartPaging")
     @ResponseBody
     public pagingDTO Paging(HttpServletRequest request, HttpServletResponse response,cartForm cartForm) throws Exception {    	
-    	    	
+    	//한페이지당 나올 개시물 수
+    	int postNum = 5;
+    	
     	//카테고리별 게시물 갯수
     	int cartTotal = cartService.CartTotal(cartForm);
     	//한번에 표시할 페이징 번호 개수
     	int pageNum_cnt = 6;
     	//표시되는 페이지 번호 중 마지막 번호
-    	int endPageNum = (int)(Math.ceil((double)cartForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	int endPageNum = (int)(Math.ceil((double)cartForm.getCartNum()/(double)pageNum_cnt)*pageNum_cnt);
     	//표시되는 페이지 번호 중 첫번째 번호
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
-    	int endPageNum_tmp = (int)(Math.ceil((double)cartTotal/(double)pageNum_cnt));
+    	int endPageNum_tmp = (int)(Math.ceil((double)cartTotal/(double)postNum));
 
     	if(endPageNum > endPageNum_tmp) {
     		endPageNum=endPageNum_tmp;
@@ -75,7 +70,6 @@ public class cartController {
     	boolean next = endPageNum * pageNum_cnt >= cartTotal ? false : true;
     	
     	pagingDTO pagingDTO = new pagingDTO();
-    	pagingDTO.setPageNum(pageNum);
     	pagingDTO.setStartPageNum(startPageNum);
     	pagingDTO.setEndPageNum(endPageNum);
     	pagingDTO.setPrev(prev);
@@ -91,16 +85,6 @@ public class cartController {
         
     	cartDTO cartDTO = cartService.CartView(cartForm);
 
-    	return cartDTO;
-    }
-
-    //cartID
-    @RequestMapping(value = "/GetNext")
-    @ResponseBody
-    public cartDTO GetNext(HttpServletRequest request, HttpServletResponse response, cartForm cartForm) throws Exception {
-        
-    	cartDTO cartDTO = cartService.CartUpdate(cartForm);
-        
     	return cartDTO;
     }
      
