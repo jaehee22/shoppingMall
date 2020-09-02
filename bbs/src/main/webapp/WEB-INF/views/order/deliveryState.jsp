@@ -33,7 +33,6 @@
 				</form>
 			</div>
 		</div>
-		<div class="col-lg-10"></div>
 	</div>
 	
 	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
