@@ -39,7 +39,7 @@
     	FROM SHOPPING.ITEMORDER, (SELECT ORDERID,BBS.bbsID,amount,BBS.price,title from SHOPPING.ORDERITEMS,SHOPPING.BBS WHERE ORDERITEMS.bbsID=BBS.bbsID) AS ITEM
     	WHERE ITEMORDER.orderID=ITEM.orderID
     	GROUP BY ITEM.orderID
-    	ORDER BY bbsID DESC
+    	ORDER BY ITEMORDER.orderID DESC
 		LIMIT #{displayPost}, #{postNum}
     	
     </select>  
