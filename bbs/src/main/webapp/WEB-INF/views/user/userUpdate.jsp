@@ -161,8 +161,8 @@
 						</div>
 						<div align=center>
 						<br><br>
-							<button type="submit" class="btn btn-primary" onclick="javascript:UserDelete();">회원탈퇴</button>
-							<button id="userForm2" type="submit" class="btn btn-primary" onclick="javascript:UserUpdate();">회원수정</button>			
+							<button type="button" class="btn btn-primary" onclick="javascript:UserDelete();">회원탈퇴</button>
+							<button type="button" class="btn btn-primary" onclick="javascript:UserUpdate();">회원수정</button>			
 						</div>				
 					</div>
 				</div>
