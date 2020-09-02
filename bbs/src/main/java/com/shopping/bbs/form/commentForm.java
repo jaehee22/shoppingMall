@@ -10,10 +10,9 @@ public class commentForm {
 	private int subCommentID;
 	
 	String result;
-	int num;
+	int commentNum;
 	int displayPost;
 	int postNum;
-	int pageNum;
 	
 	public int getBbsID() {
 		return bbsID;
@@ -66,11 +65,13 @@ public class commentForm {
 		this.result = result;
 	}
 	
-	public int getNum() {
-		return num;
+
+	
+	public int getCommentNum() {
+		return commentNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
 	}
 	public int getDisplayPost() {
 		return displayPost;
@@ -84,11 +85,4 @@ public class commentForm {
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
 	}
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-	
 }
