@@ -157,7 +157,6 @@
  function SubOrderWrite(obj){
     	
 	 if(obj!=null){
-    		
 		 var orderID = obj.orderID;
 		 
 		 $.ajax({    
