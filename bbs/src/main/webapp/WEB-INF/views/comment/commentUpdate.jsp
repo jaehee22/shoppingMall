@@ -29,6 +29,7 @@
 	<c:if test="${userForm==null || userID != userForm.userID}">
 		<script>
 			var bbsID = <%=bbsID%>;
+			alert(<%=userID%>);
 			alert("권한이 없습니다.");
         	window.opener.location.href= "/bbs/bbsView?bbsID="+bbsID+"&comCategory=1&commentNum=1";
     		window.close();
@@ -42,7 +43,9 @@
 						<textarea id="content" name="content" style="width:400px;height:50px;" maxlength=1024 class="tbox"></textarea>
 						<input type="button" onclick="javascript:CommentUpdate()" value="수정">
 						<br><br>
-						<input type="file" id="newFile" name="newFile"/>	
+						<c:if test="${subCommentID == 0}">
+						<input type="file" id="newFile" name="newFile"/>
+						</c:if>	
 						<input type="hidden" id="commentID" name="commentID" value="${commentID}"/>
 						<input type="hidden" id="bbsID" name="bbsID" value="${bbsID}"/>
 						<input type="hidden" id="subCommentID" name="subCommentID" value="${subCommentID}"/>						
