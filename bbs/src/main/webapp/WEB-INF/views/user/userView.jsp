@@ -23,7 +23,7 @@
 	<link type="text/css" href="${pageContext.request.contextPath}/resources/css/shop-homepage.css" rel="stylesheet">
 </head>
 <body>
-	<c:if test="${userForm == null or userForm.userID != userID and userForm.isManager == 0}">
+	<c:if test="${userForm == null or (userForm.userID != userID and userForm.isManager == 0)}">
 		<script>
 			alert("권한이 없습니다.");
 			location.href = "/bbs/home";
@@ -144,8 +144,7 @@
 								</form>
 							</div>
 							<div align=center>
-							<br><br>
-								<button type="button" class="btn btn-primary" onclick="javascript:goBbsList();">목록</button>			
+							<br><br>	
 								<button type="button" class="btn btn-primary" onclick="javascript:goUserUpdate();">회원 수정</button>			
 							</div>						
 						</div>
