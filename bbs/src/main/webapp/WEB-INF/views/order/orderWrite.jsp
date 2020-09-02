@@ -132,7 +132,7 @@
 	   			<div id="carouselExampleIndicators">
 		   			<table class="table" style="text-align:center;">
 							<tr>
-								<th colspan=7>장바구니</th>
+								<th colspan=7>주문 목록</th>
 							</tr>
 							<tr>
 								<td>이미지</td>
@@ -140,6 +140,7 @@
 								<td>가격</td>
 								<td>수량</td>
 								<td>합계</td>
+							</tr>
 							<tbody id = tbody>
 							</tbody>
 						</table>		
