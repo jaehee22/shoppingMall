@@ -50,19 +50,13 @@ public class bbsController {
     	return bbsDTO;
     }
         
-    int pageNum = 0;
     
     //게시판 목록 (bbs)
     @RequestMapping(value = "/BbsbbsList")
     @ResponseBody
     public List<bbsDTO> BbsbbsList(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-    	
-    	//카테고리별 게시물 갯수
-    	int BbsTotal = bbsService.BbsTotal(bbsForm);
-    	//한페이지당 나올 개시물 수
+    	//한페이지에 표시될 게시판 수
     	int postNum = 9;
-    	//총 페이징 번호 수
-    	pageNum = (int)Math.ceil((double)BbsTotal/postNum);
     	//블록당 첫페이지(bbsID)
     	int displayPost = (bbsForm.getNum()-1)*postNum;
     	bbsForm.setDisplayPost(displayPost);
@@ -76,7 +70,8 @@ public class bbsController {
     @RequestMapping(value = "/BbsPaging")
     @ResponseBody
     public pagingDTO BbsPaging(HttpServletRequest request, HttpServletResponse response,bbsForm bbsForm) throws Exception {    	
-    	    	
+    	//한페이지에 표시될 게시판 수
+    	int postNum = 9;    	
     	//카테고리별 게시물 갯수
     	int BbsTotal = bbsService.BbsTotal(bbsForm);
     	//한번에 표시할 페이징 번호 개수
@@ -86,8 +81,8 @@ public class bbsController {
     	//표시되는 페이지 번호 중 첫번째 번호
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
-    	int endPageNum_tmp = (int)(Math.ceil((double)BbsTotal/(double)pageNum_cnt));
-    	
+    	int endPageNum_tmp = (int)(Math.ceil((double)BbsTotal/(double)postNum));
+    	System.out.println(endPageNum_tmp);
     	if(endPageNum > endPageNum_tmp) {
     		endPageNum=endPageNum_tmp;
     	}
@@ -96,7 +91,6 @@ public class bbsController {
     	boolean next = endPageNum * pageNum_cnt >= BbsTotal ? false : true;
     	
     	pagingDTO pagingDTO = new pagingDTO();
-    	pagingDTO.setPageNum(pageNum);
     	pagingDTO.setStartPageNum(startPageNum);
     	pagingDTO.setEndPageNum(endPageNum);
     	pagingDTO.setPrev(prev);
@@ -122,15 +116,6 @@ public class bbsController {
     	return bbsDTO;
     }
     
-    //게시판 글번호
-    @RequestMapping(value = "/GetNext")
-    @ResponseBody
-    public bbsDTO GetNext(HttpServletRequest request, HttpServletResponse response, bbsForm bbsForm) throws Exception {
-        
-    	bbsDTO bbsDTO = bbsService.BbsUpdate(bbsForm);
-        
-    	return bbsDTO;
-    }
     
     //게시글 작성 page
     @RequestMapping( value = "/bbsWrite")
