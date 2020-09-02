@@ -89,7 +89,7 @@ function UserUpdate(){
         $.ajax({    
             
             url        : "/user/UserUpdate",
-            data    : "userPassword="+userPassword+"&userName="+userName+"&userGender="+userGender+"&userID="+userID,
+            data    : $("#userForm2").serialize(),
             dataType: "JSON",
             cache   : false,
             async   : true,
