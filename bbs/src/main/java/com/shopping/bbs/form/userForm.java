@@ -7,10 +7,9 @@ public class userForm {
 	String userGender;
 	int isManager;
 	
-	int num;
+	int userNum;
 	int displayPost;
 	int postNum;
-	int pageNum;
 	
 	public String getUserID() {
 		return userID;
@@ -42,11 +41,11 @@ public class userForm {
 	public void setIsManager(int isManager) {
 		this.isManager = isManager;
 	}
-	public int getNum() {
-		return num;
+	public int getUserNum() {
+		return userNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
 	}
 	public int getDisplayPost() {
 		return displayPost;
@@ -59,12 +58,6 @@ public class userForm {
 	}
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
-	}
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
 	}
 	
 }
