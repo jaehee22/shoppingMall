@@ -33,6 +33,7 @@ function UserOrderCallback(obj){
         for(var a=0; a<listLen; a++){            	            	
         	
         	var orderID = list[a].orderID;
+        	var userID = list[a].userID;
         	var title = list[a].title;
         	var items = list[a].items;
         	var delivery = list[a].delivery;
@@ -49,6 +50,7 @@ function UserOrderCallback(obj){
             if(list[a].items > 1){
             	str += "<td><a href=\"/order/orderView?orderID="+orderID+"\">"+title+" 외"+(items-1)+"개의 제품</td>";
             }
+            str += "<td>"+userID+"</td>";
             str += "<td>"+delivery+"</td>";
             str += "<td><button type=\"button\" class=\"btn btn-primary\" onclick=\"javascript:DeliveryState("+orderID+");\">수정</button>"
             
