@@ -12,7 +12,6 @@ public class bbsForm {
 	int num;
 	int displayPost;
 	int postNum;
-	int pageNum;
 	
 	public int getBbsID() {
 		return bbsID;
@@ -75,11 +74,4 @@ public class bbsForm {
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
 	}
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-	
 }
