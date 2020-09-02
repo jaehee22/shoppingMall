@@ -38,21 +38,13 @@ public class orderComtroller {
         
         return "order/orderBbs";
     }
-    
-    
-    int pageNum = 0;
 
     //주문목록 (주문완료)
     @RequestMapping(value = "/OrderBbs")
     @ResponseBody
     public List<orderDTO> OrderBbs(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
-        
-    	//카테고리별 게시물 갯수
-    	int orderTotal = orderService.OrderTotal(orderForm);
     	//한페이지당 나올 개시물 수
     	int postNum = 10;
-    	//총 페이징 번호 수
-    	pageNum = (int)Math.ceil((double)orderTotal/postNum);
     	//블록당 첫페이지(bbsID)
     	int displayPost = (orderForm.getNum()-1)*postNum;
     	orderForm.setDisplayPost(displayPost);
@@ -66,7 +58,8 @@ public class orderComtroller {
     @RequestMapping(value = "/OrderPaging")
     @ResponseBody
     public pagingDTO OrderPaging(HttpServletRequest request, HttpServletResponse response,orderForm orderForm) throws Exception {    	
-    	    	
+    	//한페이지당 나올 개시물 수
+    	int postNum = 10;   	
     	//카테고리별 게시물 갯수
     	int orderTotal = orderService.OrderTotal(orderForm);
     	//한번에 표시할 페이징 번호 개수
@@ -76,7 +69,7 @@ public class orderComtroller {
     	//표시되는 페이지 번호 중 첫번째 번호
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
-    	int endPageNum_tmp = (int)(Math.ceil((double)orderTotal/(double)pageNum_cnt));
+    	int endPageNum_tmp = (int)(Math.ceil((double)orderTotal/(double)postNum));
     	
     	if(endPageNum > endPageNum_tmp) {
     		endPageNum=endPageNum_tmp;
@@ -86,7 +79,6 @@ public class orderComtroller {
     	boolean next = endPageNum * pageNum_cnt >= orderTotal ? false : true;
     	
     	pagingDTO pagingDTO = new pagingDTO();
-    	pagingDTO.setPageNum(pageNum);
     	pagingDTO.setStartPageNum(startPageNum);
     	pagingDTO.setEndPageNum(endPageNum);
     	pagingDTO.setPrev(prev);
@@ -112,15 +104,6 @@ public class orderComtroller {
     	return orderDTO;
     }
     
-    //주문 글번호
-    @RequestMapping(value = "/GetNext")
-    @ResponseBody
-    public orderDTO GetNext(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
-        
-    	orderDTO orderDTO = orderService.OrderUpdate(orderForm);
-        
-    	return orderDTO;
-    }
     
     //주문 작성 page
     @RequestMapping( value = "/orderWrite")
@@ -219,23 +202,16 @@ public class orderComtroller {
         return "order/userOrder";
     }
     
-    int pageNum2=0;
-    
     //회원 주문 전체 목록
     @RequestMapping(value = "/UserOrder")
     @ResponseBody
     public List<orderDTO> UserOrder(HttpServletRequest request, HttpServletResponse response, orderForm orderForm) throws Exception {
-        
-    	//카테고리별 게시물 갯수
-    	int UserOrderTotal = orderService.UserOrderTotal(orderForm);
     	//한페이지당 나올 개시물 수
-    	int postNum2 = 10;
-    	//총 페이징 번호 수
-    	pageNum2 = (int)Math.ceil((double)UserOrderTotal/postNum2);
+    	int postNum = 10;
     	//블록당 첫페이지(bbsID)
-    	int displayPost = (orderForm.getNum()-1)*postNum2;
+    	int displayPost = (orderForm.getNum()-1)*postNum;
     	orderForm.setDisplayPost(displayPost);
-    	orderForm.setPostNum(postNum2);
+    	orderForm.setPostNum(postNum);
     	
     	List<orderDTO> orderDTO = orderService.UserOrder(orderForm);
         
@@ -246,7 +222,8 @@ public class orderComtroller {
     @RequestMapping(value = "/UserOrderPaging")
     @ResponseBody
     public pagingDTO UserOrderPaging(HttpServletRequest request, HttpServletResponse response,orderForm orderForm) throws Exception {    	
-    	    	
+    	//한페이지당 나올 개시물 수
+    	int postNum = 10;    	
     	//카테고리별 게시물 갯수
     	int UserOrderTotal = orderService.UserOrderTotal(orderForm);
     	//한번에 표시할 페이징 번호 개수
@@ -256,7 +233,7 @@ public class orderComtroller {
     	//표시되는 페이지 번호 중 첫번째 번호
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
-    	int endPageNum_tmp = (int)(Math.ceil((double)UserOrderTotal/(double)pageNum_cnt));
+    	int endPageNum_tmp = (int)(Math.ceil((double)UserOrderTotal/(double)postNum));
     	
     	if(endPageNum > endPageNum_tmp) {
     		endPageNum=endPageNum_tmp;
@@ -266,7 +243,6 @@ public class orderComtroller {
     	boolean next = endPageNum * pageNum_cnt >= UserOrderTotal ? false : true;
     	
     	pagingDTO pagingDTO = new pagingDTO();
-    	pagingDTO.setPageNum(pageNum2);
     	pagingDTO.setStartPageNum(startPageNum);
     	pagingDTO.setEndPageNum(endPageNum);
     	pagingDTO.setPrev(prev);
