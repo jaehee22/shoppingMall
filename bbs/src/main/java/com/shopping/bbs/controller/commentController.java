@@ -31,14 +31,10 @@ public class commentController {
     @RequestMapping(value = "/CommentList")
     @ResponseBody
     public List<commentDTO> CommentList(HttpServletRequest request, HttpServletResponse response, commentForm commentForm) throws Exception {
-    	//카테고리별 게시물 갯수
-    	int commentTotal = commentService.CommentTotal(commentForm);
     	//한페이지당 나올 개시물 수
     	int postNum = 5;
-    	//총 페이징 번호 수
-    	pageNum = (int)Math.ceil((double)commentTotal/postNum);
     	//블록당 첫페이지
-    	int displayPost = (commentForm.getNum()-1)*postNum;
+    	int displayPost = (commentForm.getCommentNum()-1)*postNum;
     	commentForm.setDisplayPost(displayPost);
     	commentForm.setPostNum(postNum);
         	
@@ -56,7 +52,7 @@ public class commentController {
     	//한번에 표시할 페이징 번호 개수
     	int pageNum_cnt = 6;
     	//표시되는 페이지 번호 중 마지막 번호
-    	int endPageNum = (int)(Math.ceil((double)commentForm.getNum()/(double)pageNum_cnt)*pageNum_cnt);
+    	int endPageNum = (int)(Math.ceil((double)commentForm.getCommentNum()/(double)pageNum_cnt)*pageNum_cnt);
     	//표시되는 페이지 번호 중 첫번째 번호
     	int startPageNum = endPageNum - (pageNum_cnt -1);
     	//마지막 번호 재계산
@@ -70,7 +66,6 @@ public class commentController {
     	boolean next = endPageNum * pageNum_cnt >= commentTotal ? false : true;
     	
     	pagingDTO pagingDTO = new pagingDTO();
-    	pagingDTO.setPageNum(pageNum);
     	pagingDTO.setStartPageNum(startPageNum);
     	pagingDTO.setEndPageNum(endPageNum);
     	pagingDTO.setPrev(prev);
