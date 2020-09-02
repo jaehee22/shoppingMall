@@ -115,7 +115,7 @@ function CommentList(){
 		$.ajax({    
   
             url     : "/comment/CommentList",
-            data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&num="+commentNum,
+            data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&"+$("#commentNum").serialize(),
             dataType: "JSON",
             cache   : false,
             async   : true,
@@ -176,7 +176,7 @@ function CommentListCallback(obj){
 		            str += "<td colspan=2 align=\"right\">";
 		            
 		            if(NowUserID == userID){
-		            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+","+userID+")\">수정</button>";
+		            str += "<button type=\"button\" onclick=\"javascript:nwindow("+bbsID+","+commentID+","+subCommentID+",'"+userID+"');\">수정</button>";
 		            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+","+subCommentID+");\">삭제</button>";
 		            }
 		            
@@ -203,7 +203,7 @@ function CommentListCallback(obj){
 		            
 		            //관리자
 		            if(isManager == 1){
-			            str += "<button type=\"button\" onclick=\"nwindow("+bbsID+","+commentID+","+subCommentID+")\">수정</button>";
+			            str += "<button type=\"button\" onclick=\"javascript:nwindow("+bbsID+","+commentID+","+subCommentID+",'"+userID+"');\">수정</button>";
 			            str += "&emsp;<button type=\"button\" onclick=\"javascript:CommentDelete("+commentID+","+subCommentID+");\">삭제</button>";
 		            }        
 		            
@@ -426,7 +426,7 @@ function CommentPaging(){
 	$.ajax({    
 	 			  
 		url        : "/comment/CommentPaging",
-		data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&num="+$("#commentNum").val(),
+		data    : $("#bbsID").serialize()+"&"+$("#comCategory").serialize()+"&"+$("#commentNum").serialize(),
 		dataType: "JSON",
 		cache   : false,
 		async   : true,
@@ -481,15 +481,10 @@ function CommentPagingCallback(obj){
 
 //장바구니 담기
 function CartWrite(){
-	
-	var amount = $("#amount").val(); 
-	var bbsID = $("#bbsID").val();
-	var userID = $("#userID").val();
-	 
 	$.ajax({    
  		  
       url        : "/cart/CartWrite",
-      data    : $("#userID").serialize()+"&"+$("#bbsID").serialize()+"&"+$("#amount").serialize(),
+      data    : $("#bbsForm").serialize()+"&"+$("#amount").serialize(),
       dataType: "JSON",
       cache   : false,
       async   : true,
@@ -572,7 +567,7 @@ function CartUpdate(Amount){
 	$.ajax({    
    		  
 		url        : "/cart/CartUpdate",
-        data    : "amount="+amount+"&"+$("#userID").serialize()+"&"+$("#bbsID").serialize(),
+        data    : "amount="+amount+"&"+$("#bbsForm").serialize(),
         dataType: "JSON",
         cache   : false,
         async   : true,
