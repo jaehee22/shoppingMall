@@ -8,7 +8,7 @@
 	 $.ajax({    
   
 		 url        : "/user/UserList",
-		 data    : $("#userForm").serialize()+"&num="+$("#userNum").val(),
+		 data    : $("#userNum").serialize(),
 		 dataType: "JSON",
 		 cache   : false,
 		 async   : true,
@@ -52,7 +52,7 @@ function UserListCallback(obj){
     } else {
         
         str += "<tr colspan='4'>";
-        str += "<td>등록된 글이 존재하지 않습니다.</td>";
+        str += "<td>회원가입한 회원이 존재하지 않습니다.</td>";
         str += "<tr>";
     }
     
@@ -65,7 +65,7 @@ function UserPaging(){
 	$.ajax({    
 		  
         url     : "/user/UserPaging",
-        data    : "num="+$("#userNum").val(),
+        data    : $("#userNum").serialize(),
         dataType: "JSON",
         cache   : false,
         async   : true,
@@ -80,7 +80,7 @@ function UserPaging(){
  	
 function UserPagingCallback(obj){
 	
-	var userNum = $("#UserNum").val();
+	var userNum = $("#userNum").val();
 	var list = obj;
     
     if(list != null){
