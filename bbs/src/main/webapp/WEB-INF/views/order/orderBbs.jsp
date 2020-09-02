@@ -14,7 +14,7 @@
 	int orderNum = Integer.parseInt(request.getParameter("orderNum"));     
 %>
 
-	<c:set var="orderNum" value="<%=orderNum%>"/> <!-- 주문 번호 -->
+	<c:set var="orderNum" value="<%=orderNum%>"/> <!-- 페이지-->
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css">
 	
