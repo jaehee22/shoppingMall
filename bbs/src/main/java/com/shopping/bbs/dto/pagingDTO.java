@@ -1,17 +1,11 @@
 package com.shopping.bbs.dto;
 
 public class pagingDTO {
-	private int pageNum;
 	private int startPageNum;
 	private int endPageNum;
 	private boolean prev;
 	private boolean next;
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
+
 	public int getStartPageNum() {
 		return startPageNum;
 	}
@@ -36,8 +30,4 @@ public class pagingDTO {
 	public void setNext(boolean next) {
 		this.next = next;
 	}
-
-	
-	
-	
 }
