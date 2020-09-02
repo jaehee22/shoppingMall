@@ -148,7 +148,7 @@
 							</div>
 						</c:if>
 					    <input type="hidden" id="bbsID" name="bbsID"    value="${bbsID}"/> <!-- 게시글 번호 -->
-					    <input type="hidden" id="comCategory" name="comCategory"    value="${comCategory}"/> <!-- bbs카테고리번호 -->
+					    <input type="hidden" id="comCategory" name="comCategory"    value="${comCategory}"/> <!-- 후기orQ&A카테고리번호 -->
 					    <input type="hidden" id="commentNum" name="commentNum"    value="${commentNum}"/> <!-- comment페이징 -->
 						<input type="hidden" id="userID" name="userID" value="${userForm.userID}"/>					    													    
       				</form>
@@ -194,7 +194,7 @@
 								<c:if test="${comCategory==2}">
 									<td colspan=3>궁금하신게 있다면 언제든지 물어보세요^^</td>
 								</c:if>
-								<tr>
+								</tr>
 								<tr>
 									<td style="border-bottom:none;" valign="middle"><br><br>${userForm.userID}</td>
 									<td><textarea id="content" name="content" cols="70" rows="5" maxlength="2048" class="tbox"/></textarea></td>
