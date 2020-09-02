@@ -116,12 +116,11 @@ function BbsPagingCallback(obj){
     
     if(list != null){
     	str = "";
-    	var pageNum = list.pageNum;
         var startPageNum = list.startPageNum; 
         var endPageNum = list.endPageNum; 
         var prev = list.prev;
         var next = list.next;
-
+        
         str += "<ul class=\"page_nation\">";
         
         if(prev){
