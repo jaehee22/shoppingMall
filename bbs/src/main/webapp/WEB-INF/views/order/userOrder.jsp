@@ -23,6 +23,12 @@
 </head>
 
 <body>
+	<c:if test="${userForm.isManager == 0 || userForm==null}">
+	 	<script>
+	 		alert("권한이 없습니다.");
+			location.href = "/bbs/home";
+		</script>
+	 </c:if>
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
   		<div class="container">
@@ -127,11 +133,12 @@
 			<br><form name="checkBoxForm">
 					<table class="table" style="text-align:center;">
 						<tr>
-							<th colspan=4>주문내역</th>
+							<th colspan=5>주문내역</th>
 						</tr>
 						<tr>
 							<td>주문번호</td>
 							<td>주문정보</td>
+							<td>주문자</td>
 							<td>배송상태</td>
 							<td>배송상태 수정</td>
 						<tbody id = tbody>
