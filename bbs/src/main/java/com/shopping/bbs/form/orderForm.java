@@ -18,8 +18,6 @@ public class orderForm {
 	int num;
 	int displayPost;
 	int postNum;
-	int pageNum;
-	private String result;
 
 	public int getOrderID() {
 		return orderID;
@@ -139,23 +137,6 @@ public class orderForm {
 
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
-	}
-
-	public int getPageNum() {
-		return pageNum;
-	}
-
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-	
+	}	
 	
 }
