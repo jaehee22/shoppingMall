@@ -6,10 +6,9 @@ public class cartForm {
 	private int bbsID;
 	private int amount;
 	
-	int num;
+	int cartNum;
 	int displayPost;
 	int postNum;
-	int pageNum;
 	
 	public int getCartID() {
 		return cartID;
@@ -35,11 +34,11 @@ public class cartForm {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getNum() {
-		return num;
+	public int getCartNum() {
+		return cartNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setCartNum(int cartNum) {
+		this.cartNum = cartNum;
 	}
 	public int getDisplayPost() {
 		return displayPost;
@@ -52,12 +51,6 @@ public class cartForm {
 	}
 	public void setPostNum(int postNum) {
 		this.postNum = postNum;
-	}
-	public int getPageNum() {
-		return pageNum;
-	}
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
 	}
 	
 }
