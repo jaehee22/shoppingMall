@@ -2,26 +2,26 @@
 
 ## 0. 목차
 
-[1. 개요](#개요)
+[1. 개요](#1.-개요)
 
-[2. 기술](#기술)
+[2. 기술](#2.-기술)
 
-[3. database EER Diagram](#database-eer-diagram)
+[3. database EER Diagram](#3.-database-eer-diagram)
 
-[4. 사이트 맵](#사이트-맵)
+[4. 사이트 맵](#4.-사이트-맵)
 
-[5. 기능](#기능)
+[5. 기능](#5.-기능)
 
-[6. 배포 AWS](#배포-AWS)
+[6. 배포 AWS](#6.-배포-AWS)
 
 
-## 개요
+## 1. 개요
 ![image](https://user-images.githubusercontent.com/58822916/92574215-c8d16f00-f2c1-11ea-9659-65f67c821fc8.png)
 
 spring framework를 이용한 악세사리 쇼핑몰입니다.
 상품을 보며 장바구니, 구매를 할 수 있는 웹페이지 입니다.
 
-## 기술
+## 2. 기술
 1. Web Front : `HTML5` , `CSS`, `JavaScript`, `Bootstrap`, `jQuery`
 2. Web Server :  `Java`, `Spring Framework`, `MyBatis`, `ApacheTomcat`
 3. DBMS : `MySQL`
@@ -29,17 +29,17 @@ spring framework를 이용한 악세사리 쇼핑몰입니다.
 
 
 
-## database EER Diagram
+## 3. database EER Diagram
 ![image](https://user-images.githubusercontent.com/58822916/91158601-d8698900-e701-11ea-8395-30ce84e891fb.png)
 
 
 
-## 사이트 맵
+## 4. 사이트 맵
 ![image](https://user-images.githubusercontent.com/58822916/91177059-27bdb280-e71e-11ea-90d9-2489e8b8a53d.png)
 
 
 
-## 기능
+## 5. 기능
 ### 1. 회원가입 & 로그인
 https://blog.naver.com/2ejhi/222070927093
 ### 2. 게시물 CURD
@@ -59,7 +59,7 @@ https://blog.naver.com/2ejhi/222075338564
 
 
 
-## 배포 aws
+## 6. 배포 aws
 
 http://13.124.127.241:8080/bbs/bbs/home
 
