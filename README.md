@@ -2,17 +2,23 @@
 
 ## 0. 목차
 
-[1. 기술](#기술)
+[1. 개요](#개요)
 
-[2. database EER Diagram](#database-eer-diagram)
+[2. 기술](#기술)
 
-[3. 사이트 맵](#사이트-맵)
+[3. database EER Diagram](#database-eer-diagram)
 
-[4. 기능](#기능)
+[4. 사이트 맵](#사이트-맵)
 
-[5. 배포 AWS](#배포-AWS)
+[5. 기능](#기능)
+
+[6. 배포 AWS](#배포-AWS)
 
 
+## 개요
+![image](https://user-images.githubusercontent.com/58822916/92574215-c8d16f00-f2c1-11ea-9659-65f67c821fc8.png)
+spring framework를 이용한 악세사리 쇼핑몰입니다.
+상품을 보며 장바구니, 구매를 할 수 있는 웹페이지 입니다.
 
 ## 기술
 1. Web Front : `HTML5` , `CSS`, `JavaScript`, `Bootstrap`, `jQuery`
